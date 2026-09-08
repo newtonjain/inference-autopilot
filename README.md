@@ -19,6 +19,14 @@ The main route is the new fleet console. `/lab` preserves the earlier single-GPU
 
 The header’s Day mode / Night mode toggle applies across both labs and remembers your choice on this device.
 
+## Workspace navigation
+
+- **Live fleet:** routing immediately below playback/scaling controls, followed by metrics, expandable replicas/ranks, rollout progress, and demand over time.
+- **Simulation:** workload shaping and optimization opportunities; repeatable demo presets are expandable.
+- **Optimization:** baseline context, recommended profiles, rationale, exact profile JSON, approval, and the production analysis-service boundary.
+
+Approval returns to Live fleet. Blue/green demand traces show actual simulated requests routed to each pool. The data-source selector exposes read-only GKE snapshots in the same workspace; snapshots cannot drive simulation controls or performance recommendations. No live cloud stream or AI analysis service is connected.
+
 ## Distributed deployment and GCP
 
 The dashboard now includes reproducible scenario presets, a per-model/per-hardware replica matrix, host/rank inspection, and explicitly proposed TP/PP/EP and prefill/decode architectures. GB200/GB300 eight-chip serving groups map to two modeled four-chip hosts; network performance is not simulated.

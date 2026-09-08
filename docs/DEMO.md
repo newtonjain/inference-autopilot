@@ -4,7 +4,7 @@ The core product is a deployment decision loop: observe workload → replay alte
 
 ## Strongest scenarios
 
-The dashboard provides atomic Load scenario buttons. Each resets the initial placements, uses seed 42, disables reactive autoscaling, and pauses so the evidence is repeatable. Choose Run optimization after loading. Metrics below are from the 90-second fluid replay, not measurements on GPUs. TTFT is an estimate, not p95.
+On the Simulation screen, expand “Load a repeatable demo scenario” to find atomic Load scenario buttons. Each resets the initial placements, uses seed 42, disables reactive autoscaling, and pauses so the evidence is repeatable. Choose Run optimization after loading. Metrics below are from the 90-second fluid replay, not measurements on GPUs. TTFT is an estimate, not p95.
 
 | Scenario               | What to show                                                                                                                                       | Reproducible reference result                                                                                                                               |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |

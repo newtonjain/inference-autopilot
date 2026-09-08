@@ -15,7 +15,6 @@ import {
   ShieldCheck,
   Check,
   ChevronRight,
-  Clock3,
   ArrowDownRight,
   ArrowUpRight,
   Zap,
@@ -91,6 +90,7 @@ import './gcp-connection.css';
 
 type Experiment = ReturnType<typeof recommendProfiles>[number];
 type Evidence = {
+  workload: WorkloadConfig;
   context: string;
   baseline: Evaluation;
   experiments: Experiment[];
@@ -234,11 +234,23 @@ export default function FleetConsole() {
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState('');
   const [tab, setTab] = useState('experiments');
+  const [screen, setScreen] = useState<'live' | 'simulation' | 'optimization'>(
+    'live',
+  );
+  const [source, setSource] = useState<'simulation' | 'gke'>('simulation');
+  const observedMode = source === 'gke';
   const [assumptions, setAssumptions] = useState(false);
   const [pattern, setPattern] = useState('mixed');
   const [audit, setAudit] = useState<Audit[]>([]);
   const [history, setHistory] = useState<
-    { time: number; gemma: number; qwen: number; kimi: number }[]
+    {
+      time: number;
+      gemma: number;
+      qwen: number;
+      kimi: number;
+      blue: number;
+      green: number;
+    }[]
   >([]);
   const ids = useRef(new Set<string>());
   const current = useRef(session);
@@ -260,8 +272,18 @@ export default function FleetConsole() {
   useEffect(() => {
     const time = session.fleet.time;
     if (time === 0) return;
+    const activeRps = MODEL_IDS.reduce(
+      (sum, m) => sum + session.fleet.modelMetrics[m].incomingRps,
+      0,
+    );
+    const greenRps = MODEL_IDS.reduce(
+      (sum, m) => sum + (session.green?.modelMetrics[m].incomingRps || 0),
+      0,
+    );
     const point = {
       time,
+      blue: session.rollout?.phase === 'complete' ? 0 : activeRps,
+      green: session.rollout?.phase === 'complete' ? activeRps : greenRps,
       ...Object.fromEntries(
         MODEL_IDS.map((m) => [
           m,
@@ -269,13 +291,25 @@ export default function FleetConsole() {
             (session.green?.modelMetrics[m].incomingRps || 0),
         ]),
       ),
-    } as { time: number; gemma: number; qwen: number; kimi: number };
+    } as {
+      time: number;
+      gemma: number;
+      qwen: number;
+      kimi: number;
+      blue: number;
+      green: number;
+    };
     queueMicrotask(() =>
       setHistory((old) =>
         [...old.filter((p) => p.time !== time), point].slice(-75),
       ),
     );
-  }, [session.fleet.time, session.fleet.modelMetrics, session.green]);
+  }, [
+    session.fleet.time,
+    session.fleet.modelMetrics,
+    session.green,
+    session.rollout?.phase,
+  ]);
   const locked = liveRollout(session.rollout);
   const disabled = locked || busy;
   const workload = locked ? session.rollout!.workload : session.fleet.workload;
@@ -430,6 +464,7 @@ export default function FleetConsole() {
       }));
       if (rev !== operation.current) return;
       setEvidence({
+        workload: structuredClone(captured.fleet.workload),
         context: fleetContextHash(
           captured.fleet.profile,
           captured.fleet.workload,
@@ -438,6 +473,7 @@ export default function FleetConsole() {
         experiments,
       });
       setTab('experiments');
+      setScreen('optimization');
       setMessage(
         `${experiments.filter((e) => e.evaluation.feasible).length} of ${experiments.length} profiles passed the same 90-second workload replay. Inspect a profile to see the prescription.`,
       );
@@ -488,6 +524,7 @@ export default function FleetConsole() {
       setProposal(null);
       setInspected(null);
       setEvidence(null);
+      setScreen('live');
       setPlaying(true);
       setMessage(
         'Approved. Warming a separate green pool before migrating traffic.',
@@ -573,7 +610,8 @@ export default function FleetConsole() {
           inference<span>autopilot</span>
         </Link>
         <div className="environment">
-          <span className="status-dot" /> Fleet simulation{' '}
+          <span className="status-dot" />{' '}
+          {observedMode ? 'GKE observation' : 'Simulation'}{' '}
           <span className="divider">/</span> heterogeneous-lab
         </div>
         <Link className="small-badge" href="/lab">
@@ -586,17 +624,22 @@ export default function FleetConsole() {
           <div>
             <div className="eyebrow">FLEET ORCHESTRATION</div>
             <h1>
-              Every model. The right hardware
-              <span className="title-dot">.</span>
+              Fleet orchestration<span className="title-dot">.</span>
             </h1>
             <p>
-              Follow demand to the replica. Prove the next deployment before
-              moving traffic.
+              {screen === 'live'
+                ? 'Request flow, serving capacity, and deployment health.'
+                : screen === 'simulation'
+                  ? 'Shape demand and test how the fleet responds.'
+                  : 'Compare recommendations against the baseline, then review and approve.'}
             </p>
           </div>
           <div className="heading-actions">
             <span className="sim-badge">
-              <FlaskConical size={16} /> Simulation · no cloud resources
+              <FlaskConical size={16} />{' '}
+              {observedMode
+                ? 'Snapshot · not live telemetry'
+                : 'Simulation · no cloud resources'}
             </span>
             <div>
               <Button variant="outline" onClick={() => setAssumptions(true)}>
@@ -608,22 +651,72 @@ export default function FleetConsole() {
             </div>
           </div>
         </div>
-        <DemoScenarios onLoad={loadScenario} disabled={disabled} />
+        <nav className="journey-nav" aria-label="Workspace screens">
+          <div>
+            {(
+              [
+                ['live', 'Live fleet'],
+                ['simulation', 'Simulation'],
+                ['optimization', 'Optimization'],
+              ] as const
+            ).map(([id, label]) => (
+              <Button
+                key={id}
+                variant={screen === id ? 'secondary' : 'ghost'}
+                aria-current={screen === id ? 'page' : undefined}
+                onClick={() => {
+                  setScreen(id);
+                  if (id === 'simulation') setSource('simulation');
+                }}
+              >
+                {label}
+              </Button>
+            ))}
+          </div>
+          <Select
+            value={source}
+            onValueChange={(v) => {
+              if (v === 'simulation' || v === 'gke') {
+                setSource(v);
+                setScreen('live');
+                if (v === 'gke') setPlaying(false);
+              }
+            }}
+          >
+            <SelectTrigger aria-label="Fleet data source">
+              <SelectValue>
+                {observedMode ? 'GKE snapshot' : 'Simulated fleet'}
+              </SelectValue>
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="simulation">Simulated fleet</SelectItem>
+              <SelectItem value="gke">GKE snapshot · read-only</SelectItem>
+            </SelectContent>
+          </Select>
+        </nav>
         <div className="fleet-toolbar">
           <div className="playback">
             <Button
               variant="secondary"
-              disabled={busy}
+              disabled={busy || observedMode}
               onClick={() => setPlaying((p) => !p)}
             >
               {playing ? <Pause size={15} /> : <Play size={15} />}{' '}
               {playing ? 'Pause' : 'Run'}
             </Button>
             <span className="simulation-clock">
-              T+{String(Math.floor(session.fleet.time / 60)).padStart(2, '0')}:
-              {String(session.fleet.time % 60).padStart(2, '0')}
+              {observedMode ? (
+                'No live stream'
+              ) : (
+                <>
+                  T+
+                  {String(Math.floor(session.fleet.time / 60)).padStart(2, '0')}
+                  :{String(session.fleet.time % 60).padStart(2, '0')}
+                </>
+              )}
             </span>
             <Select
+              disabled={observedMode}
               value={String(speed)}
               onValueChange={(v) => setSpeed(Number(v))}
             >
@@ -644,7 +737,7 @@ export default function FleetConsole() {
               <Switch
                 id="autoscale"
                 checked={activeProfile.autoscale}
-                disabled={disabled}
+                disabled={disabled || observedMode}
                 onCheckedChange={(value) => {
                   invalidate();
                   setSession((s) => ({
@@ -661,109 +754,130 @@ export default function FleetConsole() {
             <Button
               variant="outline"
               onClick={() => surge('all')}
-              disabled={disabled}
+              disabled={disabled || observedMode}
             >
               <Zap /> Surge all models
             </Button>
-            <Button variant="ghost" onClick={reset} disabled={disabled}>
+            <Button variant="outline" onClick={() => setScreen('optimization')}>
+              Model decisions <ArrowRight size={14} />
+            </Button>
+            <Button
+              variant="ghost"
+              onClick={reset}
+              disabled={disabled || observedMode}
+            >
               <RotateCcw /> Reset
             </Button>
           </div>
         </div>
-        <div className="fleet-metrics">
-          <div>
-            <span>Modeled compute {locked ? '· overlap' : ''}</span>
-            <strong>
-              {currency(summary.hourlyCost)}
-              <em>/hr</em>
-            </strong>
-            <small>
-              {summary.activeReplicas} replicas · {summary.readyReplicas} ready
-            </small>
-          </div>
-          <div>
-            <span>Estimated first token</span>
-            <strong
-              className={
-                summary.ttftMs > workload.ttftTargetMs ? 'warning-text' : ''
-              }
-            >
-              {number(summary.ttftMs)}
-              <em>ms</em>
-            </strong>
-            <small>
-              Traffic-weighted estimate · target {workload.ttftTargetMs}ms
-            </small>
-          </div>
-          <div>
-            <span>Output throughput</span>
-            <strong>
-              {number(summary.outputTokensPerSecond)}
-              <em>tok/s</em>
-            </strong>
-            <small>
-              {number(
-                session.fleet.completed + (session.green?.completed || 0),
-              )}{' '}
-              completed requests · fluid estimate
-            </small>
-          </div>
-          <div>
-            <span>Capacity pressure</span>
-            <strong
-              className={
-                summary.utilization > 0.85
-                  ? 'warning-text'
-                  : summary.utilization < 0.65
-                    ? 'success-text'
-                    : ''
-              }
-            >
-              {fraction(summary.utilization)}
-            </strong>
-            <small>
-              {number(summary.queue)} queued ·{' '}
-              {number(session.fleet.failed + (session.green?.failed || 0))}{' '}
-              rejected
-            </small>
-          </div>
-        </div>
-        <FleetDeployment state={session.fleet} green={session.green} />
-        <section className="panel fleet-map-panel">
-          <div className="panel-heading">
-            <div>
-              <h2>Live routing & placement</h2>
-              <p>
-                {locked
-                  ? 'Blue and green are isolated pools; traffic split is applied to both simulations.'
-                  : 'Compatible accelerators only. A model stays the same as it moves or scales.'}
-              </p>
+        {screen === 'live' && !observedMode && (
+          <>
+            <section className="panel fleet-map-panel">
+              <div className="panel-heading">
+                <div>
+                  <h2>Live routing & placement</h2>
+                  <p>
+                    {locked
+                      ? 'Blue and green are isolated pools; traffic split is applied to both simulations.'
+                      : 'Compatible accelerators only. A model stays the same as it moves or scales.'}
+                  </p>
+                </div>
+                <div className="health-key">
+                  <span>
+                    <i className="green-dot" />
+                    Healthy
+                  </span>
+                  <span>
+                    <i className="yellow-dot" />
+                    Pressure
+                  </span>
+                  <span>
+                    <i className="red-dot" />
+                    Saturated
+                  </span>
+                </div>
+              </div>
+              <FleetMap
+                state={session.fleet}
+                green={session.green}
+                greenTraffic={(session.rollout?.greenTraffic || 0) / 100}
+                playing={playing}
+                onSurge={surge}
+                locked={disabled}
+              />
+            </section>
+            <div className="fleet-metrics">
+              <div>
+                <span>Modeled compute {locked ? '· overlap' : ''}</span>
+                <strong>
+                  {currency(summary.hourlyCost)}
+                  <em>/hr</em>
+                </strong>
+                <small>
+                  {summary.activeReplicas} replicas · {summary.readyReplicas}{' '}
+                  ready
+                </small>
+              </div>
+              <div>
+                <span>Estimated first token</span>
+                <strong
+                  className={
+                    summary.ttftMs > workload.ttftTargetMs ? 'warning-text' : ''
+                  }
+                >
+                  {number(summary.ttftMs)}
+                  <em>ms</em>
+                </strong>
+                <small>
+                  Traffic-weighted estimate · target {workload.ttftTargetMs}ms
+                </small>
+              </div>
+              <div>
+                <span>Output throughput</span>
+                <strong>
+                  {number(summary.outputTokensPerSecond)}
+                  <em>tok/s</em>
+                </strong>
+                <small>
+                  {number(
+                    session.fleet.completed + (session.green?.completed || 0),
+                  )}{' '}
+                  completed requests · fluid estimate
+                </small>
+              </div>
+              <div>
+                <span>Capacity pressure</span>
+                <strong
+                  className={
+                    summary.utilization > 0.85
+                      ? 'warning-text'
+                      : summary.utilization < 0.65
+                        ? 'success-text'
+                        : ''
+                  }
+                >
+                  {fraction(summary.utilization)}
+                </strong>
+                <small>
+                  {number(summary.queue)} queued ·{' '}
+                  {number(session.fleet.failed + (session.green?.failed || 0))}{' '}
+                  rejected
+                </small>
+              </div>
             </div>
-            <div className="health-key">
-              <span>
-                <i className="green-dot" />
-                Healthy
-              </span>
-              <span>
-                <i className="yellow-dot" />
-                Pressure
-              </span>
-              <span>
-                <i className="red-dot" />
-                Saturated
-              </span>
-            </div>
-          </div>
-          <FleetMap
-            state={session.fleet}
-            green={session.green}
-            greenTraffic={(session.rollout?.greenTraffic || 0) / 100}
-            playing={playing}
-            onSurge={surge}
-            locked={disabled}
-          />
-        </section>
-        {session.rollout && (
+            <details className="replicas-drawer">
+              <summary>
+                Replicas & accelerator ranks{' '}
+                <span>
+                  {summary.readyReplicas} ready / {summary.activeReplicas}{' '}
+                  allocated
+                </span>
+              </summary>
+              <FleetDeployment state={session.fleet} green={session.green} />
+            </details>
+          </>
+        )}
+        {session.rollout && !observedMode && screen !== 'simulation' && (
           <section className={`panel rollout-panel ${locked ? 'is-live' : ''}`}>
             <div className="panel-heading">
               <div>
@@ -902,533 +1016,651 @@ export default function FleetConsole() {
             </Button>
           </output>
         )}
-        <div className="fleet-lower-grid">
-          <section className="panel workload-expanded">
-            <div className="panel-heading">
-              <div>
-                <h2>Shape the workload</h2>
-                <p>
-                  Specify demand, request shape, and the service targets the
-                  fleet must protect.
-                </p>
-              </div>
-              <Select
-                value={pattern}
-                disabled={disabled}
-                onValueChange={(v) => v && applyPattern(v)}
-              >
-                <SelectTrigger aria-label="Traffic pattern">
-                  <SelectValue>
-                    {
-                      {
-                        mixed: 'Mixed interactive',
-                        prefill: 'Long-context prefill',
-                        code: 'Code generation',
-                        prefix: 'Shared-prefix agents',
-                        bursty: 'Bursty arrivals',
-                      }[pattern]
-                    }
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  {Object.entries({
-                    mixed: 'Mixed interactive',
-                    prefill: 'Long-context prefill',
-                    code: 'Code generation',
-                    prefix: 'Shared-prefix agents',
-                    bursty: 'Bursty arrivals',
-                  }).map(([v, label]) => (
-                    <SelectItem key={v} value={v}>
-                      {label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="fleet-workload-controls">
-              <Control
-                title="Offered traffic"
-                value={workload.rps}
-                min={1}
-                max={300}
-                onChange={(v) => change('rps', v)}
-                format={(n) => `${n.toFixed(1)} req/s`}
-                description="Total demand before admission or throttling. Surging a model increases its absolute request rate."
-                disabled={disabled}
-              />
-              <Control
-                title="Input tokens / request"
-                value={workload.inputTokens}
-                min={100}
-                max={16000}
-                step={100}
-                onChange={(v) => change('inputTokens', v)}
-                description="More input adds prefill work. Reusable prefixes can reduce that work, not decoding."
-                disabled={disabled}
-              />
-              <Control
-                title="Output tokens / request"
-                value={workload.outputTokens}
-                min={32}
-                max={2000}
-                step={16}
-                onChange={(v) => change('outputTokens', v)}
-                description="Longer generations hold serving capacity longer and raise decode pressure."
-                disabled={disabled}
-              />
-              <Control
-                title="Reusable prefix fraction"
-                value={workload.sharedPrefix}
-                min={0}
-                max={1}
-                step={0.05}
-                onChange={(v) => change('sharedPrefix', v)}
-                format={fraction}
-                description="Potential input reuse. It only helps profiles with caching enabled; affinity improves modeled reuse."
-                disabled={disabled}
-              />
-              <Control
-                title="Burstiness"
-                value={workload.burstiness}
-                min={0}
-                max={1}
-                step={0.05}
-                onChange={(v) => change('burstiness', v)}
-                format={fraction}
-                description="Deterministic arrival variation around the offered rate. Higher values create larger peaks."
-                disabled={disabled}
-              />
-              <Control
-                title="Outstanding request budget"
-                value={workload.concurrency}
-                min={8}
-                max={1024}
-                step={8}
-                onChange={(v) => change('concurrency', v)}
-                description="Fleet-wide queue budget, divided by model demand and blue-green traffic share. Excess requests are rejected and counted."
-                disabled={disabled}
-              />
-            </div>
-            <div className="model-mix">
-              <div>
-                <strong>Demand by model</strong>
-                <p>
-                  Weights are normalized into shares of the total request rate.
-                </p>
-              </div>
-              {MODEL_IDS.map((m) => (
-                <div className="mix-control" key={m}>
-                  <label htmlFor={`mix-${m}`}>
-                    <i style={{ background: `var(--model-${m})` }} />
-                    {MODELS[m].shortName}
-                    <span>
-                      {fraction(workload.mix[m] / sumMix)} ·{' '}
-                      {((workload.rps * workload.mix[m]) / sumMix).toFixed(1)}{' '}
-                      req/s
-                    </span>
-                  </label>
-                  <input
-                    id={`mix-${m}`}
-                    type="number"
-                    min={0}
-                    max={100}
-                    disabled={disabled}
-                    value={Math.round(workload.mix[m] * 100)}
-                    onChange={(e) => {
-                      const value = Math.max(
-                        0,
-                        Math.min(100, Number(e.target.value) || 0),
-                      );
-                      const mix = { ...workload.mix, [m]: value / 100 };
-                      if (MODEL_IDS.some((id) => mix[id] > 0))
-                        change('mix', mix);
-                    }}
-                  />
+        {screen === 'simulation' && (
+          <div className="fleet-lower-grid journey-workload">
+            <section className="panel workload-expanded">
+              <div className="panel-heading">
+                <div>
+                  <h2>Shape the workload</h2>
+                  <p>
+                    Specify demand, request shape, and the service targets the
+                    fleet must protect.
+                  </p>
                 </div>
-              ))}
-            </div>
-            <div className="service-targets">
-              <div>
-                <ShieldCheck size={18} />
-                <span>Service targets</span>
-              </div>
-              <label>
-                First token
-                <input
-                  type="number"
-                  aria-label="First token target in milliseconds"
-                  value={workload.ttftTargetMs}
-                  min={50}
-                  max={10000}
-                  step={50}
+                <Select
+                  value={pattern}
                   disabled={disabled}
-                  onChange={(e) =>
-                    change(
-                      'ttftTargetMs',
-                      Math.max(
-                        50,
-                        Math.min(10000, Number(e.target.value) || 50),
-                      ),
-                    )
-                  }
-                />
-                ms
-              </label>
-              <label>
-                Token interval
-                <input
-                  type="number"
-                  aria-label="Token interval target in milliseconds"
-                  value={workload.tokenTargetMs}
-                  min={20}
-                  max={300}
-                  step={5}
-                  disabled={disabled}
-                  onChange={(e) =>
-                    change(
-                      'tokenTargetMs',
-                      Math.max(20, Math.min(300, Number(e.target.value) || 20)),
-                    )
-                  }
-                />
-                ms
-              </label>
-            </div>
-            {locked && (
-              <p className="locked-note">
-                Workload and capacity controls are locked to the approved
-                experiment until the rollout completes or rolls back.
-              </p>
-            )}
-          </section>
-          <aside className="panel fleet-opportunities">
-            <div className="opportunity-icon">
-              <Sparkles size={23} />
-            </div>
-            <div className="eyebrow">OPTIMIZATION OPPORTUNITIES</div>
-            <h2>
-              {summary.queue > 0
-                ? 'Get ahead of the queue.'
-                : 'Find the next better profile.'}
-            </h2>
-            <p>
-              Compare latency, capacity, and consolidation strategies on the
-              same offered traffic. Inspect explains every prescription.
-            </p>
-            <div className="opportunity-list">
-              <div>
-                <ShieldCheck size={17} />
-                <span>
-                  <strong>Prevent a regression</strong>Reserve compatible warm
-                  replicas before demand outgrows available capacity.
-                </span>
-              </div>
-              <div>
-                <Clock3 size={17} />
-                <span>
-                  <strong>Improve latency</strong>Evaluate cache reuse,
-                  affinity, and batch concurrency against both latency targets.
-                </span>
-              </div>
-              <div>
-                <Layers3 size={17} />
-                <span>
-                  <strong>Reduce compute cost</strong>Pack models onto fewer
-                  paid nodes while preserving model identity.
-                </span>
-              </div>
-            </div>
-            <Button
-              className="primary-action"
-              disabled={disabled}
-              onClick={analyze}
-            >
-              {busy ? <LoaderCircle className="spin" /> : <FlaskConical />}
-              {busy ? 'Evaluating profiles' : 'Run optimization'}
-              <ArrowRight />
-            </Button>
-            <small>Deterministic 90s replay · no live AI calls</small>
-            <div className="live-events">
-              <div className="eyebrow">RECENT FLEET EVENTS</div>
-              {opportunities.length ? (
-                opportunities.map((event) => (
-                  <div key={event.id}>
-                    <i
-                      className={
-                        event.type === 'warning'
-                          ? 'red-dot'
-                          : event.type === 'ready'
-                            ? 'green-dot'
-                            : 'blue-dot'
+                  onValueChange={(v) => v && applyPattern(v)}
+                >
+                  <SelectTrigger aria-label="Traffic pattern">
+                    <SelectValue>
+                      {
+                        {
+                          mixed: 'Mixed interactive',
+                          prefill: 'Long-context prefill',
+                          code: 'Code generation',
+                          prefix: 'Shared-prefix agents',
+                          bursty: 'Bursty arrivals',
+                        }[pattern]
                       }
+                    </SelectValue>
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.entries({
+                      mixed: 'Mixed interactive',
+                      prefill: 'Long-context prefill',
+                      code: 'Code generation',
+                      prefix: 'Shared-prefix agents',
+                      bursty: 'Bursty arrivals',
+                    }).map(([v, label]) => (
+                      <SelectItem key={v} value={v}>
+                        {label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="fleet-workload-controls">
+                <Control
+                  title="Offered traffic"
+                  value={workload.rps}
+                  min={1}
+                  max={300}
+                  onChange={(v) => change('rps', v)}
+                  format={(n) => `${n.toFixed(1)} req/s`}
+                  description="Total demand before admission or throttling. Surging a model increases its absolute request rate."
+                  disabled={disabled}
+                />
+                <Control
+                  title="Input tokens / request"
+                  value={workload.inputTokens}
+                  min={100}
+                  max={16000}
+                  step={100}
+                  onChange={(v) => change('inputTokens', v)}
+                  description="More input adds prefill work. Reusable prefixes can reduce that work, not decoding."
+                  disabled={disabled}
+                />
+                <Control
+                  title="Output tokens / request"
+                  value={workload.outputTokens}
+                  min={32}
+                  max={2000}
+                  step={16}
+                  onChange={(v) => change('outputTokens', v)}
+                  description="Longer generations hold serving capacity longer and raise decode pressure."
+                  disabled={disabled}
+                />
+                <Control
+                  title="Reusable prefix fraction"
+                  value={workload.sharedPrefix}
+                  min={0}
+                  max={1}
+                  step={0.05}
+                  onChange={(v) => change('sharedPrefix', v)}
+                  format={fraction}
+                  description="Potential input reuse. It only helps profiles with caching enabled; affinity improves modeled reuse."
+                  disabled={disabled}
+                />
+                <Control
+                  title="Burstiness"
+                  value={workload.burstiness}
+                  min={0}
+                  max={1}
+                  step={0.05}
+                  onChange={(v) => change('burstiness', v)}
+                  format={fraction}
+                  description="Deterministic arrival variation around the offered rate. Higher values create larger peaks."
+                  disabled={disabled}
+                />
+                <Control
+                  title="Outstanding request budget"
+                  value={workload.concurrency}
+                  min={8}
+                  max={1024}
+                  step={8}
+                  onChange={(v) => change('concurrency', v)}
+                  description="Fleet-wide queue budget, divided by model demand and blue-green traffic share. Excess requests are rejected and counted."
+                  disabled={disabled}
+                />
+              </div>
+              <div className="model-mix">
+                <div>
+                  <strong>Demand by model</strong>
+                  <p>
+                    Weights are normalized into shares of the total request
+                    rate.
+                  </p>
+                </div>
+                {MODEL_IDS.map((m) => (
+                  <div className="mix-control" key={m}>
+                    <label htmlFor={`mix-${m}`}>
+                      <i style={{ background: `var(--model-${m})` }} />
+                      {MODELS[m].shortName}
+                      <span>
+                        {fraction(workload.mix[m] / sumMix)} ·{' '}
+                        {((workload.rps * workload.mix[m]) / sumMix).toFixed(1)}{' '}
+                        req/s
+                      </span>
+                    </label>
+                    <input
+                      id={`mix-${m}`}
+                      type="number"
+                      min={0}
+                      max={100}
+                      disabled={disabled}
+                      value={Math.round(workload.mix[m] * 100)}
+                      onChange={(e) => {
+                        const value = Math.max(
+                          0,
+                          Math.min(100, Number(e.target.value) || 0),
+                        );
+                        const mix = { ...workload.mix, [m]: value / 100 };
+                        if (MODEL_IDS.some((id) => mix[id] > 0))
+                          change('mix', mix);
+                      }}
                     />
-                    <p>{event.message}</p>
-                    <time>T+{event.time}s</time>
                   </div>
-                ))
-              ) : (
-                <p>
-                  Surge a model to watch pressure and scaling decisions appear
-                  here.
+                ))}
+              </div>
+              <div className="service-targets">
+                <div>
+                  <ShieldCheck size={18} />
+                  <span>Service targets</span>
+                </div>
+                <label>
+                  First token
+                  <input
+                    type="number"
+                    aria-label="First token target in milliseconds"
+                    value={workload.ttftTargetMs}
+                    min={50}
+                    max={10000}
+                    step={50}
+                    disabled={disabled}
+                    onChange={(e) =>
+                      change(
+                        'ttftTargetMs',
+                        Math.max(
+                          50,
+                          Math.min(10000, Number(e.target.value) || 50),
+                        ),
+                      )
+                    }
+                  />
+                  ms
+                </label>
+                <label>
+                  Token interval
+                  <input
+                    type="number"
+                    aria-label="Token interval target in milliseconds"
+                    value={workload.tokenTargetMs}
+                    min={20}
+                    max={300}
+                    step={5}
+                    disabled={disabled}
+                    onChange={(e) =>
+                      change(
+                        'tokenTargetMs',
+                        Math.max(
+                          20,
+                          Math.min(300, Number(e.target.value) || 20),
+                        ),
+                      )
+                    }
+                  />
+                  ms
+                </label>
+              </div>
+              {locked && (
+                <p className="locked-note">
+                  Workload and capacity controls are locked to the approved
+                  experiment until the rollout completes or rolls back.
                 </p>
               )}
-            </div>
-          </aside>
-        </div>
-        <section className="panel evidence-panel">
-          <div className="evidence-heading">
-            <Tabs value={tab} onValueChange={(v) => setTab(String(v))}>
-              <TabsList className="evidence-tabs">
-                <TabsTrigger value="experiments">
-                  Recommended profiles{' '}
-                  <span className="count">
-                    {evidence?.experiments.length || 0}
-                  </span>
-                </TabsTrigger>
-                <TabsTrigger value="configuration">
-                  Active configuration
-                </TabsTrigger>
-                <TabsTrigger value="activity">Activity</TabsTrigger>
-              </TabsList>
-            </Tabs>
-            <span className="eyebrow">SIMULATED EVIDENCE</span>
-          </div>
-          {tab === 'experiments' &&
-            (evidence ? (
-              <>
-                <div className="experiment-note">
-                  <FlaskConical size={15} />
+            </section>
+            <aside className="panel fleet-opportunities">
+              <div className="opportunity-icon">
+                <Sparkles size={23} />
+              </div>
+              <h2>Optimization opportunities</h2>
+              <h2>
+                {summary.queue > 0
+                  ? 'Get ahead of the queue.'
+                  : 'Find the next better profile.'}
+              </h2>
+              <p>
+                Compare latency, capacity, and consolidation strategies on the
+                same offered traffic. Inspect explains every prescription.
+              </p>
+              <Button
+                className="primary-action"
+                disabled={disabled}
+                onClick={analyze}
+              >
+                {busy ? <LoaderCircle className="spin" /> : <FlaskConical />}
+                {busy ? 'Evaluating profiles' : 'Run optimization'}
+                <ArrowRight />
+              </Button>
+              <small>Deterministic 90s replay · no live AI calls</small>
+              <div className="live-events">
+                <div className="eyebrow">RECENT FLEET EVENTS</div>
+                {opportunities.length ? (
+                  opportunities.map((event) => (
+                    <div key={event.id}>
+                      <i
+                        className={
+                          event.type === 'warning'
+                            ? 'red-dot'
+                            : event.type === 'ready'
+                              ? 'green-dot'
+                              : 'blue-dot'
+                        }
+                      />
+                      <p>{event.message}</p>
+                      <time>T+{event.time}s</time>
+                    </div>
+                  ))
+                ) : (
                   <p>
-                    Each profile sees identical 90s demand. Fixed prescribed
-                    capacity must pass; no unlisted autoscaling is used to
-                    qualify it.
+                    Surge a model to watch pressure and scaling decisions appear
+                    here.
                   </p>
+                )}
+              </div>
+            </aside>
+          </div>
+        )}
+        {screen === 'simulation' && (
+          <details className="scenario-drawer">
+            <summary>Load a repeatable demo scenario</summary>
+            <DemoScenarios onLoad={loadScenario} disabled={disabled} />
+          </details>
+        )}
+        {screen === 'optimization' && !observedMode && (
+          <section className="panel evidence-panel">
+            <div className="panel-heading">
+              <div>
+                <h2>Optimization opportunities</h2>
+                <p>
+                  Baseline: {activeProfile.name} · {workload.rps.toFixed(1)}{' '}
+                  req/s · {workload.inputTokens.toLocaleString()} input /{' '}
+                  {workload.outputTokens.toLocaleString()} output tokens
+                </p>
+              </div>
+              <Button disabled={disabled} onClick={analyze}>
+                {busy ? <LoaderCircle className="spin" /> : <FlaskConical />}
+                {busy ? 'Evaluating' : 'Run optimization'}
+              </Button>
+            </div>
+            <div className="evidence-heading">
+              <Tabs value={tab} onValueChange={(v) => setTab(String(v))}>
+                <TabsList className="evidence-tabs">
+                  <TabsTrigger value="experiments">
+                    Recommended profiles{' '}
+                    <span className="count">
+                      {evidence?.experiments.length || 0}
+                    </span>
+                  </TabsTrigger>
+                  <TabsTrigger value="configuration">
+                    Active configuration
+                  </TabsTrigger>
+                  <TabsTrigger value="activity">Activity</TabsTrigger>
+                </TabsList>
+              </Tabs>
+              <span className="eyebrow">SIMULATED EVIDENCE</span>
+            </div>
+            {tab === 'experiments' &&
+              (evidence ? (
+                <>
+                  <div className="experiment-note">
+                    <FlaskConical size={15} />
+                    <p>
+                      Each profile sees identical 90s demand. Fixed prescribed
+                      capacity must pass; no unlisted autoscaling is used to
+                      qualify it.
+                    </p>
+                  </div>
+                  <Table className="experiments-table">
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Prescribed deployment profile</TableHead>
+                        <TableHead>Modeled compute</TableHead>
+                        <TableHead>First token estimate</TableHead>
+                        <TableHead>Output throughput</TableHead>
+                        <TableHead>Verdict</TableHead>
+                        <TableHead />
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {evidence.experiments.map((e) => (
+                        <TableRow key={e.profile.id}>
+                          <TableCell>
+                            <Button
+                              variant="link"
+                              className="profile-name-action"
+                              disabled={disabled}
+                              onClick={() => inspect(e)}
+                            >
+                              {e.profile.name}
+                            </Button>
+                            <small>{e.reason}</small>
+                          </TableCell>
+                          <TableCell>
+                            {currency(e.evaluation.summary.hourlyCost)}/hr
+                          </TableCell>
+                          <TableCell>
+                            {number(e.evaluation.summary.ttftMs)}ms
+                          </TableCell>
+                          <TableCell>
+                            {number(e.evaluation.summary.outputTokensPerSecond)}{' '}
+                            tok/s
+                          </TableCell>
+                          <TableCell>
+                            <span
+                              className={`verdict ${e.evaluation.feasible ? 'passed' : 'rejected'}`}
+                            >
+                              {e.evaluation.feasible ? (
+                                <Check size={13} />
+                              ) : (
+                                <X size={13} />
+                              )}{' '}
+                              {e.evaluation.feasible ? 'Passed' : 'Rejected'}
+                            </span>
+                          </TableCell>
+                          <TableCell>
+                            <Button
+                              variant="ghost"
+                              disabled={disabled}
+                              onClick={() => inspect(e)}
+                            >
+                              Inspect <ChevronRight size={14} />
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </>
+              ) : (
+                <div className="empty-experiments">
+                  <FlaskConical size={24} />
+                  <div>
+                    <strong>Every recommendation needs evidence.</strong>
+                    <p>
+                      Run optimization, then Inspect to see model placement,
+                      configuration changes, and their expected effects.
+                    </p>
+                  </div>
+                </div>
+              ))}
+            {tab === 'configuration' && (
+              <>
+                <div className="fleet-config-flags">
+                  <span>
+                    <strong>Profile</strong>
+                    {activeProfile.name}
+                  </span>
+                  <span>
+                    <strong>Prefix cache</strong>
+                    {activeProfile.prefixCache ? 'Enabled' : 'Disabled'}
+                  </span>
+                  <span>
+                    <strong>Cache affinity</strong>
+                    {activeProfile.cacheAffinity ? 'Enabled' : 'Disabled'}
+                  </span>
+                  <span>
+                    <strong>Batch concurrency</strong>
+                    {activeProfile.batchConcurrency}
+                  </span>
+                  <span>
+                    <strong>Scaling headroom</strong>
+                    {fraction(activeProfile.headroom)}
+                  </span>
                 </div>
                 <Table className="experiments-table">
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Prescribed deployment profile</TableHead>
-                      <TableHead>Modeled compute</TableHead>
-                      <TableHead>First token estimate</TableHead>
-                      <TableHead>Output throughput</TableHead>
-                      <TableHead>Verdict</TableHead>
-                      <TableHead />
+                      <TableHead>Model</TableHead>
+                      <TableHead>Deployment placement</TableHead>
+                      <TableHead>Chips per replica</TableHead>
+                      <TableHead>Assumed residency</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {evidence.experiments.map((e) => (
-                      <TableRow key={e.profile.id}>
+                    {MODEL_IDS.map((m) => (
+                      <TableRow key={m}>
                         <TableCell>
-                          <strong>{e.profile.name}</strong>
-                          <small>{e.reason}</small>
-                        </TableCell>
-                        <TableCell>
-                          {currency(e.evaluation.summary.hourlyCost)}/hr
-                        </TableCell>
-                        <TableCell>
-                          {number(e.evaluation.summary.ttftMs)}ms
-                        </TableCell>
-                        <TableCell>
-                          {number(e.evaluation.summary.outputTokensPerSecond)}{' '}
-                          tok/s
-                        </TableCell>
-                        <TableCell>
-                          <span
-                            className={`verdict ${e.evaluation.feasible ? 'passed' : 'rejected'}`}
-                          >
-                            {e.evaluation.feasible ? (
-                              <Check size={13} />
-                            ) : (
-                              <X size={13} />
-                            )}{' '}
-                            {e.evaluation.feasible ? 'Passed' : 'Rejected'}
+                          <span className="model-name">
+                            <i style={{ background: `var(--model-${m})` }} />
+                            {MODELS[m].name}
                           </span>
                         </TableCell>
                         <TableCell>
-                          <Button
-                            variant="ghost"
-                            disabled={disabled}
-                            onClick={() => inspect(e)}
-                          >
-                            Inspect <ChevronRight size={14} />
-                          </Button>
+                          {deploymentLines(activeProfile, m)}
                         </TableCell>
+                        <TableCell>{MODELS[m].requiredChips}</TableCell>
+                        <TableCell>{number(MODELS[m].residentGB)} GB</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
                 </Table>
               </>
-            ) : (
-              <div className="empty-experiments">
-                <FlaskConical size={24} />
-                <div>
-                  <strong>Every recommendation needs evidence.</strong>
-                  <p>
-                    Run optimization, then Inspect to see model placement,
-                    configuration changes, and their expected effects.
-                  </p>
-                </div>
-              </div>
-            ))}
-          {tab === 'configuration' && (
-            <>
-              <div className="fleet-config-flags">
-                <span>
-                  <strong>Profile</strong>
-                  {activeProfile.name}
-                </span>
-                <span>
-                  <strong>Prefix cache</strong>
-                  {activeProfile.prefixCache ? 'Enabled' : 'Disabled'}
-                </span>
-                <span>
-                  <strong>Cache affinity</strong>
-                  {activeProfile.cacheAffinity ? 'Enabled' : 'Disabled'}
-                </span>
-                <span>
-                  <strong>Batch concurrency</strong>
-                  {activeProfile.batchConcurrency}
-                </span>
-                <span>
-                  <strong>Scaling headroom</strong>
-                  {fraction(activeProfile.headroom)}
-                </span>
-              </div>
-              <Table className="experiments-table">
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Model</TableHead>
-                    <TableHead>Deployment placement</TableHead>
-                    <TableHead>Chips per replica</TableHead>
-                    <TableHead>Assumed residency</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {MODEL_IDS.map((m) => (
-                    <TableRow key={m}>
-                      <TableCell>
-                        <span className="model-name">
-                          <i style={{ background: `var(--model-${m})` }} />
-                          {MODELS[m].name}
-                        </span>
-                      </TableCell>
-                      <TableCell>{deploymentLines(activeProfile, m)}</TableCell>
-                      <TableCell>{MODELS[m].requiredChips}</TableCell>
-                      <TableCell>{number(MODELS[m].residentGB)} GB</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </>
-          )}
-          {tab === 'activity' && (
-            <div className="audit-list">
-              <p className="audit-note">
-                This session’s operator actions and rollout gates. Export to
-                retain the record.
-              </p>
-              {[
-                ...audit,
-                ...(session.rollout?.events.map((e) => ({
-                  time: `T+${e.time}s`,
-                  message: e.message,
-                })) || []),
-              ].map((event, i) => (
-                <div className="audit-row" key={i}>
-                  <span className="audit-dot" />
-                  <div>
-                    <p>{event.message}</p>
+            )}
+            {tab === 'activity' && (
+              <div className="audit-list">
+                <p className="audit-note">
+                  This session’s operator actions and rollout gates. Export to
+                  retain the record.
+                </p>
+                {[
+                  ...audit,
+                  ...(session.rollout?.events.map((e) => ({
+                    time: `T+${e.time}s`,
+                    message: e.message,
+                  })) || []),
+                ].map((event, i) => (
+                  <div className="audit-row" key={i}>
+                    <span className="audit-dot" />
+                    <div>
+                      <p>{event.message}</p>
+                    </div>
+                    <time>
+                      {event.time.startsWith('T+')
+                        ? event.time
+                        : new Date(event.time).toLocaleTimeString()}
+                    </time>
                   </div>
-                  <time>
-                    {event.time.startsWith('T+')
-                      ? event.time
-                      : new Date(event.time).toLocaleTimeString()}
-                  </time>
-                </div>
-              ))}
+                ))}
+              </div>
+            )}
+          </section>
+        )}
+        {screen === 'optimization' && (
+          <section className="panel agent-context">
+            <div className="panel-heading">
+              <div>
+                <h2>Where the analysis runs</h2>
+                <p>
+                  {observedMode
+                    ? 'Imported pod inventory cannot support performance recommendations by itself.'
+                    : 'Today: deterministic replay in this browser. No live AI agent is connected.'}
+                </p>
+              </div>
             </div>
-          )}
-        </section>
-        <GcpConnection />
-        <section className="panel demand-history">
-          <div className="panel-heading">
-            <div>
-              <h2>Demand over simulated time</h2>
-              <p>
-                Per-model arrival rates · same seeded variation across compared
-                profiles
-              </p>
-            </div>
-            <div className="history-legend">
-              {MODEL_IDS.map((m) => (
-                <span key={m}>
-                  <i style={{ background: `var(--model-${m})` }} />
-                  {MODELS[m].shortName}
-                </span>
-              ))}
-            </div>
-          </div>
-          <svg
-            viewBox="0 0 1100 150"
-            aria-label="Model request rates over simulated time"
-          >
-            <title>Per-model incoming requests per second</title>
-            {[30, 65, 100, 135].map((y) => (
-              <line
-                key={y}
-                x1="30"
-                x2="1070"
-                y1={y}
-                y2={y}
-                stroke="var(--border)"
-                strokeDasharray="4 5"
-              />
-            ))}
-            {MODEL_IDS.map((m) => (
-              <path
-                key={m}
-                fill="none"
-                stroke={`var(--model-${m})`}
-                strokeWidth="2"
-                d={history
-                  .map(
-                    (p, i) =>
-                      `${i ? 'L' : 'M'}${30 + (i / Math.max(1, history.length - 1)) * 1040},${135 - (p[m] / Math.max(1, ...history.flatMap((p) => MODEL_IDS.map((id) => p[id])))) * 110}`,
-                  )
-                  .join(' ')}
-              />
-            ))}
-            <text x="30" y="148" fill="var(--muted-foreground)" fontSize="11">
-              T+{history[0]?.time || 0}s
-            </text>
-            <text
-              x="1070"
-              y="148"
-              textAnchor="end"
-              fill="var(--muted-foreground)"
-              fontSize="11"
-            >
-              T+{history.at(-1)?.time || 0}s
-            </text>
-          </svg>
-        </section>
-        <div className="evidence-banner">
-          <FlaskConical size={18} />
-          <p>
-            <strong>Hardware-aware simulation.</strong> Model footprints,
-            service rates, prices, and warm-up times are assumptions. Chip
-            groups represent serving capacity, not a verified cloud SKU or full
-            NVL72 rack.
-          </p>
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            aria-label="View assumptions"
-            onClick={() => setAssumptions(true)}
-          >
-            <ArrowUpRight />
-          </Button>
+            <details>
+              <summary>
+                Production agent, data access, and deployment permissions
+              </summary>
+              <div className="agent-context-grid">
+                <article>
+                  <strong>Customer GKE / VPC</strong>
+                  <p>
+                    The read-only observer discovers declared serving groups. A
+                    future analysis service runs beside customer telemetry and
+                    uses Workload Identity with scoped access.
+                  </p>
+                </article>
+                <article>
+                  <strong>Evidence for recommendations</strong>
+                  <p>
+                    Serving latency histograms, queues, token rates, prefix
+                    hits, router traces, accelerator memory/network metrics,
+                    runtime TP/PP/EP settings and billing. Raw prompts are not
+                    required.
+                  </p>
+                </article>
+                <article>
+                  <strong>AI reasoning and approval</strong>
+                  <p>
+                    A future Astra agent can select experiments and explain
+                    evidence. Deterministic capacity/SLO gates verify its
+                    proposal; a separate authorized controller applies approved
+                    changes and supports rollback.
+                  </p>
+                </article>
+              </div>
+              <a
+                href="https://github.com/newtonjain/inference-autopilot/blob/main/docs/GCP.md"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GCP integration and permission details ↗
+              </a>
+            </details>
+          </section>
+        )}
+        <div hidden={!(screen === 'live' && observedMode)}>
+          <GcpConnection />
         </div>
+        {screen !== 'simulation' && !observedMode && (
+          <section className="panel demand-history">
+            <div className="panel-heading">
+              <div>
+                <h2>Demand over simulated time</h2>
+                <p>
+                  Per-model arrival rates · same seeded variation across
+                  compared profiles
+                </p>
+              </div>
+              <div className="history-legend">
+                {MODEL_IDS.map((m) => (
+                  <span key={m}>
+                    <i style={{ background: `var(--model-${m})` }} />
+                    {MODELS[m].shortName}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <svg
+              viewBox="0 0 1100 150"
+              aria-label="Model request rates over simulated time"
+            >
+              <title>Per-model incoming requests per second</title>
+              {[30, 65, 100, 135].map((y) => (
+                <line
+                  key={y}
+                  x1="30"
+                  x2="1070"
+                  y1={y}
+                  y2={y}
+                  stroke="var(--border)"
+                  strokeDasharray="4 5"
+                />
+              ))}
+              {MODEL_IDS.map((m) => (
+                <path
+                  key={m}
+                  fill="none"
+                  stroke={`var(--model-${m})`}
+                  strokeWidth="2"
+                  d={history
+                    .map(
+                      (p, i) =>
+                        `${i ? 'L' : 'M'}${30 + (i / Math.max(1, history.length - 1)) * 1040},${135 - (p[m] / Math.max(1, ...history.flatMap((p) => MODEL_IDS.map((id) => p[id])))) * 110}`,
+                    )
+                    .join(' ')}
+                />
+              ))}
+              <text x="30" y="148" fill="var(--muted-foreground)" fontSize="11">
+                T+{history[0]?.time || 0}s
+              </text>
+              <text
+                x="1070"
+                y="148"
+                textAnchor="end"
+                fill="var(--muted-foreground)"
+                fontSize="11"
+              >
+                T+{history.at(-1)?.time || 0}s
+              </text>
+            </svg>
+            {session.rollout && (
+              <div className="pool-demand-history">
+                <div>
+                  <strong>Requests routed to each deployment</strong>
+                  <span>Blue · current → Green · proposed</span>
+                </div>
+                <p>
+                  Migration changes which pool receives requests; it does not
+                  manufacture additional demand.
+                </p>
+                <svg
+                  viewBox="0 0 1100 130"
+                  aria-label="Blue and green request rates over simulated time"
+                >
+                  <title>
+                    Actual simulated requests routed to blue and green pools
+                  </title>
+                  {(['blue', 'green'] as const).map((pool) => (
+                    <path
+                      key={pool}
+                      fill="none"
+                      stroke={
+                        pool === 'blue'
+                          ? 'light-dark(#2767b5,#7ca9ff)'
+                          : 'light-dark(#207044,#68d6a5)'
+                      }
+                      strokeWidth="3"
+                      d={history
+                        .map(
+                          (p, i) =>
+                            `${i ? 'L' : 'M'}${30 + (i / Math.max(1, history.length - 1)) * 1040},${105 - (p[pool] / Math.max(1, ...history.map((h) => h.blue + h.green))) * 85}`,
+                        )
+                        .join(' ')}
+                    />
+                  ))}
+                  <text
+                    x="30"
+                    y="125"
+                    fill="var(--muted-foreground)"
+                    fontSize="11"
+                  >
+                    T+{history[0]?.time || 0}s
+                  </text>
+                  <text
+                    x="1070"
+                    y="125"
+                    textAnchor="end"
+                    fill="var(--muted-foreground)"
+                    fontSize="11"
+                  >
+                    T+{history.at(-1)?.time || 0}s
+                  </text>
+                </svg>
+                <div className="pool-demand-values">
+                  <span>
+                    Blue: {(history.at(-1)?.blue || 0).toFixed(1)} req/s
+                  </span>
+                  <span>
+                    Green: {(history.at(-1)?.green || 0).toFixed(1)} req/s
+                  </span>
+                </div>
+              </div>
+            )}
+          </section>
+        )}
         <footer className="footer">
           <span>INFERENCE AUTOPILOT · EXPERIMENT BEFORE EXECUTION</span>
           <span>
@@ -1479,6 +1711,45 @@ export default function FleetConsole() {
                   </li>
                 ))}
               </ol>
+              <div className="profile-rationale">
+                <h3>Why this recommendation</h3>
+                <p>{inspected.reason}</p>
+                <p>
+                  Evaluated against {evidence?.workload.rps.toFixed(1)} req/s,{' '}
+                  {evidence?.workload.inputTokens.toLocaleString()} input
+                  tokens, {evidence?.workload.outputTokens.toLocaleString()}{' '}
+                  output tokens, and{' '}
+                  {Math.round((evidence?.workload.sharedPrefix || 0) * 100)}%
+                  potential prefix reuse. The 90-second replay checks latency
+                  targets, rejected requests, and completed work before
+                  approval.
+                </p>
+                <small>
+                  Rule-based explanation from replay evidence; not generated by
+                  a live AI agent.
+                </small>
+              </div>
+              <details className="deployment-file">
+                <summary>Inspect deployment profile file</summary>
+                <p>
+                  This JSON is the exact simulation profile being prescribed. It
+                  is not an executable GKE manifest; a production adapter must
+                  translate and validate it.
+                </p>
+                <pre>{JSON.stringify(inspected.profile, null, 2)}</pre>
+                <Button
+                  variant="outline"
+                  onClick={() =>
+                    exportJson(
+                      `${inspected.profile.id}.json`,
+                      inspected.profile,
+                    )
+                  }
+                >
+                  <Download size={14} />
+                  Download profile JSON
+                </Button>
+              </details>
               <h3>Exactly what changes</h3>
               <Table className="prescription-table">
                 <TableHeader>

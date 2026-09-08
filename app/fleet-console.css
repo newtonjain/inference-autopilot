@@ -1112,3 +1112,202 @@
     border-bottom: 1px solid var(--border);
   }
 }
+
+/* One shared workspace, three focused operator journeys. */
+.journey-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 0 0 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.journey-nav > div {
+  display: flex;
+  gap: 8px;
+}
+.journey-nav [data-slot='select-trigger'] {
+  min-width: 190px;
+  font-size: 12px;
+}
+.fleet-console .fleet-toolbar {
+  padding: 0 0 16px;
+  margin-bottom: 18px;
+}
+.replicas-drawer,
+.scenario-drawer {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin: 20px 0;
+  background: var(--card);
+  overflow: hidden;
+}
+.replicas-drawer > summary,
+.scenario-drawer > summary {
+  cursor: pointer;
+  padding: 18px 22px;
+  font-size: 14px;
+}
+.replicas-drawer > summary span {
+  float: right;
+  color: var(--muted-foreground);
+  font-size: 12px;
+}
+.replicas-drawer > .distributed-panel,
+.scenario-drawer > .demo-scenarios {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+.fleet-lower-grid.journey-workload {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.journey-workload .fleet-opportunities {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px 24px;
+  align-items: center;
+}
+.journey-workload .fleet-opportunities > h2 {
+  font-size: 17px;
+}
+.journey-workload .fleet-opportunities > h2:nth-of-type(2),
+.journey-workload .opportunity-icon {
+  display: none;
+}
+.journey-workload .fleet-opportunities > p {
+  grid-column: 1;
+  font-size: 13px;
+}
+.journey-workload .primary-action {
+  grid-column: 2;
+  grid-row: 1 / 3;
+}
+.journey-workload .fleet-opportunities > small {
+  grid-column: 1;
+}
+.journey-workload .live-events {
+  grid-column: 1 / -1;
+}
+.profile-name-action {
+  padding: 0;
+  height: auto;
+  text-align: left;
+  white-space: normal;
+  font-weight: 600;
+}
+.agent-context {
+  margin: 20px 0;
+  overflow: hidden;
+}
+.agent-context summary {
+  padding: 18px 24px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.agent-context-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 0 24px 24px;
+}
+.agent-context-grid strong {
+  font-size: 13px;
+}
+.agent-context-grid p {
+  font-size: 12px;
+  margin-top: 8px;
+}
+.agent-context details > a {
+  display: block;
+  margin: 0 24px 24px;
+  color: var(--primary);
+  font-size: 12px;
+}
+.profile-rationale {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--muted);
+  margin: 18px 0;
+}
+.profile-rationale p {
+  font-size: 12px;
+  margin: 10px 0;
+}
+.profile-rationale small {
+  font-size: 10px;
+  color: var(--muted-foreground);
+}
+.deployment-file {
+  margin: 18px 0;
+  border: 1px solid var(--border);
+  padding: 15px;
+  border-radius: 8px;
+}
+.deployment-file summary {
+  cursor: pointer;
+  font-size: 13px;
+}
+.deployment-file p {
+  font-size: 12px;
+  margin: 12px 0;
+}
+.deployment-file pre {
+  max-height: 280px;
+  overflow: auto;
+  background: var(--background);
+  padding: 14px;
+  font-size: 11px;
+  border-radius: 8px;
+}
+.pool-demand-history {
+  border-top: 1px solid var(--border);
+  padding: 18px 24px;
+}
+.pool-demand-history > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  gap: 12px;
+}
+.pool-demand-history p {
+  font-size: 11px;
+  margin: 8px 0;
+}
+.pool-demand-values {
+  display: flex;
+  gap: 24px;
+  font-size: 12px;
+}
+.pool-demand-values span:first-child {
+  color: light-dark(#2767b5, #7ca9ff);
+}
+.pool-demand-values span:last-child {
+  color: light-dark(#207044, #68d6a5);
+}
+@media (max-width: 850px) {
+  .journey-nav {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .journey-nav > div {
+    flex-wrap: wrap;
+  }
+  .agent-context-grid {
+    grid-template-columns: 1fr;
+  }
+  .journey-workload .fleet-opportunities {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .replicas-drawer > summary span {
+    float: none;
+    display: block;
+    margin-top: 8px;
+  }
+}
