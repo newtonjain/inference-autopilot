@@ -1435,3 +1435,16 @@
   display: block;
   color: var(--muted-foreground);
 }
+
+.demo-next-step { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 0; }
+.demo-next-step p, .profile-impact > p { color:var(--muted-foreground); margin:.35rem 0 0; font-size:.875rem; }
+.profile-impact { margin:1rem 0; }
+.impact-pillars { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin-top:1rem; }
+.impact-pillars > div { display:flex; flex-direction:column; gap:.6rem; padding:1rem; border:1px solid var(--border); border-radius:.65rem; }
+.impact-pillars > div > span:first-child { color:var(--muted-foreground); font-size:.875rem; }
+.impact-pillars strong { font-size:1rem; }
+@media(max-width:760px) { .demo-next-step { align-items:flex-start; flex-direction:column; } .impact-pillars { grid-template-columns:1fr; } }
+
+.fleet-map-memory { display:grid; gap:.3rem; margin-top:.6rem; color:var(--muted-foreground); font-size:.875rem; }
+.fleet-map-memory span { display:flex; flex-wrap:wrap; justify-content:space-between; gap:.3rem; }
+.fleet-map-memory small { font-size:.75rem; }

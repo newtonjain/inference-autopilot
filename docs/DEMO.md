@@ -20,12 +20,12 @@ The replica matrix updates actual simulator state by model and hardware, includi
 
 ## Three-minute flow
 
-- **0:00–0:20:** State the problem: inference workloads change faster than static serving configurations. Load off-peak consolidation.
-- **0:20–1:00:** Run optimization, Inspect the cheaper passing profile, show placement/config differences, then approve.
-- **1:00–1:35:** Watch warmup, canary, traffic migration, two-pool cost, gates and drain. Point to complete replica counts and Kimi ranks, not dashboard decoration.
-- **1:35–2:15:** Load Qwen launch spike; show cheap candidates failing and the elastic candidate passing. Explain why utilization alone is the wrong objective.
-- **2:15–2:45:** Load the synthetic GKE snapshot. Two worker pods become one TP4×PP2 serving copy. Open the runnable observer chart and explain the read-only permission boundary.
-- **2:45–3:00:** State evidence and limits: repeatable simulation today; real cluster observation scaffold included; measured telemetry and an authorized actuator come next.
+1. **Live fleet:** Start on the running fleet. Follow Gemma, Qwen and Kimi requests across H200, GB200, GB300 and TPU v7. Show replica counts, accelerator ranks and demand history. The demo uses simulated traffic.
+2. **Optimization:** Choose Explore Astra optimizations, then Ask Astra to optimize. Wait for the real API response or open a saved Astra analysis with a matching baseline. Local replay results are labelled separately.
+3. **Inspect:** Select a recommendation. Compare cost, first-token latency and output throughput against the identical baseline replay. Review Astra's reasoning and the exact deployment changes.
+4. **Approve:** Approve the blue-green rollout. Watch warmup, canary, migration and drain on Live fleet. Both pools consume capacity during overlap; failed gates trigger rollback.
+5. **Simulation:** After completion, choose Simulate new demand. The approved green profile remains active. Change intensity, request type, prefix reuse, concurrency and burstiness; watch routing, utilization, queues and context demand on the same fleet view. Model memory reservation is static; the context token budget is a proxy, not measured KV usage.
+6. **Experiment again:** Choose Open experimentation lab to return to Optimization with this workload and active profile. Ask Astra for new recommendations. Changing workload invalidates prior approvals.
 
 For a one-minute submission, use one scenario: problem → passing/rejected evidence → approve → traffic migration → measured-systems next step. Clearly identify only the contribution created during the event.
 

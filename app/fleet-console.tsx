@@ -694,8 +694,8 @@ export default function FleetConsole() {
             {(
               [
                 ['live', 'Live fleet'],
-                ['simulation', 'Simulation'],
                 ['optimization', 'Optimization'],
+                ['simulation', 'Simulation'],
               ] as const
             ).map(([id, label]) => (
               <Button
@@ -915,7 +915,145 @@ export default function FleetConsole() {
             </details>
           </>
         )}
-        {session.rollout && !observedMode && screen !== 'simulation' && (
+        {(screen === 'live' || screen === 'simulation') && !observedMode && (
+          <section className="panel demand-history">
+            <div className="panel-heading">
+              <div>
+                <h2>Demand over simulated time</h2>
+                <p>
+                  Per-model arrival rates · same seeded variation across
+                  compared profiles
+                </p>
+              </div>
+              <div className="history-legend">
+                {MODEL_IDS.map((m) => (
+                  <span key={m}>
+                    <i style={{ background: `var(--model-${m})` }} />
+                    {MODELS[m].shortName}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <svg
+              viewBox="0 0 1100 150"
+              aria-label="Model request rates over simulated time"
+            >
+              <title>Per-model incoming requests per second</title>
+              {[30, 65, 100, 135].map((y) => (
+                <line
+                  key={y}
+                  x1="30"
+                  x2="1070"
+                  y1={y}
+                  y2={y}
+                  stroke="var(--border)"
+                  strokeDasharray="4 5"
+                />
+              ))}
+              {MODEL_IDS.map((m) => (
+                <path
+                  key={m}
+                  fill="none"
+                  stroke={`var(--model-${m})`}
+                  strokeWidth="2"
+                  d={history
+                    .map(
+                      (p, i) =>
+                        `${i ? 'L' : 'M'}${30 + (i / Math.max(1, history.length - 1)) * 1040},${135 - (p[m] / Math.max(1, ...history.flatMap((p) => MODEL_IDS.map((id) => p[id])))) * 110}`,
+                    )
+                    .join(' ')}
+                />
+              ))}
+              <text x="30" y="148" fill="var(--muted-foreground)" fontSize="11">
+                T+{history[0]?.time || 0}s
+              </text>
+              <text
+                x="1070"
+                y="148"
+                textAnchor="end"
+                fill="var(--muted-foreground)"
+                fontSize="11"
+              >
+                T+{history.at(-1)?.time || 0}s
+              </text>
+            </svg>
+            {session.rollout && (
+              <div className="pool-demand-history">
+                <div>
+                  <strong>Requests routed to each deployment</strong>
+                  <span>Blue · current → Green · proposed</span>
+                </div>
+                <p>
+                  Migration changes which pool receives requests; it does not
+                  manufacture additional demand.
+                </p>
+                <svg
+                  viewBox="0 0 1100 130"
+                  aria-label="Blue and green request rates over simulated time"
+                >
+                  <title>
+                    Actual simulated requests routed to blue and green pools
+                  </title>
+                  {(['blue', 'green'] as const).map((pool) => (
+                    <path
+                      key={pool}
+                      fill="none"
+                      stroke={
+                        pool === 'blue'
+                          ? 'light-dark(#2767b5,#7ca9ff)'
+                          : 'light-dark(#207044,#68d6a5)'
+                      }
+                      strokeWidth="3"
+                      d={history
+                        .map(
+                          (p, i) =>
+                            `${i ? 'L' : 'M'}${30 + (i / Math.max(1, history.length - 1)) * 1040},${105 - (p[pool] / Math.max(1, ...history.map((h) => h.blue + h.green))) * 85}`,
+                        )
+                        .join(' ')}
+                    />
+                  ))}
+                  <text
+                    x="30"
+                    y="125"
+                    fill="var(--muted-foreground)"
+                    fontSize="11"
+                  >
+                    T+{history[0]?.time || 0}s
+                  </text>
+                  <text
+                    x="1070"
+                    y="125"
+                    textAnchor="end"
+                    fill="var(--muted-foreground)"
+                    fontSize="11"
+                  >
+                    T+{history.at(-1)?.time || 0}s
+                  </text>
+                </svg>
+                <div className="pool-demand-values">
+                  <span>
+                    Blue: {(history.at(-1)?.blue || 0).toFixed(1)} req/s
+                  </span>
+                  <span>
+                    Green: {(history.at(-1)?.green || 0).toFixed(1)} req/s
+                  </span>
+                </div>
+              </div>
+            )}
+          </section>
+        )}
+        {!observedMode && (screen === 'live' || screen === 'simulation') && (
+          <div className="demo-next-step">
+            <div>
+              <strong>{screen === 'simulation' ? 'Experiment with this workload' : 'Optimize this fleet'}</strong>
+              <p>{screen === 'simulation' ? 'Adjust the controls below, then ask Astra to compare profiles against this demand.' : 'Ask Astra for deployment profiles, compare their impact, then approve a rollout.'}</p>
+            </div>
+            <Button disabled={disabled} onClick={() => { setScreen('optimization'); setTab('experiments'); }}>
+              {screen === 'simulation' ? 'Open experimentation lab' : 'Explore Astra optimizations'} <ChevronRight size={16} />
+            </Button>
+          </div>
+        )}
+        {session.rollout && !observedMode && (
           <section className={`panel rollout-panel ${locked ? 'is-live' : ''}`}>
             <div className="panel-heading">
               <div>
@@ -1034,6 +1172,12 @@ export default function FleetConsole() {
                 </small>
               </div>
             </div>
+            {session.rollout.phase === 'complete' && screen !== 'simulation' && (
+              <div className="demo-next-step">
+                <div><strong>Green is now the active fleet</strong><p>Test the deployed profile with new traffic and request patterns.</p></div>
+                <Button onClick={() => { setScreen('simulation'); setPlaying(true); }}>Simulate new demand <ChevronRight size={16} /></Button>
+              </div>
+            )}
             <div className="rollout-status" role="log">
               <ShieldCheck size={16} />
               <span>{session.rollout.events.at(-1)?.message}</span>
@@ -1306,9 +1450,9 @@ export default function FleetConsole() {
                   {workload.outputTokens.toLocaleString()} output tokens
                 </p>
               </div>
-              <Button disabled={disabled || observedMode} onClick={analyze}>
+              <Button variant="outline" disabled={disabled || observedMode} onClick={analyze}>
                 {busy ? <LoaderCircle className="spin" /> : <FlaskConical />}
-                {busy ? 'Evaluating' : 'Run replay sweep'}
+                {busy ? 'Evaluating' : 'Local replay sweep'}
               </Button>
             </div>
             <div className="evidence-heading">
@@ -1406,7 +1550,7 @@ export default function FleetConsole() {
                   <div>
                     <strong>Every recommendation needs evidence.</strong>
                     <p>
-                      Run optimization, then Inspect to see model placement,
+                      Ask Astra above, then Inspect to see model placement,
                       configuration changes, and their expected effects.
                     </p>
                   </div>
@@ -1551,133 +1695,6 @@ export default function FleetConsole() {
         <div hidden={!(screen === 'live' && observedMode)}>
           <GcpConnection />
         </div>
-        {screen !== 'simulation' && !observedMode && (
-          <section className="panel demand-history">
-            <div className="panel-heading">
-              <div>
-                <h2>Demand over simulated time</h2>
-                <p>
-                  Per-model arrival rates · same seeded variation across
-                  compared profiles
-                </p>
-              </div>
-              <div className="history-legend">
-                {MODEL_IDS.map((m) => (
-                  <span key={m}>
-                    <i style={{ background: `var(--model-${m})` }} />
-                    {MODELS[m].shortName}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <svg
-              viewBox="0 0 1100 150"
-              aria-label="Model request rates over simulated time"
-            >
-              <title>Per-model incoming requests per second</title>
-              {[30, 65, 100, 135].map((y) => (
-                <line
-                  key={y}
-                  x1="30"
-                  x2="1070"
-                  y1={y}
-                  y2={y}
-                  stroke="var(--border)"
-                  strokeDasharray="4 5"
-                />
-              ))}
-              {MODEL_IDS.map((m) => (
-                <path
-                  key={m}
-                  fill="none"
-                  stroke={`var(--model-${m})`}
-                  strokeWidth="2"
-                  d={history
-                    .map(
-                      (p, i) =>
-                        `${i ? 'L' : 'M'}${30 + (i / Math.max(1, history.length - 1)) * 1040},${135 - (p[m] / Math.max(1, ...history.flatMap((p) => MODEL_IDS.map((id) => p[id])))) * 110}`,
-                    )
-                    .join(' ')}
-                />
-              ))}
-              <text x="30" y="148" fill="var(--muted-foreground)" fontSize="11">
-                T+{history[0]?.time || 0}s
-              </text>
-              <text
-                x="1070"
-                y="148"
-                textAnchor="end"
-                fill="var(--muted-foreground)"
-                fontSize="11"
-              >
-                T+{history.at(-1)?.time || 0}s
-              </text>
-            </svg>
-            {session.rollout && (
-              <div className="pool-demand-history">
-                <div>
-                  <strong>Requests routed to each deployment</strong>
-                  <span>Blue · current → Green · proposed</span>
-                </div>
-                <p>
-                  Migration changes which pool receives requests; it does not
-                  manufacture additional demand.
-                </p>
-                <svg
-                  viewBox="0 0 1100 130"
-                  aria-label="Blue and green request rates over simulated time"
-                >
-                  <title>
-                    Actual simulated requests routed to blue and green pools
-                  </title>
-                  {(['blue', 'green'] as const).map((pool) => (
-                    <path
-                      key={pool}
-                      fill="none"
-                      stroke={
-                        pool === 'blue'
-                          ? 'light-dark(#2767b5,#7ca9ff)'
-                          : 'light-dark(#207044,#68d6a5)'
-                      }
-                      strokeWidth="3"
-                      d={history
-                        .map(
-                          (p, i) =>
-                            `${i ? 'L' : 'M'}${30 + (i / Math.max(1, history.length - 1)) * 1040},${105 - (p[pool] / Math.max(1, ...history.map((h) => h.blue + h.green))) * 85}`,
-                        )
-                        .join(' ')}
-                    />
-                  ))}
-                  <text
-                    x="30"
-                    y="125"
-                    fill="var(--muted-foreground)"
-                    fontSize="11"
-                  >
-                    T+{history[0]?.time || 0}s
-                  </text>
-                  <text
-                    x="1070"
-                    y="125"
-                    textAnchor="end"
-                    fill="var(--muted-foreground)"
-                    fontSize="11"
-                  >
-                    T+{history.at(-1)?.time || 0}s
-                  </text>
-                </svg>
-                <div className="pool-demand-values">
-                  <span>
-                    Blue: {(history.at(-1)?.blue || 0).toFixed(1)} req/s
-                  </span>
-                  <span>
-                    Green: {(history.at(-1)?.green || 0).toFixed(1)} req/s
-                  </span>
-                </div>
-              </div>
-            )}
-          </section>
-        )}
         <footer className="footer">
           <span>INFERENCE AUTOPILOT · EXPERIMENT BEFORE EXECUTION</span>
           <span>
@@ -1720,6 +1737,17 @@ export default function FleetConsole() {
                   </p>
                 </div>
               </div>
+              {evidence && (
+                <section className="profile-impact" aria-label="Expected impact against baseline">
+                  <h3>Expected impact against baseline</h3>
+                  <p>Same 90-second simulated workload · estimated steady state after rollout</p>
+                  <div className="impact-pillars">
+                    <div><span>Cost</span><strong>{currency(evidence.baseline.summary.hourlyCost)}/hr → {currency(inspected.evaluation.summary.hourlyCost)}/hr</strong><Delta before={evidence.baseline.summary.hourlyCost} after={inspected.evaluation.summary.hourlyCost} unit=" $/hr" /></div>
+                    <div><span>Latency · first token</span><strong>{number(evidence.baseline.summary.ttftMs)}ms → {number(inspected.evaluation.summary.ttftMs)}ms</strong><Delta before={evidence.baseline.summary.ttftMs} after={inspected.evaluation.summary.ttftMs} unit="ms" /></div>
+                    <div><span>Throughput</span><strong>{number(evidence.baseline.summary.outputTokensPerSecond)} → {number(inspected.evaluation.summary.outputTokensPerSecond)} tok/s</strong><Delta before={evidence.baseline.summary.outputTokensPerSecond} after={inspected.evaluation.summary.outputTokensPerSecond} unit=" tok/s" lower={false} /></div>
+                  </div>
+                </section>
+              )}
               <ol className="prescription-list">
                 {inspected.prescription.map((line, i) => (
                   <li key={line}>

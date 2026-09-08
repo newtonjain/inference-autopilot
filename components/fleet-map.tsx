@@ -49,6 +49,11 @@ function ReplicaTile({
   replica: Replica;
   fleet: FleetState;
 }) {
+  const node = INITIAL_NODES.find((n) => n.id === replica.nodeId)!;
+  const model = MODELS[replica.model];
+  const memoryGB = node.memoryGBPerChip * model.requiredChips;
+  const copies = Math.max(1, fleet.replicas.filter((r) => r.model === replica.model && r.status === 'ready').length);
+  const contextBudget = fleet.workload.concurrency * fleet.workload.mix[replica.model] * (fleet.workload.inputTokens + fleet.workload.outputTokens) / copies;
   const status = health(
     replica.utilization,
     replica.ttftMs,
@@ -83,6 +88,11 @@ function ReplicaTile({
         aria-label={`${MODELS[replica.model].shortName} replica utilization`}
       >
         <span style={{ width: percent(replica.utilization) }} />
+      </div>
+      <div className="fleet-map-memory">
+        <span>Model memory reservation <b>{model.residentGB} / {Math.round(memoryGB)} GB</b></span>
+        <span title="Configured concurrency × model traffic share × input and output tokens ÷ ready replicas. A context demand proxy, not measured KV memory usage.">Context budget / replica <b>{Math.round(contextBudget).toLocaleString()} tokens</b></span>
+        <small>Memory excludes KV cache and runtime workspace.</small>
       </div>
       <div className="fleet-map-replica-bottom">
         <span>
