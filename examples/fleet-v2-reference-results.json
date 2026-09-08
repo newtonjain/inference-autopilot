@@ -1,0 +1,226 @@
+{
+  "evidenceType": "Synthetic fluid simulation; not benchmarks or cloud quotes",
+  "workload": {
+    "rps": 24,
+    "inputTokens": 1200,
+    "outputTokens": 300,
+    "sharedPrefix": 0.65,
+    "burstiness": 0.15,
+    "concurrency": 128,
+    "ttftTargetMs": 800,
+    "tokenTargetMs": 70,
+    "mix": {
+      "gemma": 0.45,
+      "qwen": 0.3,
+      "kimi": 0.25
+    }
+  },
+  "baseline": {
+    "summary": {
+      "hourlyCost": 104,
+      "outputTokensPerSecond": 5054.722222222222,
+      "ttftMs": 7766.890015360984,
+      "sloPassRate": 0.014261589900941007,
+      "utilization": 1,
+      "queue": 128,
+      "activeReplicas": 3,
+      "readyReplicas": 3
+    },
+    "feasible": false,
+    "reasons": [
+      "Gemma TTFT exceeds 800 ms.",
+      "Qwen TTFT exceeds 800 ms.",
+      "Kimi TTFT exceeds 800 ms.",
+      "More than 1% of requests rejected.",
+      "Fewer than 95% of offered requests completed within both latency targets."
+    ],
+    "completed": 1516.4166666666654,
+    "failed": 541.3299743979045,
+    "cost": 2.6000000000000036
+  },
+  "candidates": [
+    {
+      "profile": {
+        "id": "cache-tuned",
+        "name": "Cache-aware serving",
+        "placements": [
+          {
+            "id": "gemma-main",
+            "nodeId": "h200-a",
+            "model": "gemma",
+            "replicas": 1
+          },
+          {
+            "id": "qwen-main",
+            "nodeId": "gb200-a",
+            "model": "qwen",
+            "replicas": 1
+          },
+          {
+            "id": "kimi-main",
+            "nodeId": "gb300-a",
+            "model": "kimi",
+            "replicas": 1
+          }
+        ],
+        "prefixCache": true,
+        "cacheAffinity": true,
+        "batchConcurrency": 32,
+        "headroom": 0.15,
+        "autoscale": false
+      },
+      "prescription": [
+        "Enable prefix cache and model-specific cache-affinity routing.",
+        "Raise batch concurrency to 32; hold placement fixed for a controlled comparison.",
+        "Disable reactive scaling during this fixed-profile experiment."
+      ],
+      "reason": "Reduce repeated prefill work and improve batching efficiency.",
+      "goal": "latency",
+      "evaluation": {
+        "summary": {
+          "hourlyCost": 104,
+          "outputTokensPerSecond": 6903.7239948908245,
+          "ttftMs": 79.61108961213837,
+          "sloPassRate": 1,
+          "utilization": 0.7811773206528558,
+          "queue": 0,
+          "activeReplicas": 3,
+          "readyReplicas": 3
+        },
+        "feasible": true,
+        "reasons": [],
+        "completed": 2185.746641064571,
+        "failed": 0,
+        "cost": 2.6000000000000036
+      }
+    },
+    {
+      "profile": {
+        "id": "consolidated",
+        "name": "Consolidate GPU footprint",
+        "placements": [
+          {
+            "id": "gemma-packed",
+            "nodeId": "gb200-a",
+            "model": "gemma",
+            "replicas": 2
+          },
+          {
+            "id": "qwen-gpu",
+            "nodeId": "gb200-a",
+            "model": "qwen",
+            "replicas": 1
+          },
+          {
+            "id": "kimi-gpu",
+            "nodeId": "gb300-a",
+            "model": "kimi",
+            "replicas": 1
+          }
+        ],
+        "prefixCache": true,
+        "cacheAffinity": true,
+        "batchConcurrency": 32,
+        "headroom": 0.15,
+        "autoscale": false
+      },
+      "prescription": [
+        "Co-locate two Gemma replicas and one four-chip Qwen replica on GB200 A.",
+        "Keep Kimi on its dedicated eight-chip GB300 A serving group.",
+        "Drain the H200 node after verification; assumed active-node billing falls to $88/hour."
+      ],
+      "reason": "Pack compatible workloads into fewer paid nodes without changing model identity.",
+      "goal": "cost",
+      "evaluation": {
+        "summary": {
+          "hourlyCost": 88,
+          "outputTokensPerSecond": 6903.7239948908245,
+          "ttftMs": 68.75058384063325,
+          "sloPassRate": 1,
+          "utilization": 0.5263058249063042,
+          "queue": 0,
+          "activeReplicas": 4,
+          "readyReplicas": 4
+        },
+        "feasible": true,
+        "reasons": [],
+        "completed": 2185.746641064571,
+        "failed": 0,
+        "cost": 2.200000000000001
+      }
+    },
+    {
+      "profile": {
+        "id": "elastic",
+        "name": "Burst-ready elastic fleet",
+        "placements": [
+          {
+            "id": "gemma-main",
+            "nodeId": "h200-a",
+            "model": "gemma",
+            "replicas": 1
+          },
+          {
+            "id": "qwen-main",
+            "nodeId": "gb200-a",
+            "model": "qwen",
+            "replicas": 1
+          },
+          {
+            "id": "kimi-main",
+            "nodeId": "gb300-a",
+            "model": "kimi",
+            "replicas": 1
+          },
+          {
+            "id": "reserve-gemma",
+            "nodeId": "h200-a",
+            "model": "gemma",
+            "replicas": 1
+          },
+          {
+            "id": "reserve-qwen",
+            "nodeId": "h200-b",
+            "model": "qwen",
+            "replicas": 1
+          },
+          {
+            "id": "reserve-kimi",
+            "nodeId": "gb300-b",
+            "model": "kimi",
+            "replicas": 1
+          }
+        ],
+        "prefixCache": true,
+        "cacheAffinity": true,
+        "batchConcurrency": 32,
+        "headroom": 0.3,
+        "autoscale": true
+      },
+      "prescription": [
+        "Enable cache reuse and 32-way batching.",
+        "Pre-warm one additional compatible replica per model where capacity permits.",
+        "Scale into available compatible slots at 70% demand/capacity; new replicas take 8 simulated seconds."
+      ],
+      "reason": "Reserve burst capacity and reduce queue growth during model-specific demand spikes.",
+      "goal": "throughput",
+      "evaluation": {
+        "summary": {
+          "hourlyCost": 168,
+          "outputTokensPerSecond": 6903.7239948908245,
+          "ttftMs": 62.976,
+          "sloPassRate": 1,
+          "utilization": 0.4126542772091457,
+          "queue": 0,
+          "activeReplicas": 6,
+          "readyReplicas": 6
+        },
+        "feasible": true,
+        "reasons": [],
+        "completed": 2185.746641064571,
+        "failed": 0,
+        "cost": 4.200000000000008
+      }
+    }
+  ]
+}

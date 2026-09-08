@@ -10,6 +10,9 @@ try {
       'node_modules/typescript/bin/tsc',
       'lib/simulator.ts',
       'lib/workflow.ts',
+      'lib/fleet-engine.ts',
+      'lib/fleet-rollout.ts',
+      'lib/fleet-session.ts',
       '--module',
       'commonjs',
       '--target',
@@ -20,10 +23,20 @@ try {
     ],
     { stdio: 'inherit' },
   );
-  execFileSync(process.execPath, ['--test', 'tests/simulation.test.mjs'], {
-    stdio: 'inherit',
-    env: { ...process.env, SIM_BUILD_DIR: build },
-  });
+  execFileSync(
+    process.execPath,
+    [
+      '--test',
+      'tests/simulation.test.mjs',
+      'tests/fleet-engine.test.mjs',
+      'tests/fleet-rollout.test.mjs',
+      'tests/fleet-session.test.mjs',
+    ],
+    {
+      stdio: 'inherit',
+      env: { ...process.env, SIM_BUILD_DIR: build },
+    },
+  );
 } finally {
   rmSync(build, { recursive: true, force: true });
 }

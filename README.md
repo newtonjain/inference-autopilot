@@ -1,69 +1,64 @@
-# Inference Autopilot — simulation MVP
+# Inference Autopilot — fleet simulation
 
-A working experiment and approval console for inference deployments. No cloud account, GPU, model download, or API key is required. All inference performance and prices are synthetic assumptions. The optimizer is deterministic code; this release does not call Astra or serve Gemma.
+An interactive deployment console with Gemma 4 26B, Qwen 3.5 397B, and Kimi K3 across H200, GB200, GB300, and TPU v7 hardware groups. No cloud account, GPU, API key, or model download is required. All throughput, latency, prices, and optimization results are synthetic. The optimizer is deterministic code, with no live Astra or model calls.
 
-## Run
+## Run and validate
 
-Use Node.js 22.13 or newer and npm:
+Use Node.js 22.13 or newer:
 
 ```sh
 npm ci
 npm run dev -- --port 3002 --hostname 127.0.0.1
+npm test
+npm run typecheck
+npm run lint
+npm run build
 ```
 
-Open the printed local address. `npm test`, `npm run typecheck`, `npm run lint`, and `npm run build` validate the app. Lint covers authored app/engine/test code; generated UI primitives are preserved unchanged.
+The main route is the new fleet console. `/lab` preserves the earlier single-GPU and node experiment lab; see LEGACY_LAB.md for that engine's different assumptions and trace format.
 
-## Demo
+## Suggested demo
 
-1. Start with **Single GPU**: Gemma 4 26B A4B on a simulated H100 80 GB.
-2. Run optimization. Inspect passing and rejected profiles, review the exact diff, approve a change, and observe verification.
-3. Switch to **Full node**: four independent replicas of the same model. This does not model tensor parallelism or a distributed model.
-4. Switch to **Multi-model fleet**: three nodes with two GPUs each. Every node hosts one Gemma 4 26B A4B replica and one Gemma 4 31B replica. Requests retain their original model identity.
-5. Under the default seed and assumptions, two-node consolidation passes the targets; the one-node candidate fails. The modeled hourly rate falls from $18 to $12 if the two-node profile is approved. This is an illustrative result, not a cloud quote or realized saving.
-6. Inject a 3.5× arrival burst. When an applied profile fails, the previous warm configuration is restored and independently checked. If it also fails, the UI says further action is required.
-7. Export the report or save/import a JSON traffic trace. Example files are in `examples/`.
+1. Observe requests entering the model-aware router and reaching compatible replicas. Model identity stays fixed; hardware color indicates pressure, while packet color identifies the model. Animated dots are samples, not individual counted requests.
+2. Surge one model, then all three. Watch queues, yellow/red pressure, and eight-second replica warmups. Autoscaling respects chip, memory, model-slot, and compatibility constraints; exhausted capacity leaves visible pressure.
+3. Reset for a repeatable optimization demonstration. Vary input/output length, prefix reuse, burstiness, request rate, model mix, queue budget, and latency targets. The workload controls explain their effects.
+4. Run optimization. The simulation pauses so the evidence remains reviewable. Inspect a profile to see placement changes, serving flags, and projected cost, TTFT, and output throughput. Failed candidates cannot be approved.
+5. Approve a passing profile. A separate green pool warms, takes a canary, receives increasing traffic, verifies, and drains blue. Both pools consume resources and incur costs during overlap. Watch actual simulated traffic weights and updated metrics.
+6. Abort a rollout to restore blue while retaining queues and accounting. Export a report to retain settings, evidence, and activity.
 
-Settings and active profiles are session state; the last 30 audit events persist only in this browser. Refresh resets the experiment workspace. Imported files stay in the browser and are not uploaded to a server.
+All state and audit history are session-local. Refresh resets the fleet. Changes never operate customer infrastructure.
 
-## Model facts vs assumptions
+## Inventory and compatibility
 
-Google identifies Gemma 4 26B A4B as a MoE with 25.2B total and 3.8B active parameters. The second fleet model is Gemma 4 31B Dense. Source: https://ai.google.dev/gemma/docs/core/model_card_4 . Google describes its BF16 weights fitting on a single H100 80 GB: https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/ . This does not guarantee every context/concurrency configuration fits.
+The eight simulated hardware groups are two 4-chip H200 groups, two 8-chip GB200 groups, three 8-chip GB300 groups, and one 4-chip TPU v7 group. These are illustrative scheduling groups, not a claim that NVL72 racks contain only eight GPUs.
 
-Everything below is an explicit simulation assumption, adjustable where exposed in the Assumptions dialog:
+- Gemma uses one chip with an assumed 64 GB resident footprint; it can run on all four hardware types in this demo.
+- Qwen uses four GPU chips with an assumed 480 GB quantized resident footprint. The demo keeps Qwen GPU-only; this is a scenario restriction, not a claim that TPU support is unavailable.
+- Kimi uses eight GB300 chips with an assumed 1,600 GB resident footprint. Its TPU path is not enabled.
 
-- 6,500 peak prefill tokens/s and 850 aggregate decode tokens/s for the 26B profile.
-- A per-sequence decode ceiling of 55 tokens/s; the 31B profile uses a synthetic 0.72 speed multiplier.
-- 56 GB model/runtime residency for 26B; 64 GB for 31B; 90% of 80 GB available to the engine.
-- 0.125 MiB KV allocation per token. This is a conservative toy constant, not Gemma's hybrid-attention memory formula.
-- Prefix LRU storage is limited to 30% of the remaining KV memory and competes with active requests.
-- $3 per GPU-hour. Whole active nodes are charged; idle GPU replicas do not remove VM cost.
+Real parameter counts and nominal accelerator memory inform these constraints. Footprints, parallelism, runtime support, and performance still require real deployment validation. GB200 uses 186 GB per GPU, GB300 288 GB, H200 141 GB, and TPU v7 192 GiB (converted to decimal GB internally).
 
-## Simulation method
+Sources: [Gemma](https://ai.google.dev/gemma/docs/core), [Qwen](https://huggingface.co/Qwen/Qwen3.5-397B-A17B), [Kimi](https://github.com/MoonshotAI/Kimi-K3), [H200](https://www.nvidia.com/en-us/data-center/h200/), [GB200](https://www.nvidia.com/en-us/data-center/gb200-nvl72/), [GB300](https://www.nvidia.com/en-gb/data-center/gb300-nvl72/), [TPU v7](https://docs.cloud.google.com/tpu/docs/tpu7x), [vLLM TPU matrix](https://docs.vllm.ai/projects/tpu/en/latest/recommended_models/).
 
-Seeded request arrivals feed model-compatible per-GPU queues. Every candidate receives the exact same trace. In 50 ms steps, each worker admits requests within concurrency and memory limits, splits available time between prefill and decode, and completes output tokens. Cached prefixes remove only prefill work, and cache keys are isolated by model and tenant. Prefix IDs assert exact token-prefix identity; content matching is not inferred.
+## Simulation and evidence
 
-All workers start warm with empty caches. Workload generation stops at the configured duration, then queues drain for up to 60 more seconds. Unfinished and unhosted requests count as failures. Latency percentiles describe completed requests; completion and service compliance always include all offered requests.
+The fleet engine advances a seeded, fluid queue model in one-second steps. Fractional request volumes are intentional. Capacity depends on model, hardware, input/output lengths, prefix reuse, batch concurrency, and cache affinity. Model-aware routing distributes demand across ready replicas. Queues and rejections reflect admission limits. Whole activated hardware groups are charged, including during warmup.
 
-A feasible result requires p95 TTFT and p95 per-request mean token interval under the operator's targets, at most 1% failures, and at least 95% of offered requests meeting both latency targets. Cost includes drain time. Cost per million output tokens uses only successful requests meeting both latency targets.
+TTFT and token interval are estimates, not measured percentiles. Utilization is modeled service pressure, not measured GPU SM utilization. Prefix reuse reduces modeled input work without implementing a real KV cache. Arrival waves are synthetic; seasonality is not learned from history.
 
-Limitations: no real kernels, dynamic GPU batching efficiency, SM utilization, interconnect, startup, network transfer, cold deployment, shared KV service, quality evaluation, or live canary. The batch-token cap limits work per scheduler step and may not bind at default rates; candidates do not attribute gains to a non-binding batch cap. The seasonal pattern is generated, not learned from customer history. Large-fleet extrapolation is uncalibrated.
+Candidate evidence uses a repeatable 90-second replay with placements frozen, so an autoscaling candidate cannot pass merely by allocating extra unpriced replicas. Approval binds to exact profile/workload context, rejects stale or repeated application, and checks feasibility again. Blue-green verification supplements replay evidence with green-pool observations. The UI distinguishes projected steady-state changes from charged overlap costs.
 
-## Approval behavior
+During rollout, autoscaling and workload edits are frozen. Green receives a temporary independent copy of the modeled hardware inventory; no extra real resources are provisioned. Warming, migration, and draining times are accelerated demo assumptions. Rollback preserves pending work and lifetime request/cost counters.
 
-Proposals bind to a hash of the current profile, settings, and trace. Failed experiments cannot be proposed. Approval repeats the evaluation, rejects stale context and duplicate application, then updates simulator state. Restoration is instantaneous and explicitly warm; it is not proof of production rollback or restart latency.
+Limitations include no kernels, network/interconnect contention, distributed tensor-parallel communication, KV memory dynamics, real cold-start times, quality evaluation, predictive seasonality, or cloud execution. This is evidence about the toy model, not proof of production savings. Production use needs calibrated measurements and a separately authorized cloud adapter.
 
-## Files
+## Code
 
-- `lib/simulator.ts`: traffic generation, validation, model queues, memory/caching, results, candidate catalog.
-- `lib/workflow.ts`: proposal identity and guarded approval/verification.
-- `app/page.tsx`: controls, topology, charts, comparison table, approval, trace import/export, activity log.
-- `tests/simulation.test.mjs`: reproducibility, cache correctness, overload, billing, model identity, import validation, and approvals.
-- `examples/`: seeded traces and computed reference reports.
+- `lib/fleet-engine.ts`: inventory, traffic, placement validation, autoscaling, and recommendations.
+- `lib/fleet-rollout.ts`: evidence-bound approval and rollout phases.
+- `lib/fleet-session.ts`: independent blue/green pools, traffic split, accounting, and rollback.
+- `components/fleet-map.tsx`: routing animation and hardware/replica topology.
+- `app/fleet-console.tsx`: controls, inspection, approvals, charts, and exports.
+- `tests/`: reproducibility, placement constraints, overload, conservation, approval, migration, and rollback checks.
 
-## Agent interface
-
-Feature-detected WebMCP tools expose reading active evidence and running experiments. Neither applies a deployment. They use the same visible actions. Browser WebMCP contract validation was not available/performed in this session; these optional tools are not claimed as verified. Browser visual/interaction QA was not requested; TypeScript, authored-source lint, engine/workflow tests, HTTP render, and production build are the validation scope.
-
-## Next integration
-
-Add real endpoint measurements behind the same trace/profile contract, calibrate hardware rates, and introduce Astra tool orchestration with explicit API access. Cloud execution requires a separate allowlisted adapter and a real rollout state machine. Do not describe the current rule-based simulation as live AI infrastructure automation.
+Optional WebMCP read tools are feature-detected. Browser contract validation and visual/interaction QA were not performed. Validation covers authored-source lint, TypeScript, simulation/workflow tests, HTTP rendering, and the production build.
