@@ -243,6 +243,12 @@ export default function FleetConsole() {
   const [screen, setScreen] = useState<'live' | 'simulation' | 'optimization'>(
     'live',
   );
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (new URLSearchParams(window.location.search).get('screen') === 'optimization') setScreen('optimization');
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
   const [source, setSource] = useState<'simulation' | 'gke'>('simulation');
   const observedMode = source === 'gke';
   const [assumptions, setAssumptions] = useState(false);

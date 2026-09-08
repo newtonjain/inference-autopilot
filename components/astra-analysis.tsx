@@ -31,7 +31,7 @@ async function api(path: string, init?: RequestInit) {
       payload: AnalysisResult;
     }[];
   };
-  if (!r.ok) throw Error(data.error || 'Request failed.');
+  if (!r.ok) { const error = new Error(data.error || 'Request failed.'); Object.assign(error, { status: r.status }); throw error; }
   return data;
 }
 export default function AstraAnalysis({
@@ -56,6 +56,7 @@ export default function AstraAnalysis({
       persistence: boolean;
     } | null>(null),
     [error, setError] = useState(''),
+    [needsSignIn, setNeedsSignIn] = useState(false),
     [busy, setBusy] = useState(false),
     [telemetry, setTelemetry] = useState<{
       id: string;
@@ -89,7 +90,7 @@ export default function AstraAnalysis({
     alive.current = true;
     void api('/api/agent/status')
       .then(setStatus)
-      .catch((e) => setError(e.message));
+      .catch((e) => { setError(e.message); setNeedsSignIn(e.status === 401); });
     void api('/api/analysis')
       .then((x) => setHistory(x.analyses))
       .catch(() => {});
@@ -104,10 +105,14 @@ export default function AstraAnalysis({
     if (running.current || refs.current.disabled) return;
     running.current = true;
     setBusy(true);
-    refs.current.onBusy(true);
     setError('');
     lastCall.current = Date.now();
     try {
+      const ready = await api('/api/agent/status');
+      setStatus(ready);
+      setNeedsSignIn(false);
+      if (!ready.configured) throw Error('The server needs an OpenAI API key. Configure the server secret, then click Analyze with Astra again.');
+      refs.current.onBusy(true);
       const result = (await api('/api/analysis', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -127,6 +132,7 @@ export default function AstraAnalysis({
     } catch (e) {
       if (alive.current) {
         setError((e as Error).message);
+        setNeedsSignIn((e as Error & {status?:number}).status === 401);
         setWatch(false);
       }
     } finally {
@@ -135,6 +141,17 @@ export default function AstraAnalysis({
       if (alive.current) setBusy(false);
     }
   }
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const url = new URL(window.location.href);
+      if (url.searchParams.get('analyze') === '1') {
+        url.searchParams.delete('analyze');
+        window.history.replaceState(null, '', url);
+        void analyze();
+      }
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
   useEffect(() => {
     if (!watch || samplePhase) return;
     const timer = setInterval(() => {
@@ -204,18 +221,17 @@ export default function AstraAnalysis({
               ? 'Review recommendations, compare their impact, and approve a deployment.'
               : status
                 ? 'OpenAI API key is not configured on the server.'
-                : 'Checking server configuration…'}
+                : needsSignIn ? 'Sign in to connect Astra and save recommendations.' : error ? 'Connection needs attention. Click Analyze with Astra to retry.' : 'Checking server configuration…'}
           </p>
         </div>
         <Button
           disabled={
             busy ||
             disabled ||
-            !status?.configured ||
             (!samplePhase && (useTelemetry || requireTelemetry) && !telemetry)
           }
           onClick={() =>
-            void analyze(
+            needsSignIn ? window.location.assign('/signin-with-chatgpt?return_to=%2F%3Fscreen%3Doptimization%26analyze%3D1') : void analyze(
               useTelemetry || requireTelemetry ? telemetry?.id : undefined,
             )
           }
@@ -224,7 +240,7 @@ export default function AstraAnalysis({
           {busy ? 'Astra is analyzing…' : 'Analyze with Astra'}
         </Button>
       </div>
-      {!status && error && <p><Button variant="outline" onClick={() => window.location.assign('/signin-with-chatgpt?return_to=/')}>Sign in to enable saved analysis</Button></p>}
+      {!status && error && <p><Button variant="outline" onClick={() => window.location.assign('/signin-with-chatgpt?return_to=%2F%3Fscreen%3Doptimization%26analyze%3D1')}>Sign in to enable saved analysis</Button></p>}
       {!samplePhase && <><div className="astra-controls">
         <label>
           <input
