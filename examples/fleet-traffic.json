@@ -1,0 +1,6017 @@
+{
+  "version": 1,
+  "seed": 42,
+  "duration": 120,
+  "requests": [
+    {
+      "id": 0,
+      "arrival": 0.18020665211392162,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2262,
+      "output": 169
+    },
+    {
+      "id": 1,
+      "arrival": 0.37239264464205246,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2374,
+      "output": 233
+    },
+    {
+      "id": 2,
+      "arrival": 0.44429999046064644,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2915,
+      "output": 75
+    },
+    {
+      "id": 3,
+      "arrival": 0.8003935828912339,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2400,
+      "output": 86
+    },
+    {
+      "id": 4,
+      "arrival": 1.10046872006146,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 3264,
+      "output": 162
+    },
+    {
+      "id": 5,
+      "arrival": 1.1759336697567278,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2834,
+      "output": 182
+    },
+    {
+      "id": 6,
+      "arrival": 1.3793837627814418,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3288,
+      "output": 166
+    },
+    {
+      "id": 7,
+      "arrival": 1.4449453776441477,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 3021,
+      "output": 199
+    },
+    {
+      "id": 8,
+      "arrival": 1.4630003246758327,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3413,
+      "output": 99
+    },
+    {
+      "id": 9,
+      "arrival": 1.4661316473336046,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 3349,
+      "output": 88
+    },
+    {
+      "id": 10,
+      "arrival": 2.0016875658190774,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2780,
+      "output": 222
+    },
+    {
+      "id": 11,
+      "arrival": 3.067367997075627,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2867,
+      "output": 135
+    },
+    {
+      "id": 12,
+      "arrival": 3.1438428337362447,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3264,
+      "output": 200
+    },
+    {
+      "id": 13,
+      "arrival": 3.5769953283772575,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2151,
+      "output": 200
+    },
+    {
+      "id": 14,
+      "arrival": 3.8792523850671605,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2713,
+      "output": 222
+    },
+    {
+      "id": 15,
+      "arrival": 4.585638710653537,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2334,
+      "output": 149
+    },
+    {
+      "id": 16,
+      "arrival": 4.794117993351144,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3330,
+      "output": 133
+    },
+    {
+      "id": 17,
+      "arrival": 4.891988028483989,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2014,
+      "output": 207
+    },
+    {
+      "id": 18,
+      "arrival": 5.301175441425654,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2905,
+      "output": 163
+    },
+    {
+      "id": 19,
+      "arrival": 5.310712293067632,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2413,
+      "output": 135
+    },
+    {
+      "id": 20,
+      "arrival": 5.359655430095403,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3482,
+      "output": 104
+    },
+    {
+      "id": 21,
+      "arrival": 5.521062137281214,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2627,
+      "output": 198
+    },
+    {
+      "id": 22,
+      "arrival": 5.60138666151458,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2742,
+      "output": 184
+    },
+    {
+      "id": 23,
+      "arrival": 5.775874357965484,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2480,
+      "output": 195
+    },
+    {
+      "id": 24,
+      "arrival": 5.8122453560176,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2470,
+      "output": 82
+    },
+    {
+      "id": 25,
+      "arrival": 5.857892354540869,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 3368,
+      "output": 221
+    },
+    {
+      "id": 26,
+      "arrival": 5.890716735552602,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3260,
+      "output": 236
+    },
+    {
+      "id": 27,
+      "arrival": 5.9217995104315895,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2584,
+      "output": 173
+    },
+    {
+      "id": 28,
+      "arrival": 6.054598049574651,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3115,
+      "output": 84
+    },
+    {
+      "id": 29,
+      "arrival": 6.090968282342985,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3487,
+      "output": 221
+    },
+    {
+      "id": 30,
+      "arrival": 6.4466267513137945,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2526,
+      "output": 155
+    },
+    {
+      "id": 31,
+      "arrival": 6.670652096805582,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2493,
+      "output": 227
+    },
+    {
+      "id": 32,
+      "arrival": 6.759928981704864,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 3089,
+      "output": 247
+    },
+    {
+      "id": 33,
+      "arrival": 6.883031607175717,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2208,
+      "output": 83
+    },
+    {
+      "id": 34,
+      "arrival": 6.9970664237156335,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3177,
+      "output": 110
+    },
+    {
+      "id": 35,
+      "arrival": 7.140087251923414,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2637,
+      "output": 134
+    },
+    {
+      "id": 36,
+      "arrival": 7.171411315762428,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2821,
+      "output": 191
+    },
+    {
+      "id": 37,
+      "arrival": 7.199808156790519,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2103,
+      "output": 231
+    },
+    {
+      "id": 38,
+      "arrival": 7.336688825140275,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2555,
+      "output": 116
+    },
+    {
+      "id": 39,
+      "arrival": 7.499478683987652,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2991,
+      "output": 218
+    },
+    {
+      "id": 40,
+      "arrival": 7.819863199036469,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2143,
+      "output": 85
+    },
+    {
+      "id": 41,
+      "arrival": 8.038523999720585,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2033,
+      "output": 146
+    },
+    {
+      "id": 42,
+      "arrival": 8.1040647912965,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2307,
+      "output": 244
+    },
+    {
+      "id": 43,
+      "arrival": 8.164769022387702,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 3027,
+      "output": 177
+    },
+    {
+      "id": 44,
+      "arrival": 8.238088913736323,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 3030,
+      "output": 174
+    },
+    {
+      "id": 45,
+      "arrival": 8.906792507140215,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2463,
+      "output": 188
+    },
+    {
+      "id": 46,
+      "arrival": 9.298978605179094,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 3319,
+      "output": 149
+    },
+    {
+      "id": 47,
+      "arrival": 9.448219309988366,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3301,
+      "output": 199
+    },
+    {
+      "id": 48,
+      "arrival": 9.51447605016984,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2412,
+      "output": 188
+    },
+    {
+      "id": 49,
+      "arrival": 9.777329952376745,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3353,
+      "output": 173
+    },
+    {
+      "id": 50,
+      "arrival": 9.792089642881987,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2631,
+      "output": 154
+    },
+    {
+      "id": 51,
+      "arrival": 10.039790162570666,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2146,
+      "output": 96
+    },
+    {
+      "id": 52,
+      "arrival": 10.385141184468262,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2127,
+      "output": 80
+    },
+    {
+      "id": 53,
+      "arrival": 10.62122953173831,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 3363,
+      "output": 234
+    },
+    {
+      "id": 54,
+      "arrival": 10.641841345352713,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2418,
+      "output": 121
+    },
+    {
+      "id": 55,
+      "arrival": 10.785368839406333,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3172,
+      "output": 199
+    },
+    {
+      "id": 56,
+      "arrival": 10.809675972631348,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2360,
+      "output": 116
+    },
+    {
+      "id": 57,
+      "arrival": 10.980334840228785,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2973,
+      "output": 80
+    },
+    {
+      "id": 58,
+      "arrival": 11.294559210662753,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2757,
+      "output": 99
+    },
+    {
+      "id": 59,
+      "arrival": 11.584920790387535,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2740,
+      "output": 246
+    },
+    {
+      "id": 60,
+      "arrival": 11.61575151849713,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3155,
+      "output": 118
+    },
+    {
+      "id": 61,
+      "arrival": 11.827217635338396,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3383,
+      "output": 168
+    },
+    {
+      "id": 62,
+      "arrival": 11.837244003251323,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2425,
+      "output": 83
+    },
+    {
+      "id": 63,
+      "arrival": 12.081288436114754,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3294,
+      "output": 157
+    },
+    {
+      "id": 64,
+      "arrival": 12.283064953328543,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2131,
+      "output": 99
+    },
+    {
+      "id": 65,
+      "arrival": 12.329697962049957,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2726,
+      "output": 196
+    },
+    {
+      "id": 66,
+      "arrival": 13.087575215987112,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2307,
+      "output": 168
+    },
+    {
+      "id": 67,
+      "arrival": 13.203364818467135,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2052,
+      "output": 230
+    },
+    {
+      "id": 68,
+      "arrival": 13.31222395334803,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2998,
+      "output": 86
+    },
+    {
+      "id": 69,
+      "arrival": 13.594672635332751,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2880,
+      "output": 173
+    },
+    {
+      "id": 70,
+      "arrival": 13.73552701554544,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2024,
+      "output": 202
+    },
+    {
+      "id": 71,
+      "arrival": 13.965868124845422,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3396,
+      "output": 125
+    },
+    {
+      "id": 72,
+      "arrival": 14.422563258387502,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2742,
+      "output": 154
+    },
+    {
+      "id": 73,
+      "arrival": 14.697394560932112,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3418,
+      "output": 224
+    },
+    {
+      "id": 74,
+      "arrival": 14.699020512151078,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2774,
+      "output": 162
+    },
+    {
+      "id": 75,
+      "arrival": 14.85785089919504,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 3476,
+      "output": 251
+    },
+    {
+      "id": 76,
+      "arrival": 15.18519903495432,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2238,
+      "output": 91
+    },
+    {
+      "id": 77,
+      "arrival": 15.192139686365667,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 3164,
+      "output": 133
+    },
+    {
+      "id": 78,
+      "arrival": 15.310706887133303,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2375,
+      "output": 103
+    },
+    {
+      "id": 79,
+      "arrival": 15.563567767382768,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2931,
+      "output": 142
+    },
+    {
+      "id": 80,
+      "arrival": 16.28268690696342,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2024,
+      "output": 198
+    },
+    {
+      "id": 81,
+      "arrival": 16.340242780474092,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2572,
+      "output": 226
+    },
+    {
+      "id": 82,
+      "arrival": 16.41445736450674,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2259,
+      "output": 182
+    },
+    {
+      "id": 83,
+      "arrival": 16.61702703728884,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2894,
+      "output": 225
+    },
+    {
+      "id": 84,
+      "arrival": 16.791296450637702,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 3019,
+      "output": 202
+    },
+    {
+      "id": 85,
+      "arrival": 16.946387103793043,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2000,
+      "output": 85
+    },
+    {
+      "id": 86,
+      "arrival": 17.417640071716395,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2086,
+      "output": 209
+    },
+    {
+      "id": 87,
+      "arrival": 17.41796301010116,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2297,
+      "output": 208
+    },
+    {
+      "id": 88,
+      "arrival": 17.428002900020708,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2870,
+      "output": 149
+    },
+    {
+      "id": 89,
+      "arrival": 17.531865362456,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3060,
+      "output": 206
+    },
+    {
+      "id": 90,
+      "arrival": 18.03536825810334,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2894,
+      "output": 135
+    },
+    {
+      "id": 91,
+      "arrival": 18.791395577673136,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2515,
+      "output": 238
+    },
+    {
+      "id": 92,
+      "arrival": 19.280561993010817,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3473,
+      "output": 166
+    },
+    {
+      "id": 93,
+      "arrival": 19.284773296098344,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2375,
+      "output": 248
+    },
+    {
+      "id": 94,
+      "arrival": 19.856079268272257,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2325,
+      "output": 126
+    },
+    {
+      "id": 95,
+      "arrival": 20.049461478085576,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2668,
+      "output": 106
+    },
+    {
+      "id": 96,
+      "arrival": 20.500583112068302,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2880,
+      "output": 228
+    },
+    {
+      "id": 97,
+      "arrival": 20.696014058508307,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2938,
+      "output": 148
+    },
+    {
+      "id": 98,
+      "arrival": 20.697078301127668,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2028,
+      "output": 97
+    },
+    {
+      "id": 99,
+      "arrival": 20.761797327011564,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2204,
+      "output": 202
+    },
+    {
+      "id": 100,
+      "arrival": 20.82587805382096,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2923,
+      "output": 159
+    },
+    {
+      "id": 101,
+      "arrival": 20.84314656514256,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3287,
+      "output": 246
+    },
+    {
+      "id": 102,
+      "arrival": 20.8806833512908,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3410,
+      "output": 147
+    },
+    {
+      "id": 103,
+      "arrival": 20.9154269160553,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2260,
+      "output": 81
+    },
+    {
+      "id": 104,
+      "arrival": 20.934998939541074,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3464,
+      "output": 169
+    },
+    {
+      "id": 105,
+      "arrival": 21.080714027640838,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2131,
+      "output": 115
+    },
+    {
+      "id": 106,
+      "arrival": 21.176990583033383,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2486,
+      "output": 141
+    },
+    {
+      "id": 107,
+      "arrival": 21.38001871915287,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2357,
+      "output": 181
+    },
+    {
+      "id": 108,
+      "arrival": 21.522593897445542,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3495,
+      "output": 114
+    },
+    {
+      "id": 109,
+      "arrival": 21.531071763483205,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2508,
+      "output": 212
+    },
+    {
+      "id": 110,
+      "arrival": 21.648800524864836,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2657,
+      "output": 137
+    },
+    {
+      "id": 111,
+      "arrival": 21.716375884576276,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3266,
+      "output": 143
+    },
+    {
+      "id": 112,
+      "arrival": 22.297198315203953,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2098,
+      "output": 186
+    },
+    {
+      "id": 113,
+      "arrival": 22.338454981432125,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3458,
+      "output": 156
+    },
+    {
+      "id": 114,
+      "arrival": 22.342605089891713,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2722,
+      "output": 147
+    },
+    {
+      "id": 115,
+      "arrival": 22.98545137511147,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2186,
+      "output": 109
+    },
+    {
+      "id": 116,
+      "arrival": 23.294140214054657,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3331,
+      "output": 119
+    },
+    {
+      "id": 117,
+      "arrival": 23.433627672557787,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2002,
+      "output": 226
+    },
+    {
+      "id": 118,
+      "arrival": 23.96057551191669,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3430,
+      "output": 195
+    },
+    {
+      "id": 119,
+      "arrival": 23.979238258813076,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2022,
+      "output": 227
+    },
+    {
+      "id": 120,
+      "arrival": 24.125436739423662,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 3350,
+      "output": 253
+    },
+    {
+      "id": 121,
+      "arrival": 24.170556534513313,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 3389,
+      "output": 135
+    },
+    {
+      "id": 122,
+      "arrival": 24.756100382382222,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2540,
+      "output": 125
+    },
+    {
+      "id": 123,
+      "arrival": 24.95530084961642,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2885,
+      "output": 86
+    },
+    {
+      "id": 124,
+      "arrival": 25.18157980776981,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2336,
+      "output": 151
+    },
+    {
+      "id": 125,
+      "arrival": 25.72906206272379,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2913,
+      "output": 175
+    },
+    {
+      "id": 126,
+      "arrival": 25.83096702473562,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2120,
+      "output": 187
+    },
+    {
+      "id": 127,
+      "arrival": 26.03596723784077,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2728,
+      "output": 215
+    },
+    {
+      "id": 128,
+      "arrival": 26.156409825448048,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 3468,
+      "output": 240
+    },
+    {
+      "id": 129,
+      "arrival": 26.661571477172668,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2744,
+      "output": 230
+    },
+    {
+      "id": 130,
+      "arrival": 26.79481870272028,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3085,
+      "output": 138
+    },
+    {
+      "id": 131,
+      "arrival": 26.807338900502717,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2689,
+      "output": 128
+    },
+    {
+      "id": 132,
+      "arrival": 26.89735593542145,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3063,
+      "output": 102
+    },
+    {
+      "id": 133,
+      "arrival": 26.90500840635514,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3100,
+      "output": 173
+    },
+    {
+      "id": 134,
+      "arrival": 26.985094767748578,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3172,
+      "output": 232
+    },
+    {
+      "id": 135,
+      "arrival": 27.200154223203707,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3472,
+      "output": 128
+    },
+    {
+      "id": 136,
+      "arrival": 27.303996613759566,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2284,
+      "output": 191
+    },
+    {
+      "id": 137,
+      "arrival": 27.46520206450968,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3358,
+      "output": 182
+    },
+    {
+      "id": 138,
+      "arrival": 27.561670300966707,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2090,
+      "output": 184
+    },
+    {
+      "id": 139,
+      "arrival": 27.588909902385588,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2259,
+      "output": 143
+    },
+    {
+      "id": 140,
+      "arrival": 27.71764664541995,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2398,
+      "output": 223
+    },
+    {
+      "id": 141,
+      "arrival": 27.775553529618005,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3336,
+      "output": 163
+    },
+    {
+      "id": 142,
+      "arrival": 27.963375514165328,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3194,
+      "output": 187
+    },
+    {
+      "id": 143,
+      "arrival": 28.104221305222378,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3437,
+      "output": 222
+    },
+    {
+      "id": 144,
+      "arrival": 28.51329623252315,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2178,
+      "output": 226
+    },
+    {
+      "id": 145,
+      "arrival": 28.67726381585619,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2550,
+      "output": 171
+    },
+    {
+      "id": 146,
+      "arrival": 28.74381003167977,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2851,
+      "output": 170
+    },
+    {
+      "id": 147,
+      "arrival": 28.7614399784794,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2431,
+      "output": 254
+    },
+    {
+      "id": 148,
+      "arrival": 28.817065081165435,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3343,
+      "output": 252
+    },
+    {
+      "id": 149,
+      "arrival": 28.912873161957428,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2865,
+      "output": 157
+    },
+    {
+      "id": 150,
+      "arrival": 28.998423965838736,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2989,
+      "output": 114
+    },
+    {
+      "id": 151,
+      "arrival": 29.324521861018006,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2261,
+      "output": 232
+    },
+    {
+      "id": 152,
+      "arrival": 29.473026267530965,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2043,
+      "output": 164
+    },
+    {
+      "id": 153,
+      "arrival": 29.780844891405916,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2840,
+      "output": 169
+    },
+    {
+      "id": 154,
+      "arrival": 30.538158231266436,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 3182,
+      "output": 169
+    },
+    {
+      "id": 155,
+      "arrival": 30.60044792463412,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2196,
+      "output": 126
+    },
+    {
+      "id": 156,
+      "arrival": 30.85732328961281,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 3287,
+      "output": 239
+    },
+    {
+      "id": 157,
+      "arrival": 31.2351610078768,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2759,
+      "output": 186
+    },
+    {
+      "id": 158,
+      "arrival": 31.915187877622024,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3466,
+      "output": 118
+    },
+    {
+      "id": 159,
+      "arrival": 31.92943844549115,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3499,
+      "output": 211
+    },
+    {
+      "id": 160,
+      "arrival": 32.25709654984281,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3288,
+      "output": 183
+    },
+    {
+      "id": 161,
+      "arrival": 32.34914366795971,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2300,
+      "output": 208
+    },
+    {
+      "id": 162,
+      "arrival": 32.570512485646816,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2031,
+      "output": 101
+    },
+    {
+      "id": 163,
+      "arrival": 33.13341801326636,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2495,
+      "output": 236
+    },
+    {
+      "id": 164,
+      "arrival": 33.18354022904871,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3347,
+      "output": 201
+    },
+    {
+      "id": 165,
+      "arrival": 33.540038746694115,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2389,
+      "output": 149
+    },
+    {
+      "id": 166,
+      "arrival": 34.17000108296633,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2505,
+      "output": 238
+    },
+    {
+      "id": 167,
+      "arrival": 34.41624206642062,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3330,
+      "output": 147
+    },
+    {
+      "id": 168,
+      "arrival": 34.42915214191657,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2195,
+      "output": 188
+    },
+    {
+      "id": 169,
+      "arrival": 34.47295535567105,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2364,
+      "output": 243
+    },
+    {
+      "id": 170,
+      "arrival": 34.571967772269815,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2343,
+      "output": 122
+    },
+    {
+      "id": 171,
+      "arrival": 34.69742694693658,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2094,
+      "output": 236
+    },
+    {
+      "id": 172,
+      "arrival": 34.90423878505658,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3464,
+      "output": 133
+    },
+    {
+      "id": 173,
+      "arrival": 34.952745425045116,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2784,
+      "output": 155
+    },
+    {
+      "id": 174,
+      "arrival": 35.08680918706574,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2423,
+      "output": 115
+    },
+    {
+      "id": 175,
+      "arrival": 35.58328438488469,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2624,
+      "output": 189
+    },
+    {
+      "id": 176,
+      "arrival": 36.07143331009466,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2772,
+      "output": 185
+    },
+    {
+      "id": 177,
+      "arrival": 36.2810256323824,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2340,
+      "output": 141
+    },
+    {
+      "id": 178,
+      "arrival": 36.30956603169795,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2547,
+      "output": 132
+    },
+    {
+      "id": 179,
+      "arrival": 36.60748517108026,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2992,
+      "output": 157
+    },
+    {
+      "id": 180,
+      "arrival": 36.76970339107903,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2335,
+      "output": 176
+    },
+    {
+      "id": 181,
+      "arrival": 37.05711712290753,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2932,
+      "output": 145
+    },
+    {
+      "id": 182,
+      "arrival": 37.28532006694081,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3154,
+      "output": 219
+    },
+    {
+      "id": 183,
+      "arrival": 37.325927852340826,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 3071,
+      "output": 162
+    },
+    {
+      "id": 184,
+      "arrival": 37.393103599775266,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2624,
+      "output": 254
+    },
+    {
+      "id": 185,
+      "arrival": 37.65251045088581,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2351,
+      "output": 94
+    },
+    {
+      "id": 186,
+      "arrival": 37.76139007769589,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2906,
+      "output": 85
+    },
+    {
+      "id": 187,
+      "arrival": 37.84194509231068,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3193,
+      "output": 206
+    },
+    {
+      "id": 188,
+      "arrival": 37.91646937162591,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2322,
+      "output": 214
+    },
+    {
+      "id": 189,
+      "arrival": 38.09716086470463,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3108,
+      "output": 126
+    },
+    {
+      "id": 190,
+      "arrival": 38.108050800269375,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2066,
+      "output": 88
+    },
+    {
+      "id": 191,
+      "arrival": 38.240124604818604,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 3444,
+      "output": 161
+    },
+    {
+      "id": 192,
+      "arrival": 38.33257244209941,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2126,
+      "output": 103
+    },
+    {
+      "id": 193,
+      "arrival": 38.339495326441714,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2574,
+      "output": 112
+    },
+    {
+      "id": 194,
+      "arrival": 38.61499185164584,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3418,
+      "output": 147
+    },
+    {
+      "id": 195,
+      "arrival": 38.63599168917172,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3499,
+      "output": 158
+    },
+    {
+      "id": 196,
+      "arrival": 38.740668288029525,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2269,
+      "output": 239
+    },
+    {
+      "id": 197,
+      "arrival": 38.924122938582386,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2319,
+      "output": 108
+    },
+    {
+      "id": 198,
+      "arrival": 39.437272684829594,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 3358,
+      "output": 140
+    },
+    {
+      "id": 199,
+      "arrival": 39.536897960720644,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3145,
+      "output": 156
+    },
+    {
+      "id": 200,
+      "arrival": 39.5690505048252,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2044,
+      "output": 212
+    },
+    {
+      "id": 201,
+      "arrival": 39.83242791842769,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3321,
+      "output": 106
+    },
+    {
+      "id": 202,
+      "arrival": 39.942828932264,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2844,
+      "output": 109
+    },
+    {
+      "id": 203,
+      "arrival": 39.97646800155826,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2852,
+      "output": 246
+    },
+    {
+      "id": 204,
+      "arrival": 40.01394659681967,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2236,
+      "output": 171
+    },
+    {
+      "id": 205,
+      "arrival": 41.062758106638505,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2453,
+      "output": 158
+    },
+    {
+      "id": 206,
+      "arrival": 41.11934086251379,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3483,
+      "output": 99
+    },
+    {
+      "id": 207,
+      "arrival": 41.133999948426656,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2805,
+      "output": 194
+    },
+    {
+      "id": 208,
+      "arrival": 41.2360968155031,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2074,
+      "output": 128
+    },
+    {
+      "id": 209,
+      "arrival": 41.73630374588239,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2761,
+      "output": 122
+    },
+    {
+      "id": 210,
+      "arrival": 41.90269629108456,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3401,
+      "output": 83
+    },
+    {
+      "id": 211,
+      "arrival": 42.31004900618737,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3216,
+      "output": 246
+    },
+    {
+      "id": 212,
+      "arrival": 42.350149304222114,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2400,
+      "output": 253
+    },
+    {
+      "id": 213,
+      "arrival": 42.43968939582997,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2356,
+      "output": 249
+    },
+    {
+      "id": 214,
+      "arrival": 42.51551958016068,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2789,
+      "output": 200
+    },
+    {
+      "id": 215,
+      "arrival": 42.95107993806842,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2979,
+      "output": 88
+    },
+    {
+      "id": 216,
+      "arrival": 42.96921960539206,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2557,
+      "output": 209
+    },
+    {
+      "id": 217,
+      "arrival": 43.04306595152132,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2456,
+      "output": 200
+    },
+    {
+      "id": 218,
+      "arrival": 43.12650289062445,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3066,
+      "output": 203
+    },
+    {
+      "id": 219,
+      "arrival": 43.20235190192788,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3312,
+      "output": 183
+    },
+    {
+      "id": 220,
+      "arrival": 43.37976269314616,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2010,
+      "output": 206
+    },
+    {
+      "id": 221,
+      "arrival": 44.24018992082613,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2004,
+      "output": 236
+    },
+    {
+      "id": 222,
+      "arrival": 44.284728667930246,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2231,
+      "output": 194
+    },
+    {
+      "id": 223,
+      "arrival": 44.365389754934455,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2051,
+      "output": 233
+    },
+    {
+      "id": 224,
+      "arrival": 44.435287860387696,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2752,
+      "output": 240
+    },
+    {
+      "id": 225,
+      "arrival": 44.790034550231155,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2353,
+      "output": 221
+    },
+    {
+      "id": 226,
+      "arrival": 44.927853781846174,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3254,
+      "output": 248
+    },
+    {
+      "id": 227,
+      "arrival": 45.18821821730902,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2209,
+      "output": 193
+    },
+    {
+      "id": 228,
+      "arrival": 45.387282884354114,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2681,
+      "output": 100
+    },
+    {
+      "id": 229,
+      "arrival": 45.7128473514152,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2166,
+      "output": 241
+    },
+    {
+      "id": 230,
+      "arrival": 46.01459954025847,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2829,
+      "output": 173
+    },
+    {
+      "id": 231,
+      "arrival": 46.23217650602205,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2703,
+      "output": 88
+    },
+    {
+      "id": 232,
+      "arrival": 46.814924276677154,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 3208,
+      "output": 116
+    },
+    {
+      "id": 233,
+      "arrival": 46.97220141495375,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2102,
+      "output": 224
+    },
+    {
+      "id": 234,
+      "arrival": 47.00099666810797,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3022,
+      "output": 204
+    },
+    {
+      "id": 235,
+      "arrival": 47.10752346868353,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2362,
+      "output": 197
+    },
+    {
+      "id": 236,
+      "arrival": 47.32150645718027,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 3222,
+      "output": 211
+    },
+    {
+      "id": 237,
+      "arrival": 47.72314726528458,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2956,
+      "output": 236
+    },
+    {
+      "id": 238,
+      "arrival": 47.882820829240124,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2417,
+      "output": 171
+    },
+    {
+      "id": 239,
+      "arrival": 47.90940525963917,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2257,
+      "output": 209
+    },
+    {
+      "id": 240,
+      "arrival": 47.98479629239946,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3082,
+      "output": 100
+    },
+    {
+      "id": 241,
+      "arrival": 48.307891861532845,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2627,
+      "output": 140
+    },
+    {
+      "id": 242,
+      "arrival": 48.382915900253764,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 3086,
+      "output": 160
+    },
+    {
+      "id": 243,
+      "arrival": 48.56356313421781,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3391,
+      "output": 187
+    },
+    {
+      "id": 244,
+      "arrival": 48.98282536833993,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2598,
+      "output": 245
+    },
+    {
+      "id": 245,
+      "arrival": 49.137829799213044,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2511,
+      "output": 236
+    },
+    {
+      "id": 246,
+      "arrival": 49.19792338331298,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2281,
+      "output": 203
+    },
+    {
+      "id": 247,
+      "arrival": 49.41783853097635,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2313,
+      "output": 140
+    },
+    {
+      "id": 248,
+      "arrival": 49.68930065175025,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3316,
+      "output": 120
+    },
+    {
+      "id": 249,
+      "arrival": 49.85630984287252,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2996,
+      "output": 222
+    },
+    {
+      "id": 250,
+      "arrival": 50.08695336186462,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 3295,
+      "output": 95
+    },
+    {
+      "id": 251,
+      "arrival": 50.341013467597435,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2608,
+      "output": 164
+    },
+    {
+      "id": 252,
+      "arrival": 50.440706321024535,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2393,
+      "output": 222
+    },
+    {
+      "id": 253,
+      "arrival": 50.8791494161453,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3446,
+      "output": 106
+    },
+    {
+      "id": 254,
+      "arrival": 50.9158403219071,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2375,
+      "output": 83
+    },
+    {
+      "id": 255,
+      "arrival": 51.84993455954278,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2572,
+      "output": 230
+    },
+    {
+      "id": 256,
+      "arrival": 52.067814044544285,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2833,
+      "output": 174
+    },
+    {
+      "id": 257,
+      "arrival": 52.22302550490769,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 3110,
+      "output": 223
+    },
+    {
+      "id": 258,
+      "arrival": 52.44715080608933,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2832,
+      "output": 92
+    },
+    {
+      "id": 259,
+      "arrival": 52.47308534739222,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2161,
+      "output": 236
+    },
+    {
+      "id": 260,
+      "arrival": 52.687885118560594,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 3306,
+      "output": 95
+    },
+    {
+      "id": 261,
+      "arrival": 53.260377638826576,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2732,
+      "output": 134
+    },
+    {
+      "id": 262,
+      "arrival": 53.475819542472,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2580,
+      "output": 155
+    },
+    {
+      "id": 263,
+      "arrival": 53.487511234810206,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 3461,
+      "output": 134
+    },
+    {
+      "id": 264,
+      "arrival": 53.65734691012163,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2195,
+      "output": 120
+    },
+    {
+      "id": 265,
+      "arrival": 53.865472292153065,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2539,
+      "output": 164
+    },
+    {
+      "id": 266,
+      "arrival": 54.20453078664559,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2438,
+      "output": 128
+    },
+    {
+      "id": 267,
+      "arrival": 54.45137541805993,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2404,
+      "output": 238
+    },
+    {
+      "id": 268,
+      "arrival": 54.49078338127642,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2451,
+      "output": 252
+    },
+    {
+      "id": 269,
+      "arrival": 54.60456447225631,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2948,
+      "output": 152
+    },
+    {
+      "id": 270,
+      "arrival": 54.6106820081466,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3480,
+      "output": 237
+    },
+    {
+      "id": 271,
+      "arrival": 54.66077144902482,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2418,
+      "output": 116
+    },
+    {
+      "id": 272,
+      "arrival": 55.43323659997975,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2673,
+      "output": 111
+    },
+    {
+      "id": 273,
+      "arrival": 55.61623188339891,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2720,
+      "output": 175
+    },
+    {
+      "id": 274,
+      "arrival": 55.649475894250244,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2896,
+      "output": 175
+    },
+    {
+      "id": 275,
+      "arrival": 55.874672061328255,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2205,
+      "output": 117
+    },
+    {
+      "id": 276,
+      "arrival": 55.93571664506843,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2971,
+      "output": 242
+    },
+    {
+      "id": 277,
+      "arrival": 56.10025956031358,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2826,
+      "output": 77
+    },
+    {
+      "id": 278,
+      "arrival": 56.20121354947442,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2940,
+      "output": 100
+    },
+    {
+      "id": 279,
+      "arrival": 56.40624015948705,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3056,
+      "output": 158
+    },
+    {
+      "id": 280,
+      "arrival": 57.047248554673274,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2836,
+      "output": 109
+    },
+    {
+      "id": 281,
+      "arrival": 57.36437575232401,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2476,
+      "output": 123
+    },
+    {
+      "id": 282,
+      "arrival": 58.2565689917414,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2806,
+      "output": 206
+    },
+    {
+      "id": 283,
+      "arrival": 58.27545677141087,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2787,
+      "output": 236
+    },
+    {
+      "id": 284,
+      "arrival": 58.32621527725287,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2657,
+      "output": 127
+    },
+    {
+      "id": 285,
+      "arrival": 58.45331130087091,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2394,
+      "output": 99
+    },
+    {
+      "id": 286,
+      "arrival": 58.59997149756159,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 3242,
+      "output": 76
+    },
+    {
+      "id": 287,
+      "arrival": 58.61328885669195,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2230,
+      "output": 212
+    },
+    {
+      "id": 288,
+      "arrival": 58.69051141925778,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2892,
+      "output": 215
+    },
+    {
+      "id": 289,
+      "arrival": 58.88666947543944,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2472,
+      "output": 89
+    },
+    {
+      "id": 290,
+      "arrival": 59.556060111287245,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2208,
+      "output": 242
+    },
+    {
+      "id": 291,
+      "arrival": 59.650053035575645,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 3474,
+      "output": 81
+    },
+    {
+      "id": 292,
+      "arrival": 59.690060872095366,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2833,
+      "output": 166
+    },
+    {
+      "id": 293,
+      "arrival": 59.89358178079148,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2951,
+      "output": 160
+    },
+    {
+      "id": 294,
+      "arrival": 59.90824862133407,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3459,
+      "output": 226
+    },
+    {
+      "id": 295,
+      "arrival": 60.37277544505102,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2382,
+      "output": 192
+    },
+    {
+      "id": 296,
+      "arrival": 60.604105902604445,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2283,
+      "output": 153
+    },
+    {
+      "id": 297,
+      "arrival": 61.36381111035059,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3029,
+      "output": 237
+    },
+    {
+      "id": 298,
+      "arrival": 61.43007368196891,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2356,
+      "output": 82
+    },
+    {
+      "id": 299,
+      "arrival": 61.61498314695401,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2158,
+      "output": 188
+    },
+    {
+      "id": 300,
+      "arrival": 61.64734778959693,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2229,
+      "output": 205
+    },
+    {
+      "id": 301,
+      "arrival": 62.03308403007254,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2036,
+      "output": 175
+    },
+    {
+      "id": 302,
+      "arrival": 62.53643322270201,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2344,
+      "output": 82
+    },
+    {
+      "id": 303,
+      "arrival": 62.565215187233704,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2416,
+      "output": 182
+    },
+    {
+      "id": 304,
+      "arrival": 62.88304558248684,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2806,
+      "output": 82
+    },
+    {
+      "id": 305,
+      "arrival": 62.88569180996694,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 3414,
+      "output": 175
+    },
+    {
+      "id": 306,
+      "arrival": 63.218051665706255,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2538,
+      "output": 110
+    },
+    {
+      "id": 307,
+      "arrival": 63.35198207903185,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2222,
+      "output": 131
+    },
+    {
+      "id": 308,
+      "arrival": 63.47055383226949,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2701,
+      "output": 188
+    },
+    {
+      "id": 309,
+      "arrival": 63.64210166684888,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2531,
+      "output": 185
+    },
+    {
+      "id": 310,
+      "arrival": 64.3124012479578,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 3300,
+      "output": 177
+    },
+    {
+      "id": 311,
+      "arrival": 64.42788552520678,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3369,
+      "output": 145
+    },
+    {
+      "id": 312,
+      "arrival": 64.86141264644918,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2105,
+      "output": 163
+    },
+    {
+      "id": 313,
+      "arrival": 65.17964253791357,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3238,
+      "output": 128
+    },
+    {
+      "id": 314,
+      "arrival": 65.2685476153314,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2959,
+      "output": 199
+    },
+    {
+      "id": 315,
+      "arrival": 65.31331633919416,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2147,
+      "output": 129
+    },
+    {
+      "id": 316,
+      "arrival": 65.52052724633892,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2095,
+      "output": 139
+    },
+    {
+      "id": 317,
+      "arrival": 65.59397941177562,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 3369,
+      "output": 170
+    },
+    {
+      "id": 318,
+      "arrival": 65.76221322429859,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3295,
+      "output": 249
+    },
+    {
+      "id": 319,
+      "arrival": 65.9823698591108,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2620,
+      "output": 94
+    },
+    {
+      "id": 320,
+      "arrival": 66.0723506755086,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2129,
+      "output": 88
+    },
+    {
+      "id": 321,
+      "arrival": 66.24995350702801,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 3096,
+      "output": 192
+    },
+    {
+      "id": 322,
+      "arrival": 66.3257273457194,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3253,
+      "output": 166
+    },
+    {
+      "id": 323,
+      "arrival": 67.1157017195589,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2128,
+      "output": 147
+    },
+    {
+      "id": 324,
+      "arrival": 67.12839374974115,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 3419,
+      "output": 234
+    },
+    {
+      "id": 325,
+      "arrival": 67.14546595347973,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3119,
+      "output": 182
+    },
+    {
+      "id": 326,
+      "arrival": 67.3233446321665,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2555,
+      "output": 199
+    },
+    {
+      "id": 327,
+      "arrival": 68.18087205805251,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 3494,
+      "output": 91
+    },
+    {
+      "id": 328,
+      "arrival": 68.36673829907329,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2905,
+      "output": 101
+    },
+    {
+      "id": 329,
+      "arrival": 68.59782482244037,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3297,
+      "output": 162
+    },
+    {
+      "id": 330,
+      "arrival": 68.6232242257851,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2755,
+      "output": 210
+    },
+    {
+      "id": 331,
+      "arrival": 68.64390060043169,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2964,
+      "output": 238
+    },
+    {
+      "id": 332,
+      "arrival": 68.67452720239459,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2723,
+      "output": 89
+    },
+    {
+      "id": 333,
+      "arrival": 68.83100466998678,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3296,
+      "output": 171
+    },
+    {
+      "id": 334,
+      "arrival": 68.8381244256022,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2635,
+      "output": 151
+    },
+    {
+      "id": 335,
+      "arrival": 68.94386385967098,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2206,
+      "output": 97
+    },
+    {
+      "id": 336,
+      "arrival": 69.01234717047504,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2262,
+      "output": 143
+    },
+    {
+      "id": 337,
+      "arrival": 69.08390610881172,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3231,
+      "output": 109
+    },
+    {
+      "id": 338,
+      "arrival": 69.14092657997332,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3234,
+      "output": 181
+    },
+    {
+      "id": 339,
+      "arrival": 69.15325224806232,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 3076,
+      "output": 112
+    },
+    {
+      "id": 340,
+      "arrival": 69.58818963285322,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2273,
+      "output": 202
+    },
+    {
+      "id": 341,
+      "arrival": 69.60099290145035,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2326,
+      "output": 182
+    },
+    {
+      "id": 342,
+      "arrival": 69.69193804221199,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3258,
+      "output": 218
+    },
+    {
+      "id": 343,
+      "arrival": 69.7093666166902,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3475,
+      "output": 183
+    },
+    {
+      "id": 344,
+      "arrival": 69.76091952308587,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3071,
+      "output": 95
+    },
+    {
+      "id": 345,
+      "arrival": 69.88848625138442,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2605,
+      "output": 193
+    },
+    {
+      "id": 346,
+      "arrival": 70.11430498263553,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2761,
+      "output": 118
+    },
+    {
+      "id": 347,
+      "arrival": 70.2756416059672,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2653,
+      "output": 221
+    },
+    {
+      "id": 348,
+      "arrival": 70.36266924387525,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 3064,
+      "output": 142
+    },
+    {
+      "id": 349,
+      "arrival": 71.02063310507198,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2097,
+      "output": 195
+    },
+    {
+      "id": 350,
+      "arrival": 71.25966886716802,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3227,
+      "output": 203
+    },
+    {
+      "id": 351,
+      "arrival": 72.40169264522132,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2424,
+      "output": 170
+    },
+    {
+      "id": 352,
+      "arrival": 72.44181247794961,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2857,
+      "output": 253
+    },
+    {
+      "id": 353,
+      "arrival": 72.7956938200875,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2470,
+      "output": 127
+    },
+    {
+      "id": 354,
+      "arrival": 72.99162771240964,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2448,
+      "output": 76
+    },
+    {
+      "id": 355,
+      "arrival": 73.42986573042072,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2089,
+      "output": 238
+    },
+    {
+      "id": 356,
+      "arrival": 73.526464323447,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2555,
+      "output": 240
+    },
+    {
+      "id": 357,
+      "arrival": 73.68373853927122,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2442,
+      "output": 216
+    },
+    {
+      "id": 358,
+      "arrival": 74.1504959882497,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2368,
+      "output": 116
+    },
+    {
+      "id": 359,
+      "arrival": 74.23652586664849,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2396,
+      "output": 148
+    },
+    {
+      "id": 360,
+      "arrival": 74.33470815247621,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2469,
+      "output": 189
+    },
+    {
+      "id": 361,
+      "arrival": 74.72802164105998,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 3242,
+      "output": 166
+    },
+    {
+      "id": 362,
+      "arrival": 75.07761662890952,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2044,
+      "output": 119
+    },
+    {
+      "id": 363,
+      "arrival": 75.16224862075363,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2740,
+      "output": 232
+    },
+    {
+      "id": 364,
+      "arrival": 75.26162911089982,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2118,
+      "output": 89
+    },
+    {
+      "id": 365,
+      "arrival": 75.61251469409544,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2126,
+      "output": 162
+    },
+    {
+      "id": 366,
+      "arrival": 75.62553337014846,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3018,
+      "output": 237
+    },
+    {
+      "id": 367,
+      "arrival": 75.77487279730552,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2151,
+      "output": 143
+    },
+    {
+      "id": 368,
+      "arrival": 76.18484078293761,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2796,
+      "output": 118
+    },
+    {
+      "id": 369,
+      "arrival": 76.22720111436502,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2585,
+      "output": 252
+    },
+    {
+      "id": 370,
+      "arrival": 76.26948429671143,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3314,
+      "output": 222
+    },
+    {
+      "id": 371,
+      "arrival": 76.28446562415387,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2163,
+      "output": 132
+    },
+    {
+      "id": 372,
+      "arrival": 76.32097011778356,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2341,
+      "output": 195
+    },
+    {
+      "id": 373,
+      "arrival": 76.73359831890053,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2818,
+      "output": 168
+    },
+    {
+      "id": 374,
+      "arrival": 76.95110659361845,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2239,
+      "output": 189
+    },
+    {
+      "id": 375,
+      "arrival": 77.25719024201658,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2492,
+      "output": 231
+    },
+    {
+      "id": 376,
+      "arrival": 78.0074683214611,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3490,
+      "output": 212
+    },
+    {
+      "id": 377,
+      "arrival": 78.0756775413641,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2147,
+      "output": 248
+    },
+    {
+      "id": 378,
+      "arrival": 78.15893265474635,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3383,
+      "output": 170
+    },
+    {
+      "id": 379,
+      "arrival": 78.36555412228695,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2520,
+      "output": 191
+    },
+    {
+      "id": 380,
+      "arrival": 78.53440488777198,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2575,
+      "output": 104
+    },
+    {
+      "id": 381,
+      "arrival": 78.59045295198747,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2905,
+      "output": 91
+    },
+    {
+      "id": 382,
+      "arrival": 78.60095658049487,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2014,
+      "output": 254
+    },
+    {
+      "id": 383,
+      "arrival": 78.78756409295873,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2070,
+      "output": 116
+    },
+    {
+      "id": 384,
+      "arrival": 79.12726206333498,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2507,
+      "output": 113
+    },
+    {
+      "id": 385,
+      "arrival": 79.26942801565538,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3477,
+      "output": 93
+    },
+    {
+      "id": 386,
+      "arrival": 79.45751132149813,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2171,
+      "output": 212
+    },
+    {
+      "id": 387,
+      "arrival": 79.46360508446396,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2324,
+      "output": 134
+    },
+    {
+      "id": 388,
+      "arrival": 79.71199734532459,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3013,
+      "output": 250
+    },
+    {
+      "id": 389,
+      "arrival": 79.99317085199526,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2955,
+      "output": 93
+    },
+    {
+      "id": 390,
+      "arrival": 80.06244140109213,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2793,
+      "output": 216
+    },
+    {
+      "id": 391,
+      "arrival": 80.14221313305079,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2572,
+      "output": 225
+    },
+    {
+      "id": 392,
+      "arrival": 80.21172644520003,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3112,
+      "output": 183
+    },
+    {
+      "id": 393,
+      "arrival": 80.2140545553072,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3017,
+      "output": 134
+    },
+    {
+      "id": 394,
+      "arrival": 80.32639362908196,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 3332,
+      "output": 113
+    },
+    {
+      "id": 395,
+      "arrival": 80.67179775874976,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3468,
+      "output": 253
+    },
+    {
+      "id": 396,
+      "arrival": 80.86262566112526,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2745,
+      "output": 180
+    },
+    {
+      "id": 397,
+      "arrival": 80.86284037618287,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2905,
+      "output": 133
+    },
+    {
+      "id": 398,
+      "arrival": 81.13734745894153,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2723,
+      "output": 231
+    },
+    {
+      "id": 399,
+      "arrival": 81.4068440838205,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2881,
+      "output": 178
+    },
+    {
+      "id": 400,
+      "arrival": 81.40883215934232,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2106,
+      "output": 124
+    },
+    {
+      "id": 401,
+      "arrival": 81.46606351870959,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2648,
+      "output": 236
+    },
+    {
+      "id": 402,
+      "arrival": 81.93863182662292,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2905,
+      "output": 242
+    },
+    {
+      "id": 403,
+      "arrival": 81.9663420918026,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2555,
+      "output": 247
+    },
+    {
+      "id": 404,
+      "arrival": 81.97231375460846,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2553,
+      "output": 87
+    },
+    {
+      "id": 405,
+      "arrival": 82.11108790852721,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2491,
+      "output": 137
+    },
+    {
+      "id": 406,
+      "arrival": 82.43877442302752,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3106,
+      "output": 195
+    },
+    {
+      "id": 407,
+      "arrival": 82.49601043358973,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2732,
+      "output": 211
+    },
+    {
+      "id": 408,
+      "arrival": 82.65979617962552,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2692,
+      "output": 145
+    },
+    {
+      "id": 409,
+      "arrival": 82.98753996687188,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3089,
+      "output": 136
+    },
+    {
+      "id": 410,
+      "arrival": 83.08269477706381,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2174,
+      "output": 101
+    },
+    {
+      "id": 411,
+      "arrival": 83.22868896895977,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3157,
+      "output": 137
+    },
+    {
+      "id": 412,
+      "arrival": 83.45701594997117,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3294,
+      "output": 194
+    },
+    {
+      "id": 413,
+      "arrival": 83.63124322420889,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2731,
+      "output": 228
+    },
+    {
+      "id": 414,
+      "arrival": 83.64242672256843,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 3209,
+      "output": 77
+    },
+    {
+      "id": 415,
+      "arrival": 83.78825332395694,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2376,
+      "output": 248
+    },
+    {
+      "id": 416,
+      "arrival": 83.99971747824445,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2740,
+      "output": 130
+    },
+    {
+      "id": 417,
+      "arrival": 84.0410704406792,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2275,
+      "output": 187
+    },
+    {
+      "id": 418,
+      "arrival": 84.1640406010871,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2065,
+      "output": 207
+    },
+    {
+      "id": 419,
+      "arrival": 84.8436783416773,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3429,
+      "output": 169
+    },
+    {
+      "id": 420,
+      "arrival": 85.22297527020051,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3319,
+      "output": 111
+    },
+    {
+      "id": 421,
+      "arrival": 85.88630753686462,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2077,
+      "output": 126
+    },
+    {
+      "id": 422,
+      "arrival": 86.36246856772931,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2692,
+      "output": 241
+    },
+    {
+      "id": 423,
+      "arrival": 86.62766846233018,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2108,
+      "output": 212
+    },
+    {
+      "id": 424,
+      "arrival": 86.86704291911602,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2575,
+      "output": 145
+    },
+    {
+      "id": 425,
+      "arrival": 86.88895898381789,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2552,
+      "output": 115
+    },
+    {
+      "id": 426,
+      "arrival": 87.09227839311036,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2400,
+      "output": 219
+    },
+    {
+      "id": 427,
+      "arrival": 87.12053295135881,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2723,
+      "output": 172
+    },
+    {
+      "id": 428,
+      "arrival": 87.22228326847112,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3428,
+      "output": 97
+    },
+    {
+      "id": 429,
+      "arrival": 87.35410230192397,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2243,
+      "output": 123
+    },
+    {
+      "id": 430,
+      "arrival": 87.52214527567763,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2634,
+      "output": 156
+    },
+    {
+      "id": 431,
+      "arrival": 88.34960418706726,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2609,
+      "output": 150
+    },
+    {
+      "id": 432,
+      "arrival": 88.51078668364758,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 3173,
+      "output": 94
+    },
+    {
+      "id": 433,
+      "arrival": 88.55404853382554,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2369,
+      "output": 248
+    },
+    {
+      "id": 434,
+      "arrival": 88.80494401946521,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2482,
+      "output": 147
+    },
+    {
+      "id": 435,
+      "arrival": 89.11178771620867,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2240,
+      "output": 162
+    },
+    {
+      "id": 436,
+      "arrival": 89.32293801612992,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2745,
+      "output": 188
+    },
+    {
+      "id": 437,
+      "arrival": 89.91932340805104,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2079,
+      "output": 240
+    },
+    {
+      "id": 438,
+      "arrival": 90.03405655141633,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3211,
+      "output": 230
+    },
+    {
+      "id": 439,
+      "arrival": 90.24010365794629,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2982,
+      "output": 215
+    },
+    {
+      "id": 440,
+      "arrival": 90.62381898363913,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2962,
+      "output": 122
+    },
+    {
+      "id": 441,
+      "arrival": 90.62841883345689,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2572,
+      "output": 136
+    },
+    {
+      "id": 442,
+      "arrival": 90.69849453463064,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2628,
+      "output": 164
+    },
+    {
+      "id": 443,
+      "arrival": 90.74404984388258,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2190,
+      "output": 93
+    },
+    {
+      "id": 444,
+      "arrival": 91.00096934321972,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2622,
+      "output": 225
+    },
+    {
+      "id": 445,
+      "arrival": 91.03742065419657,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2669,
+      "output": 185
+    },
+    {
+      "id": 446,
+      "arrival": 91.28098176301862,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2086,
+      "output": 238
+    },
+    {
+      "id": 447,
+      "arrival": 91.33401134572291,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2113,
+      "output": 234
+    },
+    {
+      "id": 448,
+      "arrival": 91.43985970850059,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2777,
+      "output": 211
+    },
+    {
+      "id": 449,
+      "arrival": 91.498548034865,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2560,
+      "output": 188
+    },
+    {
+      "id": 450,
+      "arrival": 91.5762015408552,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2770,
+      "output": 161
+    },
+    {
+      "id": 451,
+      "arrival": 91.82442767824013,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 3218,
+      "output": 112
+    },
+    {
+      "id": 452,
+      "arrival": 92.07366332222041,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 3407,
+      "output": 155
+    },
+    {
+      "id": 453,
+      "arrival": 92.1386141231419,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2586,
+      "output": 171
+    },
+    {
+      "id": 454,
+      "arrival": 92.37875828883962,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2660,
+      "output": 79
+    },
+    {
+      "id": 455,
+      "arrival": 92.44721086212117,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2919,
+      "output": 244
+    },
+    {
+      "id": 456,
+      "arrival": 92.64593207794496,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 3274,
+      "output": 152
+    },
+    {
+      "id": 457,
+      "arrival": 92.66655200532047,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2877,
+      "output": 115
+    },
+    {
+      "id": 458,
+      "arrival": 92.97134525513951,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3108,
+      "output": 209
+    },
+    {
+      "id": 459,
+      "arrival": 93.07453459557291,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3327,
+      "output": 88
+    },
+    {
+      "id": 460,
+      "arrival": 93.41371743104857,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 3382,
+      "output": 210
+    },
+    {
+      "id": 461,
+      "arrival": 93.53307048972012,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2270,
+      "output": 167
+    },
+    {
+      "id": 462,
+      "arrival": 93.61124353385983,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2143,
+      "output": 129
+    },
+    {
+      "id": 463,
+      "arrival": 93.73529691482183,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2136,
+      "output": 218
+    },
+    {
+      "id": 464,
+      "arrival": 93.9377634731832,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3340,
+      "output": 102
+    },
+    {
+      "id": 465,
+      "arrival": 94.07473406869316,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2195,
+      "output": 192
+    },
+    {
+      "id": 466,
+      "arrival": 94.24226178083597,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3445,
+      "output": 109
+    },
+    {
+      "id": 467,
+      "arrival": 94.32411663187357,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2883,
+      "output": 161
+    },
+    {
+      "id": 468,
+      "arrival": 94.51898859639168,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2519,
+      "output": 118
+    },
+    {
+      "id": 469,
+      "arrival": 94.70266879821112,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2593,
+      "output": 165
+    },
+    {
+      "id": 470,
+      "arrival": 94.83922742179776,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2511,
+      "output": 152
+    },
+    {
+      "id": 471,
+      "arrival": 94.96660471494172,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2119,
+      "output": 141
+    },
+    {
+      "id": 472,
+      "arrival": 95.4215614019731,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2569,
+      "output": 213
+    },
+    {
+      "id": 473,
+      "arrival": 95.6142352348502,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2332,
+      "output": 210
+    },
+    {
+      "id": 474,
+      "arrival": 95.86003024950114,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2020,
+      "output": 147
+    },
+    {
+      "id": 475,
+      "arrival": 96.21488663157527,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 3161,
+      "output": 233
+    },
+    {
+      "id": 476,
+      "arrival": 96.27042677968934,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3463,
+      "output": 236
+    },
+    {
+      "id": 477,
+      "arrival": 96.3426277239887,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3193,
+      "output": 133
+    },
+    {
+      "id": 478,
+      "arrival": 96.67291134232369,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3194,
+      "output": 136
+    },
+    {
+      "id": 479,
+      "arrival": 96.85034179438085,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2564,
+      "output": 238
+    },
+    {
+      "id": 480,
+      "arrival": 96.8694177756154,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 3425,
+      "output": 161
+    },
+    {
+      "id": 481,
+      "arrival": 96.90269554925385,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2304,
+      "output": 112
+    },
+    {
+      "id": 482,
+      "arrival": 96.97819026110822,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2450,
+      "output": 143
+    },
+    {
+      "id": 483,
+      "arrival": 97.06232568393705,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2803,
+      "output": 236
+    },
+    {
+      "id": 484,
+      "arrival": 97.11821998752144,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2894,
+      "output": 167
+    },
+    {
+      "id": 485,
+      "arrival": 97.57656900692163,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2832,
+      "output": 212
+    },
+    {
+      "id": 486,
+      "arrival": 97.73497175255511,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2713,
+      "output": 105
+    },
+    {
+      "id": 487,
+      "arrival": 97.8587077744506,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2331,
+      "output": 239
+    },
+    {
+      "id": 488,
+      "arrival": 97.88052722513584,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3184,
+      "output": 209
+    },
+    {
+      "id": 489,
+      "arrival": 98.35809753791666,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2217,
+      "output": 139
+    },
+    {
+      "id": 490,
+      "arrival": 98.58717825166369,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2450,
+      "output": 87
+    },
+    {
+      "id": 491,
+      "arrival": 98.66923828461495,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3490,
+      "output": 187
+    },
+    {
+      "id": 492,
+      "arrival": 98.7144657272094,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 3376,
+      "output": 210
+    },
+    {
+      "id": 493,
+      "arrival": 98.98761368193125,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2459,
+      "output": 155
+    },
+    {
+      "id": 494,
+      "arrival": 99.08017365754964,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 3131,
+      "output": 99
+    },
+    {
+      "id": 495,
+      "arrival": 99.14717181231822,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2055,
+      "output": 111
+    },
+    {
+      "id": 496,
+      "arrival": 99.36123648111217,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3307,
+      "output": 157
+    },
+    {
+      "id": 497,
+      "arrival": 99.43445795925612,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2872,
+      "output": 162
+    },
+    {
+      "id": 498,
+      "arrival": 99.85880824687301,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 3154,
+      "output": 243
+    },
+    {
+      "id": 499,
+      "arrival": 99.87022451731792,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2931,
+      "output": 176
+    },
+    {
+      "id": 500,
+      "arrival": 99.87274970840824,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2716,
+      "output": 113
+    },
+    {
+      "id": 501,
+      "arrival": 99.95340569046056,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2810,
+      "output": 207
+    },
+    {
+      "id": 502,
+      "arrival": 100.20797071552191,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2287,
+      "output": 94
+    },
+    {
+      "id": 503,
+      "arrival": 100.26741546517488,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3012,
+      "output": 235
+    },
+    {
+      "id": 504,
+      "arrival": 100.39511430887005,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2682,
+      "output": 173
+    },
+    {
+      "id": 505,
+      "arrival": 100.64598541026737,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2223,
+      "output": 216
+    },
+    {
+      "id": 506,
+      "arrival": 100.66718692524356,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2135,
+      "output": 153
+    },
+    {
+      "id": 507,
+      "arrival": 100.79881208635594,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3350,
+      "output": 188
+    },
+    {
+      "id": 508,
+      "arrival": 101.25664905525097,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2468,
+      "output": 105
+    },
+    {
+      "id": 509,
+      "arrival": 101.32418363155975,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2369,
+      "output": 132
+    },
+    {
+      "id": 510,
+      "arrival": 101.39180633237913,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3159,
+      "output": 90
+    },
+    {
+      "id": 511,
+      "arrival": 101.40160222212893,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 3051,
+      "output": 77
+    },
+    {
+      "id": 512,
+      "arrival": 101.53140597023814,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2412,
+      "output": 125
+    },
+    {
+      "id": 513,
+      "arrival": 101.71609751846403,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2050,
+      "output": 125
+    },
+    {
+      "id": 514,
+      "arrival": 101.95760625223444,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2313,
+      "output": 177
+    },
+    {
+      "id": 515,
+      "arrival": 102.16398634898826,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2584,
+      "output": 138
+    },
+    {
+      "id": 516,
+      "arrival": 102.33380819174182,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2179,
+      "output": 213
+    },
+    {
+      "id": 517,
+      "arrival": 102.49561892701959,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2848,
+      "output": 132
+    },
+    {
+      "id": 518,
+      "arrival": 103.07438379238023,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2250,
+      "output": 128
+    },
+    {
+      "id": 519,
+      "arrival": 103.10705563761881,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3049,
+      "output": 135
+    },
+    {
+      "id": 520,
+      "arrival": 103.34168395750694,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 3021,
+      "output": 101
+    },
+    {
+      "id": 521,
+      "arrival": 103.65680573386892,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2959,
+      "output": 236
+    },
+    {
+      "id": 522,
+      "arrival": 104.08331093524521,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2922,
+      "output": 172
+    },
+    {
+      "id": 523,
+      "arrival": 105.13482334773005,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2317,
+      "output": 125
+    },
+    {
+      "id": 524,
+      "arrival": 105.17631121309785,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3457,
+      "output": 165
+    },
+    {
+      "id": 525,
+      "arrival": 105.44697855228321,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2106,
+      "output": 99
+    },
+    {
+      "id": 526,
+      "arrival": 105.67923816765709,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2409,
+      "output": 249
+    },
+    {
+      "id": 527,
+      "arrival": 105.74240414704276,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2918,
+      "output": 145
+    },
+    {
+      "id": 528,
+      "arrival": 105.90838102074306,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2561,
+      "output": 165
+    },
+    {
+      "id": 529,
+      "arrival": 106.50344975739031,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3218,
+      "output": 196
+    },
+    {
+      "id": 530,
+      "arrival": 107.32936399887811,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3390,
+      "output": 102
+    },
+    {
+      "id": 531,
+      "arrival": 107.95128881995642,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3362,
+      "output": 209
+    },
+    {
+      "id": 532,
+      "arrival": 107.99275951967816,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2731,
+      "output": 223
+    },
+    {
+      "id": 533,
+      "arrival": 108.12021307254344,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2973,
+      "output": 91
+    },
+    {
+      "id": 534,
+      "arrival": 108.54962395132523,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3044,
+      "output": 210
+    },
+    {
+      "id": 535,
+      "arrival": 108.57290249083037,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3397,
+      "output": 179
+    },
+    {
+      "id": 536,
+      "arrival": 108.6993779222275,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2391,
+      "output": 184
+    },
+    {
+      "id": 537,
+      "arrival": 108.89631541288182,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2539,
+      "output": 145
+    },
+    {
+      "id": 538,
+      "arrival": 109.06306603401501,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2772,
+      "output": 195
+    },
+    {
+      "id": 539,
+      "arrival": 109.48580414570286,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2149,
+      "output": 171
+    },
+    {
+      "id": 540,
+      "arrival": 109.60819887490244,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2250,
+      "output": 234
+    },
+    {
+      "id": 541,
+      "arrival": 109.75903102690707,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2980,
+      "output": 111
+    },
+    {
+      "id": 542,
+      "arrival": 109.81003127323933,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2741,
+      "output": 95
+    },
+    {
+      "id": 543,
+      "arrival": 109.9288481204515,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 3494,
+      "output": 90
+    },
+    {
+      "id": 544,
+      "arrival": 110.67859682863342,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2436,
+      "output": 241
+    },
+    {
+      "id": 545,
+      "arrival": 110.74720099068627,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2359,
+      "output": 252
+    },
+    {
+      "id": 546,
+      "arrival": 110.82011489883939,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2729,
+      "output": 110
+    },
+    {
+      "id": 547,
+      "arrival": 110.93100403502258,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3471,
+      "output": 234
+    },
+    {
+      "id": 548,
+      "arrival": 111.07574897564577,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3104,
+      "output": 120
+    },
+    {
+      "id": 549,
+      "arrival": 111.420350449127,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 3181,
+      "output": 145
+    },
+    {
+      "id": 550,
+      "arrival": 111.63590230890131,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2941,
+      "output": 111
+    },
+    {
+      "id": 551,
+      "arrival": 111.86469946166767,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 3428,
+      "output": 226
+    },
+    {
+      "id": 552,
+      "arrival": 112.04578975894105,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2997,
+      "output": 144
+    },
+    {
+      "id": 553,
+      "arrival": 112.17527627292733,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 3434,
+      "output": 102
+    },
+    {
+      "id": 554,
+      "arrival": 112.246395320901,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-3",
+      "prefixTokens": 1600,
+      "input": 2326,
+      "output": 189
+    },
+    {
+      "id": 555,
+      "arrival": 112.34266805606742,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2145,
+      "output": 100
+    },
+    {
+      "id": 556,
+      "arrival": 112.63847385427866,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2844,
+      "output": 224
+    },
+    {
+      "id": 557,
+      "arrival": 112.82352242399568,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2475,
+      "output": 152
+    },
+    {
+      "id": 558,
+      "arrival": 112.84560644099695,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2098,
+      "output": 130
+    },
+    {
+      "id": 559,
+      "arrival": 112.86295405225904,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2707,
+      "output": 163
+    },
+    {
+      "id": 560,
+      "arrival": 112.9544861230792,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2579,
+      "output": 83
+    },
+    {
+      "id": 561,
+      "arrival": 113.20865519819162,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2505,
+      "output": 162
+    },
+    {
+      "id": 562,
+      "arrival": 113.26252013067452,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2401,
+      "output": 80
+    },
+    {
+      "id": 563,
+      "arrival": 113.36774018629426,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2413,
+      "output": 92
+    },
+    {
+      "id": 564,
+      "arrival": 113.57597511377301,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2468,
+      "output": 215
+    },
+    {
+      "id": 565,
+      "arrival": 113.60185518678614,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2332,
+      "output": 118
+    },
+    {
+      "id": 566,
+      "arrival": 113.81495969581765,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2672,
+      "output": 140
+    },
+    {
+      "id": 567,
+      "arrival": 113.89775808487266,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2640,
+      "output": 145
+    },
+    {
+      "id": 568,
+      "arrival": 113.93145495754288,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 3220,
+      "output": 137
+    },
+    {
+      "id": 569,
+      "arrival": 114.04475183593135,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2046,
+      "output": 241
+    },
+    {
+      "id": 570,
+      "arrival": 114.04990370994642,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3069,
+      "output": 116
+    },
+    {
+      "id": 571,
+      "arrival": 114.09255911757501,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3438,
+      "output": 198
+    },
+    {
+      "id": 572,
+      "arrival": 114.37153727531292,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2781,
+      "output": 193
+    },
+    {
+      "id": 573,
+      "arrival": 114.41166362528548,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3029,
+      "output": 147
+    },
+    {
+      "id": 574,
+      "arrival": 114.42938088588488,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3239,
+      "output": 175
+    },
+    {
+      "id": 575,
+      "arrival": 114.5812888011171,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3232,
+      "output": 115
+    },
+    {
+      "id": 576,
+      "arrival": 114.76551240176887,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2878,
+      "output": 113
+    },
+    {
+      "id": 577,
+      "arrival": 115.64058995358627,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2801,
+      "output": 166
+    },
+    {
+      "id": 578,
+      "arrival": 115.69903472063574,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2164,
+      "output": 156
+    },
+    {
+      "id": 579,
+      "arrival": 116.07970326522371,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2837,
+      "output": 152
+    },
+    {
+      "id": 580,
+      "arrival": 116.12920923807206,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3192,
+      "output": 166
+    },
+    {
+      "id": 581,
+      "arrival": 116.13402569653152,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2470,
+      "output": 220
+    },
+    {
+      "id": 582,
+      "arrival": 116.13889995309177,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2626,
+      "output": 95
+    },
+    {
+      "id": 583,
+      "arrival": 116.31012905528601,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2673,
+      "output": 214
+    },
+    {
+      "id": 584,
+      "arrival": 116.50460340368848,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 3050,
+      "output": 193
+    },
+    {
+      "id": 585,
+      "arrival": 116.59778368491973,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-7",
+      "prefixTokens": 1600,
+      "input": 2733,
+      "output": 195
+    },
+    {
+      "id": 586,
+      "arrival": 116.60390039185407,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3379,
+      "output": 179
+    },
+    {
+      "id": 587,
+      "arrival": 117.3204959618133,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 2431,
+      "output": 193
+    },
+    {
+      "id": 588,
+      "arrival": 117.56015923373414,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2465,
+      "output": 228
+    },
+    {
+      "id": 589,
+      "arrival": 117.69676016650921,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 3357,
+      "output": 112
+    },
+    {
+      "id": 590,
+      "arrival": 117.74555990049065,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 3050,
+      "output": 142
+    },
+    {
+      "id": 591,
+      "arrival": 118.09037651391682,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-1",
+      "prefixTokens": 1600,
+      "input": 2975,
+      "output": 180
+    },
+    {
+      "id": 592,
+      "arrival": 118.31925885798901,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-5",
+      "prefixTokens": 1600,
+      "input": 2316,
+      "output": 137
+    },
+    {
+      "id": 593,
+      "arrival": 118.63914511159719,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-2",
+      "prefixTokens": 1600,
+      "input": 3148,
+      "output": 209
+    },
+    {
+      "id": 594,
+      "arrival": 118.77202755816161,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-6",
+      "prefixTokens": 1600,
+      "input": 2519,
+      "output": 91
+    },
+    {
+      "id": 595,
+      "arrival": 118.88653975215483,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 2088,
+      "output": 244
+    },
+    {
+      "id": 596,
+      "arrival": 119.02178254659755,
+      "model": "gemma31",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3363,
+      "output": 84
+    },
+    {
+      "id": 597,
+      "arrival": 119.15091129322995,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": null,
+      "prefixTokens": 0,
+      "input": 3349,
+      "output": 191
+    },
+    {
+      "id": 598,
+      "arrival": 119.73421488941852,
+      "model": "gemma26",
+      "tenant": "team-0",
+      "prefix": "prefix-4",
+      "prefixTokens": 1600,
+      "input": 2621,
+      "output": 155
+    },
+    {
+      "id": 599,
+      "arrival": 119.76888127496365,
+      "model": "gemma31",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2752,
+      "output": 148
+    },
+    {
+      "id": 600,
+      "arrival": 119.91499888851646,
+      "model": "gemma26",
+      "tenant": "team-1",
+      "prefix": "prefix-0",
+      "prefixTokens": 1600,
+      "input": 2175,
+      "output": 201
+    }
+  ]
+}

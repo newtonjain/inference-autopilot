@@ -1,0 +1,4633 @@
+[
+  {
+    "scope": "chip",
+    "settings": {
+      "scope": "chip",
+      "workload": "prefix",
+      "load": 1,
+      "prefix": 75,
+      "seed": 42,
+      "ttftSlo": 2,
+      "itlSlo": 90,
+      "duration": 120,
+      "prefillRate": 6500,
+      "decodeRate": 850,
+      "price": 3
+    },
+    "evidence": "simulation; not measured GPU performance",
+    "active": {
+      "config": {
+        "id": "chip-baseline",
+        "name": "Current deployment",
+        "nodes": 1,
+        "gpusPerNode": 1,
+        "concurrency": 8,
+        "batchTokens": 4096,
+        "prefillShare": 0.65,
+        "cache": true,
+        "routing": "round-robin",
+        "memoryFraction": 0.9
+      },
+      "traceHash": "cfcb1363",
+      "count": 94,
+      "completed": 94,
+      "failed": 0,
+      "compliant": 93,
+      "p95ttft": 1.5150771366670321,
+      "p95itl": 34.146341463412696,
+      "p95e2e": 6.932656641612745,
+      "cacheHit": 31.53342656918593,
+      "utilization": 94.7912521984473,
+      "outputTokens": 15645,
+      "throughput": 130.3206997084599,
+      "cost": 0.10004166666666278,
+      "hourlyCost": 3,
+      "costPerMillion": 6.476027101674183,
+      "elapsed": 120.04999999999532,
+      "feasible": true,
+      "reasons": [],
+      "workers": [
+        {
+          "id": "n1-gpu1",
+          "node": 1,
+          "model": "gemma26",
+          "utilization": 94.7912521984473,
+          "requests": 94,
+          "cachedTokens": 83200,
+          "peakMemoryGB": 62.0908203125
+        }
+      ],
+      "series": [
+        {
+          "time": 0,
+          "arrivals": 0,
+          "completed": 0,
+          "utilization": 0,
+          "queue": 0
+        },
+        {
+          "time": 5,
+          "arrivals": 7,
+          "completed": 0,
+          "utilization": 79.1683168316832,
+          "queue": 0
+        },
+        {
+          "time": 10,
+          "arrivals": 3,
+          "completed": 6,
+          "utilization": 99.71980852480812,
+          "queue": 0
+        },
+        {
+          "time": 15,
+          "arrivals": 3,
+          "completed": 6,
+          "utilization": 99.24672494172478,
+          "queue": 0
+        },
+        {
+          "time": 20,
+          "arrivals": 2,
+          "completed": 1,
+          "utilization": 72.93055944055939,
+          "queue": 0
+        },
+        {
+          "time": 25,
+          "arrivals": 6,
+          "completed": 1,
+          "utilization": 99.80772027972023,
+          "queue": 0
+        },
+        {
+          "time": 30,
+          "arrivals": 3,
+          "completed": 9,
+          "utilization": 99.32412962037938,
+          "queue": 0
+        },
+        {
+          "time": 35,
+          "arrivals": 6,
+          "completed": 1,
+          "utilization": 74.5601329363738,
+          "queue": 0
+        },
+        {
+          "time": 40,
+          "arrivals": 4,
+          "completed": 6,
+          "utilization": 99.4977939552209,
+          "queue": 0
+        },
+        {
+          "time": 45,
+          "arrivals": 4,
+          "completed": 4,
+          "utilization": 99.68272981144291,
+          "queue": 0
+        },
+        {
+          "time": 50,
+          "arrivals": 4,
+          "completed": 4,
+          "utilization": 99.57347273188878,
+          "queue": 0
+        },
+        {
+          "time": 55,
+          "arrivals": 7,
+          "completed": 4,
+          "utilization": 99.77017701770185,
+          "queue": 0
+        },
+        {
+          "time": 60,
+          "arrivals": 2,
+          "completed": 7,
+          "utilization": 98.61387572823232,
+          "queue": 0
+        },
+        {
+          "time": 65,
+          "arrivals": 4,
+          "completed": 2,
+          "utilization": 99.9171086339403,
+          "queue": 0
+        },
+        {
+          "time": 70,
+          "arrivals": 3,
+          "completed": 4,
+          "utilization": 98.91227584296907,
+          "queue": 0
+        },
+        {
+          "time": 75,
+          "arrivals": 5,
+          "completed": 3,
+          "utilization": 99.72604952802972,
+          "queue": 0
+        },
+        {
+          "time": 81,
+          "arrivals": 4,
+          "completed": 5,
+          "utilization": 99.4934847330889,
+          "queue": 0
+        },
+        {
+          "time": 86,
+          "arrivals": 1,
+          "completed": 4,
+          "utilization": 83.483775300607,
+          "queue": 0
+        },
+        {
+          "time": 91,
+          "arrivals": 4,
+          "completed": 2,
+          "utilization": 99.07574603614215,
+          "queue": 0
+        },
+        {
+          "time": 96,
+          "arrivals": 10,
+          "completed": 5,
+          "utilization": 99.67181333517986,
+          "queue": 0
+        },
+        {
+          "time": 101,
+          "arrivals": 2,
+          "completed": 9,
+          "utilization": 99.45519002449733,
+          "queue": 0
+        },
+        {
+          "time": 106,
+          "arrivals": 3,
+          "completed": 4,
+          "utilization": 87.311811950426,
+          "queue": 0
+        },
+        {
+          "time": 111,
+          "arrivals": 2,
+          "completed": 1,
+          "utilization": 88.47469362320865,
+          "queue": 0
+        },
+        {
+          "time": 116,
+          "arrivals": 3,
+          "completed": 2,
+          "utilization": 99.7069860832238,
+          "queue": 0
+        }
+      ]
+    },
+    "candidates": [
+      {
+        "config": {
+          "id": "balanced",
+          "name": "Cache-aware · balanced",
+          "nodes": 1,
+          "gpusPerNode": 1,
+          "concurrency": 16,
+          "batchTokens": 4096,
+          "prefillShare": 0.35,
+          "cache": true,
+          "routing": "prefix-affinity",
+          "memoryFraction": 0.9
+        },
+        "rationale": "Keep the model fixed. Combine prefix-affinity routing with a larger admission limit and more decode headroom.",
+        "result": {
+          "config": {
+            "id": "balanced",
+            "name": "Cache-aware · balanced",
+            "nodes": 1,
+            "gpusPerNode": 1,
+            "concurrency": 16,
+            "batchTokens": 4096,
+            "prefillShare": 0.35,
+            "cache": true,
+            "routing": "prefix-affinity",
+            "memoryFraction": 0.9
+          },
+          "traceHash": "cfcb1363",
+          "count": 94,
+          "completed": 94,
+          "failed": 0,
+          "compliant": 68,
+          "p95ttft": 4.353758685799233,
+          "p95itl": 28.04878048780328,
+          "p95e2e": 8.047277174503975,
+          "cacheHit": 31.53342656918593,
+          "utilization": 97.80435551281727,
+          "outputTokens": 15645,
+          "throughput": 130.10395010395519,
+          "cost": 0.10020833333332942,
+          "hourlyCost": 3,
+          "costPerMillion": 8.711495551884676,
+          "elapsed": 120.24999999999531,
+          "feasible": false,
+          "reasons": [
+            "p95 first token 4.35s exceeds 2.0s",
+            "Fewer than 95% of requests met both latency targets"
+          ],
+          "workers": [
+            {
+              "id": "n1-gpu1",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 97.80435551281727,
+              "requests": 94,
+              "cachedTokens": 83200,
+              "peakMemoryGB": 62.681884765625
+            }
+          ],
+          "series": [
+            {
+              "time": 0,
+              "arrivals": 0,
+              "completed": 0,
+              "utilization": 0,
+              "queue": 0
+            },
+            {
+              "time": 5,
+              "arrivals": 7,
+              "completed": 0,
+              "utilization": 79.1683168316832,
+              "queue": 0
+            },
+            {
+              "time": 10,
+              "arrivals": 3,
+              "completed": 5,
+              "utilization": 99.53145687645663,
+              "queue": 0
+            },
+            {
+              "time": 15,
+              "arrivals": 3,
+              "completed": 3,
+              "utilization": 99.85265151515155,
+              "queue": 0
+            },
+            {
+              "time": 20,
+              "arrivals": 2,
+              "completed": 4,
+              "utilization": 99.63404895104895,
+              "queue": 0
+            },
+            {
+              "time": 25,
+              "arrivals": 6,
+              "completed": 2,
+              "utilization": 99.7965675990676,
+              "queue": 0
+            },
+            {
+              "time": 30,
+              "arrivals": 3,
+              "completed": 5,
+              "utilization": 99.9221428571429,
+              "queue": 0
+            },
+            {
+              "time": 35,
+              "arrivals": 6,
+              "completed": 5,
+              "utilization": 98.75084931570235,
+              "queue": 0
+            },
+            {
+              "time": 40,
+              "arrivals": 4,
+              "completed": 5,
+              "utilization": 99.57306192157718,
+              "queue": 0
+            },
+            {
+              "time": 45,
+              "arrivals": 4,
+              "completed": 5,
+              "utilization": 99.33006069837805,
+              "queue": 0
+            },
+            {
+              "time": 50,
+              "arrivals": 4,
+              "completed": 4,
+              "utilization": 99.74375129820689,
+              "queue": 0
+            },
+            {
+              "time": 55,
+              "arrivals": 7,
+              "completed": 3,
+              "utilization": 99.74528606706838,
+              "queue": 0
+            },
+            {
+              "time": 60,
+              "arrivals": 2,
+              "completed": 6,
+              "utilization": 99.55302568718442,
+              "queue": 0
+            },
+            {
+              "time": 65,
+              "arrivals": 4,
+              "completed": 4,
+              "utilization": 99.65360959172843,
+              "queue": 0
+            },
+            {
+              "time": 70,
+              "arrivals": 3,
+              "completed": 4,
+              "utilization": 98.96317247109346,
+              "queue": 0
+            },
+            {
+              "time": 75,
+              "arrivals": 5,
+              "completed": 3,
+              "utilization": 99.63367490595215,
+              "queue": 0
+            },
+            {
+              "time": 81,
+              "arrivals": 4,
+              "completed": 4,
+              "utilization": 99.63871194811804,
+              "queue": 0
+            },
+            {
+              "time": 86,
+              "arrivals": 1,
+              "completed": 5,
+              "utilization": 99.10535207366942,
+              "queue": 0
+            },
+            {
+              "time": 91,
+              "arrivals": 4,
+              "completed": 2,
+              "utilization": 99.07574603614215,
+              "queue": 0
+            },
+            {
+              "time": 96,
+              "arrivals": 10,
+              "completed": 4,
+              "utilization": 99.6945925361768,
+              "queue": 0
+            },
+            {
+              "time": 101,
+              "arrivals": 2,
+              "completed": 7,
+              "utilization": 99.60031503150356,
+              "queue": 0
+            },
+            {
+              "time": 106,
+              "arrivals": 3,
+              "completed": 7,
+              "utilization": 90.80073391954613,
+              "queue": 0
+            },
+            {
+              "time": 111,
+              "arrivals": 2,
+              "completed": 1,
+              "utilization": 88.47469362320865,
+              "queue": 0
+            },
+            {
+              "time": 116,
+              "arrivals": 3,
+              "completed": 2,
+              "utilization": 99.67719079600302,
+              "queue": 0
+            }
+          ]
+        }
+      },
+      {
+        "config": {
+          "id": "prefill",
+          "name": "Prefill throughput",
+          "nodes": 1,
+          "gpusPerNode": 1,
+          "concurrency": 16,
+          "batchTokens": 4096,
+          "prefillShare": 0.8,
+          "cache": true,
+          "routing": "prefix-affinity",
+          "memoryFraction": 0.9
+        },
+        "rationale": "Give prefill 80% of GPU time when decoding is active; test the tradeoff against token latency.",
+        "result": {
+          "config": {
+            "id": "prefill",
+            "name": "Prefill throughput",
+            "nodes": 1,
+            "gpusPerNode": 1,
+            "concurrency": 16,
+            "batchTokens": 4096,
+            "prefillShare": 0.8,
+            "cache": true,
+            "routing": "prefix-affinity",
+            "memoryFraction": 0.9
+          },
+          "traceHash": "cfcb1363",
+          "count": 94,
+          "completed": 94,
+          "failed": 0,
+          "compliant": 94,
+          "p95ttft": 1.0463772093501484,
+          "p95itl": 34.4262295081968,
+          "p95e2e": 6.740142742904936,
+          "cacheHit": 31.53342656918593,
+          "utilization": 94.13937447623432,
+          "outputTokens": 15645,
+          "throughput": 130.3206997084599,
+          "cost": 0.10004166666666278,
+          "hourlyCost": 3,
+          "costPerMillion": 6.394481730051952,
+          "elapsed": 120.04999999999532,
+          "feasible": true,
+          "reasons": [],
+          "workers": [
+            {
+              "id": "n1-gpu1",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 94.13937447623432,
+              "requests": 94,
+              "cachedTokens": 83200,
+              "peakMemoryGB": 62.68896484375
+            }
+          ],
+          "series": [
+            {
+              "time": 0,
+              "arrivals": 0,
+              "completed": 0,
+              "utilization": 0,
+              "queue": 0
+            },
+            {
+              "time": 5,
+              "arrivals": 7,
+              "completed": 0,
+              "utilization": 79.1683168316832,
+              "queue": 0
+            },
+            {
+              "time": 10,
+              "arrivals": 3,
+              "completed": 7,
+              "utilization": 99.59610633810584,
+              "queue": 0
+            },
+            {
+              "time": 15,
+              "arrivals": 3,
+              "completed": 5,
+              "utilization": 99.05324009324002,
+              "queue": 0
+            },
+            {
+              "time": 20,
+              "arrivals": 2,
+              "completed": 1,
+              "utilization": 70.08055944055937,
+              "queue": 0
+            },
+            {
+              "time": 25,
+              "arrivals": 6,
+              "completed": 2,
+              "utilization": 99.7718761238761,
+              "queue": 0
+            },
+            {
+              "time": 30,
+              "arrivals": 3,
+              "completed": 9,
+              "utilization": 98.11065046065028,
+              "queue": 0
+            },
+            {
+              "time": 35,
+              "arrivals": 6,
+              "completed": 0,
+              "utilization": 68.88956587966791,
+              "queue": 0
+            },
+            {
+              "time": 40,
+              "arrivals": 4,
+              "completed": 6,
+              "utilization": 99.28186137295249,
+              "queue": 0
+            },
+            {
+              "time": 45,
+              "arrivals": 4,
+              "completed": 4,
+              "utilization": 99.67762930139196,
+              "queue": 0
+            },
+            {
+              "time": 50,
+              "arrivals": 4,
+              "completed": 4,
+              "utilization": 99.49710355650959,
+              "queue": 0
+            },
+            {
+              "time": 55,
+              "arrivals": 7,
+              "completed": 4,
+              "utilization": 99.63638209974862,
+              "queue": 0
+            },
+            {
+              "time": 60,
+              "arrivals": 2,
+              "completed": 7,
+              "utilization": 96.29888461373632,
+              "queue": 0
+            },
+            {
+              "time": 65,
+              "arrivals": 4,
+              "completed": 2,
+              "utilization": 99.9171086339403,
+              "queue": 0
+            },
+            {
+              "time": 70,
+              "arrivals": 3,
+              "completed": 4,
+              "utilization": 99.06079069445437,
+              "queue": 0
+            },
+            {
+              "time": 75,
+              "arrivals": 5,
+              "completed": 3,
+              "utilization": 99.83572203374187,
+              "queue": 0
+            },
+            {
+              "time": 81,
+              "arrivals": 4,
+              "completed": 5,
+              "utilization": 99.33548431766272,
+              "queue": 0
+            },
+            {
+              "time": 86,
+              "arrivals": 1,
+              "completed": 4,
+              "utilization": 82.22139906298345,
+              "queue": 0
+            },
+            {
+              "time": 91,
+              "arrivals": 4,
+              "completed": 2,
+              "utilization": 99.47857093401649,
+              "queue": 0
+            },
+            {
+              "time": 96,
+              "arrivals": 10,
+              "completed": 5,
+              "utilization": 99.71604171406145,
+              "queue": 0
+            },
+            {
+              "time": 101,
+              "arrivals": 2,
+              "completed": 9,
+              "utilization": 99.36918658898875,
+              "queue": 0
+            },
+            {
+              "time": 106,
+              "arrivals": 3,
+              "completed": 4,
+              "utilization": 86.34646541577253,
+              "queue": 0
+            },
+            {
+              "time": 111,
+              "arrivals": 2,
+              "completed": 1,
+              "utilization": 88.47469362320865,
+              "queue": 0
+            },
+            {
+              "time": 116,
+              "arrivals": 3,
+              "completed": 2,
+              "utilization": 99.7069860832238,
+              "queue": 0
+            }
+          ]
+        }
+      },
+      {
+        "config": {
+          "id": "decode",
+          "name": "Decode priority",
+          "nodes": 1,
+          "gpusPerNode": 1,
+          "concurrency": 16,
+          "batchTokens": 4096,
+          "prefillShare": 0.2,
+          "cache": true,
+          "routing": "prefix-affinity",
+          "memoryFraction": 0.9
+        },
+        "rationale": "Reserve 80% of shared GPU time for generation. Useful only if the first-token target still passes.",
+        "result": {
+          "config": {
+            "id": "decode",
+            "name": "Decode priority",
+            "nodes": 1,
+            "gpusPerNode": 1,
+            "concurrency": 16,
+            "batchTokens": 4096,
+            "prefillShare": 0.2,
+            "cache": true,
+            "routing": "prefix-affinity",
+            "memoryFraction": 0.9
+          },
+          "traceHash": "cfcb1363",
+          "count": 94,
+          "completed": 94,
+          "failed": 0,
+          "compliant": 2,
+          "p95ttft": 30.597148881943156,
+          "p95itl": 22.8448275862056,
+          "p95e2e": 34.447266439740844,
+          "cacheHit": 29.107778371556243,
+          "utilization": 98.87040663040642,
+          "outputTokens": 15645,
+          "throughput": 106.9743589743597,
+          "cost": 0.12187499999999918,
+          "hourlyCost": 3,
+          "costPerMillion": 303.17164179104276,
+          "elapsed": 146.249999999999,
+          "feasible": false,
+          "reasons": [
+            "p95 first token 30.60s exceeds 2.0s",
+            "Fewer than 95% of requests met both latency targets"
+          ],
+          "workers": [
+            {
+              "id": "n1-gpu1",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 98.87040663040642,
+              "requests": 94,
+              "cachedTokens": 76800,
+              "peakMemoryGB": 65.1259765625
+            }
+          ],
+          "series": [
+            {
+              "time": 0,
+              "arrivals": 0,
+              "completed": 0,
+              "utilization": 0,
+              "queue": 0
+            },
+            {
+              "time": 5,
+              "arrivals": 7,
+              "completed": 0,
+              "utilization": 79.1683168316832,
+              "queue": 0
+            },
+            {
+              "time": 10,
+              "arrivals": 3,
+              "completed": 4,
+              "utilization": 99.25757575757551,
+              "queue": 0
+            },
+            {
+              "time": 15,
+              "arrivals": 3,
+              "completed": 2,
+              "utilization": 99.92727272727265,
+              "queue": 0
+            },
+            {
+              "time": 20,
+              "arrivals": 2,
+              "completed": 1,
+              "utilization": 99.63636363636361,
+              "queue": 0
+            },
+            {
+              "time": 25,
+              "arrivals": 6,
+              "completed": 3,
+              "utilization": 99.23636363636363,
+              "queue": 0
+            },
+            {
+              "time": 30,
+              "arrivals": 3,
+              "completed": 2,
+              "utilization": 99.63636363636361,
+              "queue": 0
+            },
+            {
+              "time": 35,
+              "arrivals": 6,
+              "completed": 2,
+              "utilization": 99.60396039604122,
+              "queue": 0
+            },
+            {
+              "time": 40,
+              "arrivals": 4,
+              "completed": 3,
+              "utilization": 99.73597359735996,
+              "queue": 1
+            },
+            {
+              "time": 45,
+              "arrivals": 4,
+              "completed": 2,
+              "utilization": 99.80198019801996,
+              "queue": 3
+            },
+            {
+              "time": 50,
+              "arrivals": 4,
+              "completed": 6,
+              "utilization": 99.40714071407166,
+              "queue": 1
+            },
+            {
+              "time": 55,
+              "arrivals": 7,
+              "completed": 4,
+              "utilization": 99.45394539453963,
+              "queue": 4
+            },
+            {
+              "time": 60,
+              "arrivals": 2,
+              "completed": 3,
+              "utilization": 99.63996399639996,
+              "queue": 3
+            },
+            {
+              "time": 65,
+              "arrivals": 4,
+              "completed": 2,
+              "utilization": 99.70597059705968,
+              "queue": 5
+            },
+            {
+              "time": 70,
+              "arrivals": 3,
+              "completed": 5,
+              "utilization": 99.22592259225961,
+              "queue": 3
+            },
+            {
+              "time": 75,
+              "arrivals": 5,
+              "completed": 2,
+              "utilization": 99.63996399639996,
+              "queue": 6
+            },
+            {
+              "time": 81,
+              "arrivals": 4,
+              "completed": 3,
+              "utilization": 99.85598559855998,
+              "queue": 7
+            },
+            {
+              "time": 86,
+              "arrivals": 1,
+              "completed": 3,
+              "utilization": 99.81998199819996,
+              "queue": 5
+            },
+            {
+              "time": 91,
+              "arrivals": 4,
+              "completed": 3,
+              "utilization": 99.59195919591994,
+              "queue": 6
+            },
+            {
+              "time": 96,
+              "arrivals": 10,
+              "completed": 3,
+              "utilization": 99.59195919591966,
+              "queue": 13
+            },
+            {
+              "time": 101,
+              "arrivals": 2,
+              "completed": 5,
+              "utilization": 99.25592559255932,
+              "queue": 10
+            },
+            {
+              "time": 106,
+              "arrivals": 3,
+              "completed": 4,
+              "utilization": 99.91599159916,
+              "queue": 10
+            },
+            {
+              "time": 111,
+              "arrivals": 2,
+              "completed": 1,
+              "utilization": 100,
+              "queue": 10
+            },
+            {
+              "time": 116,
+              "arrivals": 3,
+              "completed": 5,
+              "utilization": 99.48994899489992,
+              "queue": 8
+            },
+            {
+              "time": 121,
+              "arrivals": 2,
+              "completed": 6,
+              "utilization": 99.62196219621995,
+              "queue": 4
+            },
+            {
+              "time": 126,
+              "arrivals": 0,
+              "completed": 3,
+              "utilization": 99.6255625562556,
+              "queue": 1
+            },
+            {
+              "time": 131,
+              "arrivals": 0,
+              "completed": 7,
+              "utilization": 99.68848484847601,
+              "queue": 0
+            },
+            {
+              "time": 136,
+              "arrivals": 0,
+              "completed": 4,
+              "utilization": 99.11515151515025,
+              "queue": 0
+            },
+            {
+              "time": 141,
+              "arrivals": 0,
+              "completed": 2,
+              "utilization": 99.5878787878787,
+              "queue": 0
+            },
+            {
+              "time": 146,
+              "arrivals": 0,
+              "completed": 3,
+              "utilization": 99.27272727272695,
+              "queue": 0
+            }
+          ]
+        }
+      },
+      {
+        "config": {
+          "id": "no-cache",
+          "name": "Cache-off control",
+          "nodes": 1,
+          "gpusPerNode": 1,
+          "concurrency": 8,
+          "batchTokens": 4096,
+          "prefillShare": 0.65,
+          "cache": false,
+          "routing": "round-robin",
+          "memoryFraction": 0.9
+        },
+        "rationale": "Diagnostic control: measure how much repeated-prefix reuse contributes.",
+        "result": {
+          "config": {
+            "id": "no-cache",
+            "name": "Cache-off control",
+            "nodes": 1,
+            "gpusPerNode": 1,
+            "concurrency": 8,
+            "batchTokens": 4096,
+            "prefillShare": 0.65,
+            "cache": false,
+            "routing": "round-robin",
+            "memoryFraction": 0.9
+          },
+          "traceHash": "cfcb1363",
+          "count": 94,
+          "completed": 94,
+          "failed": 0,
+          "compliant": 80,
+          "p95ttft": 2.6697041865832603,
+          "p95itl": 38.281249999997826,
+          "p95e2e": 8.557562688915475,
+          "cacheHit": 0,
+          "utilization": 97.09093657068182,
+          "outputTokens": 15645,
+          "throughput": 129.67260671363954,
+          "cost": 0.10054166666666273,
+          "hourlyCost": 3,
+          "costPerMillion": 7.5132018133808645,
+          "elapsed": 120.64999999999529,
+          "feasible": false,
+          "reasons": [
+            "p95 first token 2.67s exceeds 2.0s",
+            "Fewer than 95% of requests met both latency targets"
+          ],
+          "workers": [
+            {
+              "id": "n1-gpu1",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 97.09093657068182,
+              "requests": 94,
+              "cachedTokens": 0,
+              "peakMemoryGB": 59.08349609375
+            }
+          ],
+          "series": [
+            {
+              "time": 0,
+              "arrivals": 0,
+              "completed": 0,
+              "utilization": 0,
+              "queue": 0
+            },
+            {
+              "time": 5,
+              "arrivals": 7,
+              "completed": 0,
+              "utilization": 79.1683168316832,
+              "queue": 0
+            },
+            {
+              "time": 10,
+              "arrivals": 3,
+              "completed": 3,
+              "utilization": 99.87765734265696,
+              "queue": 0
+            },
+            {
+              "time": 15,
+              "arrivals": 3,
+              "completed": 8,
+              "utilization": 99.37848667998644,
+              "queue": 0
+            },
+            {
+              "time": 20,
+              "arrivals": 2,
+              "completed": 2,
+              "utilization": 77.83559440559429,
+              "queue": 0
+            },
+            {
+              "time": 25,
+              "arrivals": 6,
+              "completed": 1,
+              "utilization": 99.97372027972027,
+              "queue": 0
+            },
+            {
+              "time": 30,
+              "arrivals": 3,
+              "completed": 8,
+              "utilization": 99.45604470529453,
+              "queue": 0
+            },
+            {
+              "time": 35,
+              "arrivals": 6,
+              "completed": 2,
+              "utilization": 99.19698123658836,
+              "queue": 0
+            },
+            {
+              "time": 40,
+              "arrivals": 4,
+              "completed": 3,
+              "utilization": 99.90353211145298,
+              "queue": 0
+            },
+            {
+              "time": 45,
+              "arrivals": 4,
+              "completed": 7,
+              "utilization": 99.60258404961418,
+              "queue": 0
+            },
+            {
+              "time": 50,
+              "arrivals": 4,
+              "completed": 4,
+              "utilization": 99.75655334764248,
+              "queue": 0
+            },
+            {
+              "time": 55,
+              "arrivals": 7,
+              "completed": 3,
+              "utilization": 99.79580188788123,
+              "queue": 0
+            },
+            {
+              "time": 60,
+              "arrivals": 2,
+              "completed": 8,
+              "utilization": 98.83835422003739,
+              "queue": 0
+            },
+            {
+              "time": 65,
+              "arrivals": 4,
+              "completed": 0,
+              "utilization": 99.99999999999986,
+              "queue": 0
+            },
+            {
+              "time": 70,
+              "arrivals": 3,
+              "completed": 6,
+              "utilization": 99.17290498280639,
+              "queue": 0
+            },
+            {
+              "time": 75,
+              "arrivals": 5,
+              "completed": 2,
+              "utilization": 99.67818320293597,
+              "queue": 0
+            },
+            {
+              "time": 81,
+              "arrivals": 4,
+              "completed": 5,
+              "utilization": 99.65099356089434,
+              "queue": 0
+            },
+            {
+              "time": 86,
+              "arrivals": 1,
+              "completed": 5,
+              "utilization": 98.45884511528088,
+              "queue": 0
+            },
+            {
+              "time": 91,
+              "arrivals": 4,
+              "completed": 1,
+              "utilization": 99.59717510212568,
+              "queue": 0
+            },
+            {
+              "time": 96,
+              "arrivals": 10,
+              "completed": 3,
+              "utilization": 99.783447575527,
+              "queue": 3
+            },
+            {
+              "time": 101,
+              "arrivals": 2,
+              "completed": 7,
+              "utilization": 99.58022670398911,
+              "queue": 0
+            },
+            {
+              "time": 106,
+              "arrivals": 3,
+              "completed": 9,
+              "utilization": 94.14003900390088,
+              "queue": 0
+            },
+            {
+              "time": 111,
+              "arrivals": 2,
+              "completed": 1,
+              "utilization": 88.39853216090854,
+              "queue": 0
+            },
+            {
+              "time": 116,
+              "arrivals": 3,
+              "completed": 2,
+              "utilization": 99.7069860832238,
+              "queue": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "scope": "node",
+    "settings": {
+      "scope": "node",
+      "workload": "prefix",
+      "load": 1,
+      "prefix": 75,
+      "seed": 42,
+      "ttftSlo": 2,
+      "itlSlo": 90,
+      "duration": 120,
+      "prefillRate": 6500,
+      "decodeRate": 850,
+      "price": 3
+    },
+    "evidence": "simulation; not measured GPU performance",
+    "active": {
+      "config": {
+        "id": "node-baseline",
+        "name": "Current deployment",
+        "nodes": 1,
+        "gpusPerNode": 4,
+        "concurrency": 8,
+        "batchTokens": 4096,
+        "prefillShare": 0.65,
+        "cache": true,
+        "routing": "round-robin",
+        "memoryFraction": 0.9
+      },
+      "traceHash": "8f44985b",
+      "count": 385,
+      "completed": 385,
+      "failed": 0,
+      "compliant": 385,
+      "p95ttft": 0.8928801064189997,
+      "p95itl": 26.95312499999847,
+      "p95e2e": 6.363029919701553,
+      "cacheHit": 34.84726159854302,
+      "utilization": 98.1033872109925,
+      "outputTokens": 62908,
+      "throughput": 513.7443854634747,
+      "cost": 0.40816666666665063,
+      "hourlyCost": 12,
+      "costPerMillion": 6.488310972637035,
+      "elapsed": 122.44999999999519,
+      "feasible": true,
+      "reasons": [],
+      "workers": [
+        {
+          "id": "n1-gpu1",
+          "node": 1,
+          "model": "gemma26",
+          "utilization": 99.04837805450313,
+          "requests": 97,
+          "cachedTokens": 88000,
+          "peakMemoryGB": 61.0059814453125
+        },
+        {
+          "id": "n1-gpu2",
+          "node": 1,
+          "model": "gemma26",
+          "utilization": 97.84132817638346,
+          "requests": 96,
+          "cachedTokens": 96000,
+          "peakMemoryGB": 61.3255615234375
+        },
+        {
+          "id": "n1-gpu3",
+          "node": 1,
+          "model": "gemma26",
+          "utilization": 96.72008226563162,
+          "requests": 96,
+          "cachedTokens": 99200,
+          "peakMemoryGB": 61.194580078125
+        },
+        {
+          "id": "n1-gpu4",
+          "node": 1,
+          "model": "gemma26",
+          "utilization": 98.80376034745176,
+          "requests": 96,
+          "cachedTokens": 88000,
+          "peakMemoryGB": 61.0738525390625
+        }
+      ],
+      "series": [
+        {
+          "time": 0,
+          "arrivals": 0,
+          "completed": 0,
+          "utilization": 0,
+          "queue": 0
+        },
+        {
+          "time": 5,
+          "arrivals": 15,
+          "completed": 5,
+          "utilization": 89.1689717048628,
+          "queue": 0
+        },
+        {
+          "time": 10,
+          "arrivals": 19,
+          "completed": 10,
+          "utilization": 99.78664918414901,
+          "queue": 0
+        },
+        {
+          "time": 15,
+          "arrivals": 17,
+          "completed": 14,
+          "utilization": 99.63561392773883,
+          "queue": 0
+        },
+        {
+          "time": 20,
+          "arrivals": 16,
+          "completed": 22,
+          "utilization": 99.53526864801849,
+          "queue": 0
+        },
+        {
+          "time": 25,
+          "arrivals": 17,
+          "completed": 16,
+          "utilization": 99.33939976689972,
+          "queue": 0
+        },
+        {
+          "time": 30,
+          "arrivals": 10,
+          "completed": 20,
+          "utilization": 97.60658158508139,
+          "queue": 0
+        },
+        {
+          "time": 35,
+          "arrivals": 15,
+          "completed": 10,
+          "utilization": 99.53160700685567,
+          "queue": 0
+        },
+        {
+          "time": 40,
+          "arrivals": 17,
+          "completed": 12,
+          "utilization": 99.21330113780617,
+          "queue": 0
+        },
+        {
+          "time": 45,
+          "arrivals": 15,
+          "completed": 20,
+          "utilization": 99.5518648018649,
+          "queue": 0
+        },
+        {
+          "time": 50,
+          "arrivals": 12,
+          "completed": 16,
+          "utilization": 99.44881372752685,
+          "queue": 0
+        },
+        {
+          "time": 55,
+          "arrivals": 17,
+          "completed": 9,
+          "utilization": 99.71119804288128,
+          "queue": 0
+        },
+        {
+          "time": 60,
+          "arrivals": 16,
+          "completed": 21,
+          "utilization": 99.29447569756996,
+          "queue": 0
+        },
+        {
+          "time": 65,
+          "arrivals": 14,
+          "completed": 11,
+          "utilization": 92.5572364928798,
+          "queue": 0
+        },
+        {
+          "time": 70,
+          "arrivals": 19,
+          "completed": 18,
+          "utilization": 99.62243099309998,
+          "queue": 0
+        },
+        {
+          "time": 75,
+          "arrivals": 11,
+          "completed": 22,
+          "utilization": 94.95364074869002,
+          "queue": 0
+        },
+        {
+          "time": 81,
+          "arrivals": 22,
+          "completed": 12,
+          "utilization": 99.20023252325258,
+          "queue": 0
+        },
+        {
+          "time": 86,
+          "arrivals": 20,
+          "completed": 15,
+          "utilization": 99.65338803111102,
+          "queue": 0
+        },
+        {
+          "time": 91,
+          "arrivals": 20,
+          "completed": 23,
+          "utilization": 99.42700125781874,
+          "queue": 0
+        },
+        {
+          "time": 96,
+          "arrivals": 13,
+          "completed": 19,
+          "utilization": 99.25301876341457,
+          "queue": 0
+        },
+        {
+          "time": 101,
+          "arrivals": 20,
+          "completed": 17,
+          "utilization": 99.37184910798787,
+          "queue": 0
+        },
+        {
+          "time": 106,
+          "arrivals": 15,
+          "completed": 16,
+          "utilization": 99.53211763484049,
+          "queue": 0
+        },
+        {
+          "time": 111,
+          "arrivals": 18,
+          "completed": 17,
+          "utilization": 99.57868517621043,
+          "queue": 0
+        },
+        {
+          "time": 116,
+          "arrivals": 15,
+          "completed": 15,
+          "utilization": 99.4604837406819,
+          "queue": 0
+        },
+        {
+          "time": 121,
+          "arrivals": 12,
+          "completed": 15,
+          "utilization": 99.58909102448729,
+          "queue": 0
+        }
+      ]
+    },
+    "candidates": [
+      {
+        "config": {
+          "id": "balanced",
+          "name": "Cache-aware · balanced",
+          "nodes": 1,
+          "gpusPerNode": 4,
+          "concurrency": 16,
+          "batchTokens": 4096,
+          "prefillShare": 0.35,
+          "cache": true,
+          "routing": "prefix-affinity",
+          "memoryFraction": 0.9
+        },
+        "rationale": "Keep the model fixed. Combine prefix-affinity routing with a larger admission limit and more decode headroom.",
+        "result": {
+          "config": {
+            "id": "balanced",
+            "name": "Cache-aware · balanced",
+            "nodes": 1,
+            "gpusPerNode": 4,
+            "concurrency": 16,
+            "batchTokens": 4096,
+            "prefillShare": 0.35,
+            "cache": true,
+            "routing": "prefix-affinity",
+            "memoryFraction": 0.9
+          },
+          "traceHash": "8f44985b",
+          "count": 385,
+          "completed": 385,
+          "failed": 0,
+          "compliant": 348,
+          "p95ttft": 2.2095082775487835,
+          "p95itl": 27.083333333331794,
+          "p95e2e": 6.987438840343794,
+          "cacheHit": 34.84726159854302,
+          "utilization": 97.83765053412175,
+          "outputTokens": 62908,
+          "throughput": 506.709625453101,
+          "cost": 0.41383333333331696,
+          "hourlyCost": 12,
+          "costPerMillion": 7.208760836366941,
+          "elapsed": 124.14999999999509,
+          "feasible": false,
+          "reasons": [
+            "p95 first token 2.21s exceeds 2.0s",
+            "Fewer than 95% of requests met both latency targets"
+          ],
+          "workers": [
+            {
+              "id": "n1-gpu1",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 98.18948035452286,
+              "requests": 100,
+              "cachedTokens": 94400,
+              "peakMemoryGB": 61.2076416015625
+            },
+            {
+              "id": "n1-gpu2",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 98.50494969522377,
+              "requests": 94,
+              "cachedTokens": 84800,
+              "peakMemoryGB": 60.9566650390625
+            },
+            {
+              "id": "n1-gpu3",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 97.96416090956993,
+              "requests": 98,
+              "cachedTokens": 89600,
+              "peakMemoryGB": 60.7821044921875
+            },
+            {
+              "id": "n1-gpu4",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 96.69201117717047,
+              "requests": 93,
+              "cachedTokens": 102400,
+              "peakMemoryGB": 60.7296142578125
+            }
+          ],
+          "series": [
+            {
+              "time": 0,
+              "arrivals": 0,
+              "completed": 0,
+              "utilization": 0,
+              "queue": 0
+            },
+            {
+              "time": 5,
+              "arrivals": 15,
+              "completed": 4,
+              "utilization": 89.16641712248152,
+              "queue": 0
+            },
+            {
+              "time": 10,
+              "arrivals": 19,
+              "completed": 10,
+              "utilization": 99.59215909090896,
+              "queue": 0
+            },
+            {
+              "time": 15,
+              "arrivals": 17,
+              "completed": 15,
+              "utilization": 99.70169871794877,
+              "queue": 0
+            },
+            {
+              "time": 20,
+              "arrivals": 16,
+              "completed": 17,
+              "utilization": 99.59397144522151,
+              "queue": 0
+            },
+            {
+              "time": 25,
+              "arrivals": 17,
+              "completed": 20,
+              "utilization": 99.5442651515151,
+              "queue": 0
+            },
+            {
+              "time": 30,
+              "arrivals": 10,
+              "completed": 21,
+              "utilization": 99.24047610722619,
+              "queue": 0
+            },
+            {
+              "time": 35,
+              "arrivals": 15,
+              "completed": 8,
+              "utilization": 99.54067368275393,
+              "queue": 0
+            },
+            {
+              "time": 40,
+              "arrivals": 17,
+              "completed": 13,
+              "utilization": 99.6082387084863,
+              "queue": 0
+            },
+            {
+              "time": 45,
+              "arrivals": 15,
+              "completed": 19,
+              "utilization": 99.5749417249422,
+              "queue": 0
+            },
+            {
+              "time": 50,
+              "arrivals": 12,
+              "completed": 13,
+              "utilization": 99.53290665605029,
+              "queue": 0
+            },
+            {
+              "time": 55,
+              "arrivals": 17,
+              "completed": 16,
+              "utilization": 99.3966036026682,
+              "queue": 0
+            },
+            {
+              "time": 60,
+              "arrivals": 16,
+              "completed": 15,
+              "utilization": 99.58392214221439,
+              "queue": 0
+            },
+            {
+              "time": 65,
+              "arrivals": 14,
+              "completed": 16,
+              "utilization": 94.75562556255656,
+              "queue": 0
+            },
+            {
+              "time": 70,
+              "arrivals": 19,
+              "completed": 12,
+              "utilization": 99.73158998592159,
+              "queue": 0
+            },
+            {
+              "time": 75,
+              "arrivals": 11,
+              "completed": 24,
+              "utilization": 95.77956911075786,
+              "queue": 0
+            },
+            {
+              "time": 81,
+              "arrivals": 22,
+              "completed": 10,
+              "utilization": 99.70414589535882,
+              "queue": 0
+            },
+            {
+              "time": 86,
+              "arrivals": 20,
+              "completed": 19,
+              "utilization": 99.56741847261699,
+              "queue": 0
+            },
+            {
+              "time": 91,
+              "arrivals": 20,
+              "completed": 22,
+              "utilization": 99.44912443167411,
+              "queue": 0
+            },
+            {
+              "time": 96,
+              "arrivals": 13,
+              "completed": 18,
+              "utilization": 99.3685542592725,
+              "queue": 0
+            },
+            {
+              "time": 101,
+              "arrivals": 20,
+              "completed": 17,
+              "utilization": 99.57138983129109,
+              "queue": 0
+            },
+            {
+              "time": 106,
+              "arrivals": 15,
+              "completed": 17,
+              "utilization": 99.55084354589312,
+              "queue": 0
+            },
+            {
+              "time": 111,
+              "arrivals": 18,
+              "completed": 15,
+              "utilization": 99.61909315931614,
+              "queue": 0
+            },
+            {
+              "time": 116,
+              "arrivals": 15,
+              "completed": 18,
+              "utilization": 99.37539753975409,
+              "queue": 0
+            },
+            {
+              "time": 121,
+              "arrivals": 12,
+              "completed": 12,
+              "utilization": 99.51615546170035,
+              "queue": 0
+            }
+          ]
+        }
+      },
+      {
+        "config": {
+          "id": "prefill",
+          "name": "Prefill throughput",
+          "nodes": 1,
+          "gpusPerNode": 4,
+          "concurrency": 16,
+          "batchTokens": 4096,
+          "prefillShare": 0.8,
+          "cache": true,
+          "routing": "prefix-affinity",
+          "memoryFraction": 0.9
+        },
+        "rationale": "Give prefill 80% of GPU time when decoding is active; test the tradeoff against token latency.",
+        "result": {
+          "config": {
+            "id": "prefill",
+            "name": "Prefill throughput",
+            "nodes": 1,
+            "gpusPerNode": 4,
+            "concurrency": 16,
+            "batchTokens": 4096,
+            "prefillShare": 0.8,
+            "cache": true,
+            "routing": "prefix-affinity",
+            "memoryFraction": 0.9
+          },
+          "traceHash": "8f44985b",
+          "count": 385,
+          "completed": 385,
+          "failed": 0,
+          "compliant": 385,
+          "p95ttft": 0.7891841266559723,
+          "p95itl": 26.041666666665186,
+          "p95e2e": 6.106613182352254,
+          "cacheHit": 35.89868759505079,
+          "utilization": 98.15501926023964,
+          "outputTokens": 62908,
+          "throughput": 513.1158238173122,
+          "cost": 0.4086666666666506,
+          "hourlyCost": 12,
+          "costPerMillion": 6.496259087344226,
+          "elapsed": 122.59999999999518,
+          "feasible": true,
+          "reasons": [],
+          "workers": [
+            {
+              "id": "n1-gpu1",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 98.57818706578915,
+              "requests": 102,
+              "cachedTokens": 100800,
+              "peakMemoryGB": 60.18017578125
+            },
+            {
+              "id": "n1-gpu2",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 98.655821041384,
+              "requests": 98,
+              "cachedTokens": 91200,
+              "peakMemoryGB": 60.2681884765625
+            },
+            {
+              "id": "n1-gpu3",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 98.25457473467274,
+              "requests": 95,
+              "cachedTokens": 96000,
+              "peakMemoryGB": 60.872802734375
+            },
+            {
+              "id": "n1-gpu4",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 97.13149419911265,
+              "requests": 90,
+              "cachedTokens": 94400,
+              "peakMemoryGB": 60.6009521484375
+            }
+          ],
+          "series": [
+            {
+              "time": 0,
+              "arrivals": 0,
+              "completed": 0,
+              "utilization": 0,
+              "queue": 0
+            },
+            {
+              "time": 5,
+              "arrivals": 15,
+              "completed": 5,
+              "utilization": 89.1882919061137,
+              "queue": 0
+            },
+            {
+              "time": 10,
+              "arrivals": 19,
+              "completed": 12,
+              "utilization": 99.63142773892756,
+              "queue": 0
+            },
+            {
+              "time": 15,
+              "arrivals": 17,
+              "completed": 16,
+              "utilization": 99.51806876456864,
+              "queue": 0
+            },
+            {
+              "time": 20,
+              "arrivals": 16,
+              "completed": 19,
+              "utilization": 99.27134149184143,
+              "queue": 0
+            },
+            {
+              "time": 25,
+              "arrivals": 17,
+              "completed": 16,
+              "utilization": 99.36911188811173,
+              "queue": 0
+            },
+            {
+              "time": 30,
+              "arrivals": 10,
+              "completed": 19,
+              "utilization": 98.46810023310016,
+              "queue": 0
+            },
+            {
+              "time": 35,
+              "arrivals": 15,
+              "completed": 11,
+              "utilization": 99.58496618892778,
+              "queue": 0
+            },
+            {
+              "time": 40,
+              "arrivals": 17,
+              "completed": 12,
+              "utilization": 99.03330333033321,
+              "queue": 0
+            },
+            {
+              "time": 45,
+              "arrivals": 15,
+              "completed": 18,
+              "utilization": 96.42348773338895,
+              "queue": 0
+            },
+            {
+              "time": 50,
+              "arrivals": 12,
+              "completed": 17,
+              "utilization": 99.16382792125383,
+              "queue": 0
+            },
+            {
+              "time": 55,
+              "arrivals": 17,
+              "completed": 12,
+              "utilization": 99.45777077707791,
+              "queue": 0
+            },
+            {
+              "time": 60,
+              "arrivals": 16,
+              "completed": 17,
+              "utilization": 99.42249301853273,
+              "queue": 0
+            },
+            {
+              "time": 65,
+              "arrivals": 14,
+              "completed": 13,
+              "utilization": 99.29247155484788,
+              "queue": 0
+            },
+            {
+              "time": 70,
+              "arrivals": 19,
+              "completed": 17,
+              "utilization": 99.65762191603804,
+              "queue": 0
+            },
+            {
+              "time": 75,
+              "arrivals": 11,
+              "completed": 22,
+              "utilization": 96.77349004131177,
+              "queue": 0
+            },
+            {
+              "time": 81,
+              "arrivals": 22,
+              "completed": 13,
+              "utilization": 99.38883888388897,
+              "queue": 0
+            },
+            {
+              "time": 86,
+              "arrivals": 20,
+              "completed": 14,
+              "utilization": 99.67445013732143,
+              "queue": 0
+            },
+            {
+              "time": 91,
+              "arrivals": 20,
+              "completed": 23,
+              "utilization": 99.26810219483507,
+              "queue": 0
+            },
+            {
+              "time": 96,
+              "arrivals": 13,
+              "completed": 18,
+              "utilization": 99.46381176579222,
+              "queue": 0
+            },
+            {
+              "time": 101,
+              "arrivals": 20,
+              "completed": 17,
+              "utilization": 99.21150961249995,
+              "queue": 0
+            },
+            {
+              "time": 106,
+              "arrivals": 15,
+              "completed": 17,
+              "utilization": 99.12977451591334,
+              "queue": 0
+            },
+            {
+              "time": 111,
+              "arrivals": 18,
+              "completed": 17,
+              "utilization": 99.26232430935397,
+              "queue": 0
+            },
+            {
+              "time": 116,
+              "arrivals": 15,
+              "completed": 15,
+              "utilization": 99.31441990352903,
+              "queue": 0
+            },
+            {
+              "time": 121,
+              "arrivals": 12,
+              "completed": 15,
+              "utilization": 99.35204251194347,
+              "queue": 0
+            }
+          ]
+        }
+      },
+      {
+        "config": {
+          "id": "decode",
+          "name": "Decode priority",
+          "nodes": 1,
+          "gpusPerNode": 4,
+          "concurrency": 16,
+          "batchTokens": 4096,
+          "prefillShare": 0.2,
+          "cache": true,
+          "routing": "prefix-affinity",
+          "memoryFraction": 0.9
+        },
+        "rationale": "Reserve 80% of shared GPU time for generation. Useful only if the first-token target still passes.",
+        "result": {
+          "config": {
+            "id": "decode",
+            "name": "Decode priority",
+            "nodes": 1,
+            "gpusPerNode": 4,
+            "concurrency": 16,
+            "batchTokens": 4096,
+            "prefillShare": 0.2,
+            "cache": true,
+            "routing": "prefix-affinity",
+            "memoryFraction": 0.9
+          },
+          "traceHash": "8f44985b",
+          "count": 385,
+          "completed": 385,
+          "failed": 0,
+          "compliant": 6,
+          "p95ttft": 20.098625427728564,
+          "p95itl": 22.847682119204,
+          "p95e2e": 24.33618352466965,
+          "cacheHit": 33.04481703310114,
+          "utilization": 96.28741175110957,
+          "outputTokens": 62908,
+          "throughput": 441.92483315771574,
+          "cost": 0.47449999999999376,
+          "hourlyCost": 12,
+          "costPerMillion": 463.3789062499939,
+          "elapsed": 142.34999999999812,
+          "feasible": false,
+          "reasons": [
+            "p95 first token 20.10s exceeds 2.0s",
+            "Fewer than 95% of requests met both latency targets"
+          ],
+          "workers": [
+            {
+              "id": "n1-gpu1",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 99.34280308147524,
+              "requests": 100,
+              "cachedTokens": 88000,
+              "peakMemoryGB": 64.2724609375
+            },
+            {
+              "id": "n1-gpu2",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 96.74350765731097,
+              "requests": 96,
+              "cachedTokens": 88000,
+              "peakMemoryGB": 64.631103515625
+            },
+            {
+              "id": "n1-gpu3",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 94.53378315865027,
+              "requests": 101,
+              "cachedTokens": 100800,
+              "peakMemoryGB": 64.6575927734375
+            },
+            {
+              "id": "n1-gpu4",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 94.52955310700185,
+              "requests": 88,
+              "cachedTokens": 75200,
+              "peakMemoryGB": 65.1400146484375
+            }
+          ],
+          "series": [
+            {
+              "time": 0,
+              "arrivals": 0,
+              "completed": 0,
+              "utilization": 0,
+              "queue": 0
+            },
+            {
+              "time": 5,
+              "arrivals": 15,
+              "completed": 3,
+              "utilization": 89.25649103371879,
+              "queue": 0
+            },
+            {
+              "time": 10,
+              "arrivals": 19,
+              "completed": 8,
+              "utilization": 99.67185314685295,
+              "queue": 0
+            },
+            {
+              "time": 15,
+              "arrivals": 17,
+              "completed": 11,
+              "utilization": 99.54545454545458,
+              "queue": 0
+            },
+            {
+              "time": 20,
+              "arrivals": 16,
+              "completed": 9,
+              "utilization": 99.73484848484844,
+              "queue": 0
+            },
+            {
+              "time": 25,
+              "arrivals": 17,
+              "completed": 12,
+              "utilization": 99.46969696969703,
+              "queue": 0
+            },
+            {
+              "time": 30,
+              "arrivals": 10,
+              "completed": 11,
+              "utilization": 99.60909090909091,
+              "queue": 0
+            },
+            {
+              "time": 35,
+              "arrivals": 15,
+              "completed": 10,
+              "utilization": 99.80948094809568,
+              "queue": 0
+            },
+            {
+              "time": 40,
+              "arrivals": 17,
+              "completed": 15,
+              "utilization": 99.56195619561964,
+              "queue": 0
+            },
+            {
+              "time": 45,
+              "arrivals": 15,
+              "completed": 11,
+              "utilization": 99.69396939693995,
+              "queue": 0
+            },
+            {
+              "time": 50,
+              "arrivals": 12,
+              "completed": 15,
+              "utilization": 99.59495949594967,
+              "queue": 0
+            },
+            {
+              "time": 55,
+              "arrivals": 17,
+              "completed": 19,
+              "utilization": 99.68226822682279,
+              "queue": 0
+            },
+            {
+              "time": 60,
+              "arrivals": 16,
+              "completed": 13,
+              "utilization": 99.66006600660089,
+              "queue": 0
+            },
+            {
+              "time": 65,
+              "arrivals": 14,
+              "completed": 13,
+              "utilization": 99.6189618961898,
+              "queue": 0
+            },
+            {
+              "time": 70,
+              "arrivals": 19,
+              "completed": 13,
+              "utilization": 99.7310873944539,
+              "queue": 0
+            },
+            {
+              "time": 75,
+              "arrivals": 11,
+              "completed": 18,
+              "utilization": 99.46264626462653,
+              "queue": 0
+            },
+            {
+              "time": 81,
+              "arrivals": 22,
+              "completed": 16,
+              "utilization": 99.63126312631306,
+              "queue": 0
+            },
+            {
+              "time": 86,
+              "arrivals": 20,
+              "completed": 14,
+              "utilization": 99.56195619561994,
+              "queue": 0
+            },
+            {
+              "time": 91,
+              "arrivals": 20,
+              "completed": 17,
+              "utilization": 99.46054605460559,
+              "queue": 0
+            },
+            {
+              "time": 96,
+              "arrivals": 13,
+              "completed": 16,
+              "utilization": 99.44074407440775,
+              "queue": 0
+            },
+            {
+              "time": 101,
+              "arrivals": 20,
+              "completed": 15,
+              "utilization": 99.57035703570399,
+              "queue": 3
+            },
+            {
+              "time": 106,
+              "arrivals": 15,
+              "completed": 13,
+              "utilization": 99.53795379537937,
+              "queue": 4
+            },
+            {
+              "time": 111,
+              "arrivals": 18,
+              "completed": 14,
+              "utilization": 99.65976597659805,
+              "queue": 9
+            },
+            {
+              "time": 116,
+              "arrivals": 15,
+              "completed": 20,
+              "utilization": 99.2379237923796,
+              "queue": 3
+            },
+            {
+              "time": 121,
+              "arrivals": 12,
+              "completed": 16,
+              "utilization": 99.43894389438964,
+              "queue": 1
+            },
+            {
+              "time": 126,
+              "arrivals": 0,
+              "completed": 16,
+              "utilization": 99.41374137413746,
+              "queue": 0
+            },
+            {
+              "time": 131,
+              "arrivals": 0,
+              "completed": 17,
+              "utilization": 99.57268398267848,
+              "queue": 0
+            },
+            {
+              "time": 136,
+              "arrivals": 0,
+              "completed": 19,
+              "utilization": 98.02131118881037,
+              "queue": 0
+            },
+            {
+              "time": 141,
+              "arrivals": 0,
+              "completed": 10,
+              "utilization": 38.18324941724866,
+              "queue": 0
+            }
+          ]
+        }
+      },
+      {
+        "config": {
+          "id": "no-cache",
+          "name": "Cache-off control",
+          "nodes": 1,
+          "gpusPerNode": 4,
+          "concurrency": 8,
+          "batchTokens": 4096,
+          "prefillShare": 0.65,
+          "cache": false,
+          "routing": "round-robin",
+          "memoryFraction": 0.9
+        },
+        "rationale": "Diagnostic control: measure how much repeated-prefix reuse contributes.",
+        "result": {
+          "config": {
+            "id": "no-cache",
+            "name": "Cache-off control",
+            "nodes": 1,
+            "gpusPerNode": 4,
+            "concurrency": 8,
+            "batchTokens": 4096,
+            "prefillShare": 0.65,
+            "cache": false,
+            "routing": "round-robin",
+            "memoryFraction": 0.9
+          },
+          "traceHash": "8f44985b",
+          "count": 385,
+          "completed": 385,
+          "failed": 0,
+          "compliant": 385,
+          "p95ttft": 0.9928762251184367,
+          "p95itl": 32.165605095539576,
+          "p95e2e": 7.518119806428359,
+          "cacheHit": 0,
+          "utilization": 98.55882238702868,
+          "outputTokens": 62908,
+          "throughput": 510.61688311690324,
+          "cost": 0.41066666666665047,
+          "hourlyCost": 12,
+          "costPerMillion": 6.52805154617299,
+          "elapsed": 123.19999999999514,
+          "feasible": true,
+          "reasons": [],
+          "workers": [
+            {
+              "id": "n1-gpu1",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 99.08505853589061,
+              "requests": 97,
+              "cachedTokens": 0,
+              "peakMemoryGB": 58.5814208984375
+            },
+            {
+              "id": "n1-gpu2",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 98.13841383183932,
+              "requests": 96,
+              "cachedTokens": 0,
+              "peakMemoryGB": 58.5770263671875
+            },
+            {
+              "id": "n1-gpu3",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 98.0653997720354,
+              "requests": 96,
+              "cachedTokens": 0,
+              "peakMemoryGB": 58.7186279296875
+            },
+            {
+              "id": "n1-gpu4",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 98.94641740834938,
+              "requests": 96,
+              "cachedTokens": 0,
+              "peakMemoryGB": 58.781005859375
+            }
+          ],
+          "series": [
+            {
+              "time": 0,
+              "arrivals": 0,
+              "completed": 0,
+              "utilization": 0,
+              "queue": 0
+            },
+            {
+              "time": 5,
+              "arrivals": 15,
+              "completed": 4,
+              "utilization": 89.22419453483812,
+              "queue": 0
+            },
+            {
+              "time": 10,
+              "arrivals": 19,
+              "completed": 10,
+              "utilization": 99.70980914918395,
+              "queue": 0
+            },
+            {
+              "time": 15,
+              "arrivals": 17,
+              "completed": 15,
+              "utilization": 99.67079836829825,
+              "queue": 0
+            },
+            {
+              "time": 20,
+              "arrivals": 16,
+              "completed": 19,
+              "utilization": 99.61959232434225,
+              "queue": 0
+            },
+            {
+              "time": 25,
+              "arrivals": 17,
+              "completed": 18,
+              "utilization": 99.38234498834484,
+              "queue": 0
+            },
+            {
+              "time": 30,
+              "arrivals": 10,
+              "completed": 20,
+              "utilization": 99.23132896270383,
+              "queue": 0
+            },
+            {
+              "time": 35,
+              "arrivals": 15,
+              "completed": 9,
+              "utilization": 99.5588168432238,
+              "queue": 0
+            },
+            {
+              "time": 40,
+              "arrivals": 17,
+              "completed": 14,
+              "utilization": 99.38680069930095,
+              "queue": 0
+            },
+            {
+              "time": 45,
+              "arrivals": 15,
+              "completed": 14,
+              "utilization": 99.7240609637887,
+              "queue": 0
+            },
+            {
+              "time": 50,
+              "arrivals": 12,
+              "completed": 19,
+              "utilization": 99.43251748251765,
+              "queue": 0
+            },
+            {
+              "time": 55,
+              "arrivals": 17,
+              "completed": 11,
+              "utilization": 99.7316745136053,
+              "queue": 0
+            },
+            {
+              "time": 60,
+              "arrivals": 16,
+              "completed": 18,
+              "utilization": 99.62944526595531,
+              "queue": 0
+            },
+            {
+              "time": 65,
+              "arrivals": 14,
+              "completed": 15,
+              "utilization": 97.5302511020334,
+              "queue": 0
+            },
+            {
+              "time": 70,
+              "arrivals": 19,
+              "completed": 12,
+              "utilization": 99.75695525596515,
+              "queue": 0
+            },
+            {
+              "time": 75,
+              "arrivals": 11,
+              "completed": 24,
+              "utilization": 99.13249374388032,
+              "queue": 0
+            },
+            {
+              "time": 81,
+              "arrivals": 22,
+              "completed": 11,
+              "utilization": 99.76034526529578,
+              "queue": 0
+            },
+            {
+              "time": 86,
+              "arrivals": 20,
+              "completed": 15,
+              "utilization": 99.78823511472056,
+              "queue": 0
+            },
+            {
+              "time": 91,
+              "arrivals": 20,
+              "completed": 23,
+              "utilization": 99.60657807539016,
+              "queue": 0
+            },
+            {
+              "time": 96,
+              "arrivals": 13,
+              "completed": 18,
+              "utilization": 99.63782405713103,
+              "queue": 0
+            },
+            {
+              "time": 101,
+              "arrivals": 20,
+              "completed": 17,
+              "utilization": 99.5203948279451,
+              "queue": 0
+            },
+            {
+              "time": 106,
+              "arrivals": 15,
+              "completed": 19,
+              "utilization": 99.34833483348312,
+              "queue": 0
+            },
+            {
+              "time": 111,
+              "arrivals": 18,
+              "completed": 13,
+              "utilization": 99.60688626554999,
+              "queue": 0
+            },
+            {
+              "time": 116,
+              "arrivals": 15,
+              "completed": 19,
+              "utilization": 99.47386796371951,
+              "queue": 0
+            },
+            {
+              "time": 121,
+              "arrivals": 12,
+              "completed": 13,
+              "utilization": 99.70900205405152,
+              "queue": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "scope": "fleet",
+    "settings": {
+      "scope": "fleet",
+      "workload": "prefix",
+      "load": 1,
+      "prefix": 75,
+      "seed": 42,
+      "ttftSlo": 2,
+      "itlSlo": 90,
+      "duration": 120,
+      "prefillRate": 6500,
+      "decodeRate": 850,
+      "price": 3
+    },
+    "evidence": "simulation; not measured GPU performance",
+    "active": {
+      "config": {
+        "id": "fleet-baseline",
+        "name": "Current deployment",
+        "nodes": 3,
+        "gpusPerNode": 2,
+        "concurrency": 8,
+        "batchTokens": 4096,
+        "prefillShare": 0.65,
+        "cache": true,
+        "routing": "round-robin",
+        "memoryFraction": 0.9
+      },
+      "traceHash": "e5927fb7",
+      "count": 601,
+      "completed": 601,
+      "failed": 0,
+      "compliant": 559,
+      "p95ttft": 2.2787704682617385,
+      "p95itl": 39.8104265402821,
+      "p95e2e": 8.909757219526131,
+      "cacheHit": 32.36650941046542,
+      "utilization": 94.86807638372116,
+      "outputTokens": 99943,
+      "throughput": 798.5856971634356,
+      "cost": 0.6257499999999752,
+      "hourlyCost": 18,
+      "costPerMillion": 6.693587206503451,
+      "elapsed": 125.14999999999503,
+      "feasible": false,
+      "reasons": [
+        "p95 first token 2.28s exceeds 2.0s",
+        "Fewer than 95% of requests met both latency targets"
+      ],
+      "workers": [
+        {
+          "id": "n1-gpu1",
+          "node": 1,
+          "model": "gemma26",
+          "utilization": 97.2350100591912,
+          "requests": 132,
+          "cachedTokens": 123200,
+          "peakMemoryGB": 62.253173828125
+        },
+        {
+          "id": "n1-gpu2",
+          "node": 1,
+          "model": "gemma31",
+          "utilization": 95.65317577023549,
+          "requests": 69,
+          "cachedTokens": 41600,
+          "peakMemoryGB": 69.3394775390625
+        },
+        {
+          "id": "n2-gpu1",
+          "node": 2,
+          "model": "gemma26",
+          "utilization": 96.8232834384954,
+          "requests": 133,
+          "cachedTokens": 131200,
+          "peakMemoryGB": 62.2684326171875
+        },
+        {
+          "id": "n2-gpu2",
+          "node": 2,
+          "model": "gemma31",
+          "utilization": 86.98035351621084,
+          "requests": 67,
+          "cachedTokens": 54400,
+          "peakMemoryGB": 69.57568359375
+        },
+        {
+          "id": "n3-gpu1",
+          "node": 3,
+          "model": "gemma26",
+          "utilization": 96.56056272932041,
+          "requests": 135,
+          "cachedTokens": 142400,
+          "peakMemoryGB": 62.1536865234375
+        },
+        {
+          "id": "n3-gpu2",
+          "node": 3,
+          "model": "gemma31",
+          "utilization": 95.9560727888736,
+          "requests": 65,
+          "cachedTokens": 40000,
+          "peakMemoryGB": 69.048828125
+        }
+      ],
+      "series": [
+        {
+          "time": 0,
+          "arrivals": 0,
+          "completed": 0,
+          "utilization": 0,
+          "queue": 0
+        },
+        {
+          "time": 5,
+          "arrivals": 18,
+          "completed": 3,
+          "utilization": 78.63398562078436,
+          "queue": 0
+        },
+        {
+          "time": 10,
+          "arrivals": 34,
+          "completed": 11,
+          "utilization": 99.89181442785573,
+          "queue": 4
+        },
+        {
+          "time": 15,
+          "arrivals": 24,
+          "completed": 30,
+          "utilization": 97.22733895117217,
+          "queue": 3
+        },
+        {
+          "time": 20,
+          "arrivals": 20,
+          "completed": 26,
+          "utilization": 92.94723501806828,
+          "queue": 1
+        },
+        {
+          "time": 25,
+          "arrivals": 28,
+          "completed": 23,
+          "utilization": 98.29584710197207,
+          "queue": 2
+        },
+        {
+          "time": 30,
+          "arrivals": 30,
+          "completed": 26,
+          "utilization": 99.32790347307011,
+          "queue": 0
+        },
+        {
+          "time": 35,
+          "arrivals": 21,
+          "completed": 29,
+          "utilization": 99.61546321146393,
+          "queue": 0
+        },
+        {
+          "time": 40,
+          "arrivals": 30,
+          "completed": 24,
+          "utilization": 98.08124242216661,
+          "queue": 0
+        },
+        {
+          "time": 45,
+          "arrivals": 23,
+          "completed": 34,
+          "utilization": 99.43665952065324,
+          "queue": 0
+        },
+        {
+          "time": 50,
+          "arrivals": 23,
+          "completed": 18,
+          "utilization": 99.71878042505124,
+          "queue": 0
+        },
+        {
+          "time": 55,
+          "arrivals": 21,
+          "completed": 26,
+          "utilization": 99.144085000686,
+          "queue": 0
+        },
+        {
+          "time": 60,
+          "arrivals": 23,
+          "completed": 23,
+          "utilization": 91.7334537055661,
+          "queue": 1
+        },
+        {
+          "time": 65,
+          "arrivals": 21,
+          "completed": 24,
+          "utilization": 91.24711083440447,
+          "queue": 0
+        },
+        {
+          "time": 70,
+          "arrivals": 33,
+          "completed": 20,
+          "utilization": 96.48627374031679,
+          "queue": 0
+        },
+        {
+          "time": 75,
+          "arrivals": 16,
+          "completed": 29,
+          "utilization": 99.11947287830144,
+          "queue": 0
+        },
+        {
+          "time": 81,
+          "arrivals": 30,
+          "completed": 17,
+          "utilization": 94.30593323984411,
+          "queue": 2
+        },
+        {
+          "time": 86,
+          "arrivals": 26,
+          "completed": 21,
+          "utilization": 99.81374319513804,
+          "queue": 1
+        },
+        {
+          "time": 91,
+          "arrivals": 21,
+          "completed": 38,
+          "utilization": 99.3224301978427,
+          "queue": 0
+        },
+        {
+          "time": 96,
+          "arrivals": 32,
+          "completed": 22,
+          "utilization": 99.28322188903907,
+          "queue": 1
+        },
+        {
+          "time": 101,
+          "arrivals": 33,
+          "completed": 27,
+          "utilization": 99.59152599478472,
+          "queue": 2
+        },
+        {
+          "time": 106,
+          "arrivals": 21,
+          "completed": 36,
+          "utilization": 89.67855430231741,
+          "queue": 0
+        },
+        {
+          "time": 111,
+          "arrivals": 19,
+          "completed": 22,
+          "utilization": 82.27148551240978,
+          "queue": 0
+        },
+        {
+          "time": 116,
+          "arrivals": 32,
+          "completed": 19,
+          "utilization": 96.4001388234064,
+          "queue": 0
+        },
+        {
+          "time": 121,
+          "arrivals": 22,
+          "completed": 30,
+          "utilization": 99.48154873790196,
+          "queue": 0
+        }
+      ]
+    },
+    "candidates": [
+      {
+        "config": {
+          "id": "consolidate",
+          "name": "Consolidate to two nodes",
+          "nodes": 2,
+          "gpusPerNode": 2,
+          "concurrency": 16,
+          "batchTokens": 4096,
+          "prefillShare": 0.75,
+          "cache": true,
+          "routing": "prefix-affinity",
+          "memoryFraction": 0.9
+        },
+        "rationale": "Preserve a dedicated replica of each model on each node. Test whether two nodes can carry the same offered traffic.",
+        "result": {
+          "config": {
+            "id": "consolidate",
+            "name": "Consolidate to two nodes",
+            "nodes": 2,
+            "gpusPerNode": 2,
+            "concurrency": 16,
+            "batchTokens": 4096,
+            "prefillShare": 0.75,
+            "cache": true,
+            "routing": "prefix-affinity",
+            "memoryFraction": 0.9
+          },
+          "traceHash": "e5927fb7",
+          "count": 601,
+          "completed": 601,
+          "failed": 0,
+          "compliant": 584,
+          "p95ttft": 1.859031717656995,
+          "p95itl": 46.95945945946013,
+          "p95e2e": 10.328937862718877,
+          "cacheHit": 34.79642753437423,
+          "utilization": 98.71676556934557,
+          "outputTokens": 99943,
+          "throughput": 803.4003215434402,
+          "cost": 0.41466666666665025,
+          "hourlyCost": 12,
+          "costPerMillion": 4.26011348887525,
+          "elapsed": 124.39999999999507,
+          "feasible": true,
+          "reasons": [],
+          "workers": [
+            {
+              "id": "n1-gpu1",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 99.27340193901098,
+              "requests": 204,
+              "cachedTokens": 212800,
+              "peakMemoryGB": 64.8282470703125
+            },
+            {
+              "id": "n1-gpu2",
+              "node": 1,
+              "model": "gemma31",
+              "utilization": 98.82531460386238,
+              "requests": 98,
+              "cachedTokens": 65600,
+              "peakMemoryGB": 70.801513671875
+            },
+            {
+              "id": "n2-gpu1",
+              "node": 2,
+              "model": "gemma26",
+              "utilization": 97.99662595958719,
+              "requests": 196,
+              "cachedTokens": 209600,
+              "peakMemoryGB": 64.87939453125
+            },
+            {
+              "id": "n2-gpu2",
+              "node": 2,
+              "model": "gemma31",
+              "utilization": 98.7717197749217,
+              "requests": 103,
+              "cachedTokens": 84800,
+              "peakMemoryGB": 70.2808837890625
+            }
+          ],
+          "series": [
+            {
+              "time": 0,
+              "arrivals": 0,
+              "completed": 0,
+              "utilization": 0,
+              "queue": 0
+            },
+            {
+              "time": 5,
+              "arrivals": 18,
+              "completed": 2,
+              "utilization": 91.0607906944541,
+              "queue": 0
+            },
+            {
+              "time": 10,
+              "arrivals": 34,
+              "completed": 8,
+              "utilization": 99.91239659645892,
+              "queue": 0
+            },
+            {
+              "time": 15,
+              "arrivals": 24,
+              "completed": 24,
+              "utilization": 99.78422586886036,
+              "queue": 2
+            },
+            {
+              "time": 20,
+              "arrivals": 20,
+              "completed": 32,
+              "utilization": 99.41193209854917,
+              "queue": 0
+            },
+            {
+              "time": 25,
+              "arrivals": 28,
+              "completed": 18,
+              "utilization": 99.82377576618319,
+              "queue": 1
+            },
+            {
+              "time": 30,
+              "arrivals": 30,
+              "completed": 28,
+              "utilization": 99.7718395900381,
+              "queue": 0
+            },
+            {
+              "time": 35,
+              "arrivals": 21,
+              "completed": 31,
+              "utilization": 99.55975971312176,
+              "queue": 0
+            },
+            {
+              "time": 40,
+              "arrivals": 30,
+              "completed": 25,
+              "utilization": 99.68823455397508,
+              "queue": 0
+            },
+            {
+              "time": 45,
+              "arrivals": 23,
+              "completed": 35,
+              "utilization": 99.40651952641191,
+              "queue": 0
+            },
+            {
+              "time": 50,
+              "arrivals": 23,
+              "completed": 16,
+              "utilization": 99.74681817998669,
+              "queue": 0
+            },
+            {
+              "time": 55,
+              "arrivals": 21,
+              "completed": 26,
+              "utilization": 99.58800674481422,
+              "queue": 0
+            },
+            {
+              "time": 60,
+              "arrivals": 23,
+              "completed": 27,
+              "utilization": 99.43833183913644,
+              "queue": 0
+            },
+            {
+              "time": 65,
+              "arrivals": 21,
+              "completed": 21,
+              "utilization": 99.58481875431133,
+              "queue": 0
+            },
+            {
+              "time": 70,
+              "arrivals": 33,
+              "completed": 21,
+              "utilization": 99.7525754063508,
+              "queue": 0
+            },
+            {
+              "time": 75,
+              "arrivals": 16,
+              "completed": 30,
+              "utilization": 99.41524465446072,
+              "queue": 0
+            },
+            {
+              "time": 81,
+              "arrivals": 30,
+              "completed": 17,
+              "utilization": 99.63624888587785,
+              "queue": 0
+            },
+            {
+              "time": 86,
+              "arrivals": 26,
+              "completed": 19,
+              "utilization": 99.81522580676881,
+              "queue": 0
+            },
+            {
+              "time": 91,
+              "arrivals": 21,
+              "completed": 42,
+              "utilization": 99.3895102594245,
+              "queue": 0
+            },
+            {
+              "time": 96,
+              "arrivals": 32,
+              "completed": 19,
+              "utilization": 99.81904207826452,
+              "queue": 0
+            },
+            {
+              "time": 101,
+              "arrivals": 33,
+              "completed": 23,
+              "utilization": 99.78022489062147,
+              "queue": 0
+            },
+            {
+              "time": 106,
+              "arrivals": 21,
+              "completed": 34,
+              "utilization": 99.49170259290973,
+              "queue": 0
+            },
+            {
+              "time": 111,
+              "arrivals": 19,
+              "completed": 31,
+              "utilization": 97.57656123556553,
+              "queue": 0
+            },
+            {
+              "time": 116,
+              "arrivals": 32,
+              "completed": 12,
+              "utilization": 99.89364657182529,
+              "queue": 0
+            },
+            {
+              "time": 121,
+              "arrivals": 22,
+              "completed": 30,
+              "utilization": 99.59303196831006,
+              "queue": 0
+            }
+          ]
+        }
+      },
+      {
+        "config": {
+          "id": "balanced",
+          "name": "Cache-aware · balanced",
+          "nodes": 3,
+          "gpusPerNode": 2,
+          "concurrency": 16,
+          "batchTokens": 4096,
+          "prefillShare": 0.35,
+          "cache": true,
+          "routing": "prefix-affinity",
+          "memoryFraction": 0.9
+        },
+        "rationale": "Keep the model fixed. Combine prefix-affinity routing with a larger admission limit and more decode headroom.",
+        "result": {
+          "config": {
+            "id": "balanced",
+            "name": "Cache-aware · balanced",
+            "nodes": 3,
+            "gpusPerNode": 2,
+            "concurrency": 16,
+            "batchTokens": 4096,
+            "prefillShare": 0.35,
+            "cache": true,
+            "routing": "prefix-affinity",
+            "memoryFraction": 0.9
+          },
+          "traceHash": "e5927fb7",
+          "count": 601,
+          "completed": 601,
+          "failed": 0,
+          "compliant": 310,
+          "p95ttft": 7.587126838042636,
+          "p95itl": 36.1386138613864,
+          "p95e2e": 12.742809757980453,
+          "cacheHit": 32.65809958533447,
+          "utilization": 98.26560832093473,
+          "outputTokens": 99943,
+          "throughput": 799.2243102759213,
+          "cost": 0.6252499999999751,
+          "hourlyCost": 18,
+          "costPerMillion": 12.252836622312316,
+          "elapsed": 125.04999999999504,
+          "feasible": false,
+          "reasons": [
+            "p95 first token 7.59s exceeds 2.0s",
+            "Fewer than 95% of requests met both latency targets"
+          ],
+          "workers": [
+            {
+              "id": "n1-gpu1",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 98.71722125446664,
+              "requests": 128,
+              "cachedTokens": 107200,
+              "peakMemoryGB": 63.925048828125
+            },
+            {
+              "id": "n1-gpu2",
+              "node": 1,
+              "model": "gemma31",
+              "utilization": 98.38905706818551,
+              "requests": 67,
+              "cachedTokens": 57600,
+              "peakMemoryGB": 69.0789794921875
+            },
+            {
+              "id": "n2-gpu1",
+              "node": 2,
+              "model": "gemma26",
+              "utilization": 97.96304954430735,
+              "requests": 139,
+              "cachedTokens": 147200,
+              "peakMemoryGB": 64.1297607421875
+            },
+            {
+              "id": "n2-gpu2",
+              "node": 2,
+              "model": "gemma31",
+              "utilization": 98.86958790687304,
+              "requests": 67,
+              "cachedTokens": 46400,
+              "peakMemoryGB": 68.9522705078125
+            },
+            {
+              "id": "n3-gpu1",
+              "node": 3,
+              "model": "gemma26",
+              "utilization": 98.59378538960739,
+              "requests": 133,
+              "cachedTokens": 134400,
+              "peakMemoryGB": 63.642333984375
+            },
+            {
+              "id": "n3-gpu2",
+              "node": 3,
+              "model": "gemma31",
+              "utilization": 97.06094876216831,
+              "requests": 67,
+              "cachedTokens": 44800,
+              "peakMemoryGB": 68.8243408203125
+            }
+          ],
+          "series": [
+            {
+              "time": 0,
+              "arrivals": 0,
+              "completed": 0,
+              "utilization": 0,
+              "queue": 0
+            },
+            {
+              "time": 5,
+              "arrivals": 18,
+              "completed": 3,
+              "utilization": 86.1714735576122,
+              "queue": 0
+            },
+            {
+              "time": 10,
+              "arrivals": 34,
+              "completed": 12,
+              "utilization": 99.7919122852454,
+              "queue": 0
+            },
+            {
+              "time": 15,
+              "arrivals": 24,
+              "completed": 20,
+              "utilization": 99.72878408628407,
+              "queue": 0
+            },
+            {
+              "time": 20,
+              "arrivals": 20,
+              "completed": 25,
+              "utilization": 99.50947755947747,
+              "queue": 0
+            },
+            {
+              "time": 25,
+              "arrivals": 28,
+              "completed": 18,
+              "utilization": 99.6154018666519,
+              "queue": 0
+            },
+            {
+              "time": 30,
+              "arrivals": 30,
+              "completed": 21,
+              "utilization": 99.62579847621508,
+              "queue": 0
+            },
+            {
+              "time": 35,
+              "arrivals": 21,
+              "completed": 23,
+              "utilization": 99.7364530103818,
+              "queue": 0
+            },
+            {
+              "time": 40,
+              "arrivals": 30,
+              "completed": 24,
+              "utilization": 99.59460433222822,
+              "queue": 0
+            },
+            {
+              "time": 45,
+              "arrivals": 23,
+              "completed": 28,
+              "utilization": 99.69563949679493,
+              "queue": 0
+            },
+            {
+              "time": 50,
+              "arrivals": 23,
+              "completed": 34,
+              "utilization": 99.64316004250021,
+              "queue": 0
+            },
+            {
+              "time": 55,
+              "arrivals": 21,
+              "completed": 33,
+              "utilization": 99.5488463651008,
+              "queue": 0
+            },
+            {
+              "time": 60,
+              "arrivals": 23,
+              "completed": 28,
+              "utilization": 99.50785090413818,
+              "queue": 0
+            },
+            {
+              "time": 65,
+              "arrivals": 21,
+              "completed": 23,
+              "utilization": 99.55412908812268,
+              "queue": 0
+            },
+            {
+              "time": 70,
+              "arrivals": 33,
+              "completed": 23,
+              "utilization": 99.56162152540048,
+              "queue": 0
+            },
+            {
+              "time": 75,
+              "arrivals": 16,
+              "completed": 26,
+              "utilization": 99.6366406573505,
+              "queue": 0
+            },
+            {
+              "time": 81,
+              "arrivals": 30,
+              "completed": 21,
+              "utilization": 99.56627863641046,
+              "queue": 0
+            },
+            {
+              "time": 86,
+              "arrivals": 26,
+              "completed": 18,
+              "utilization": 99.79166442285286,
+              "queue": 0
+            },
+            {
+              "time": 91,
+              "arrivals": 21,
+              "completed": 36,
+              "utilization": 99.5895794570302,
+              "queue": 0
+            },
+            {
+              "time": 96,
+              "arrivals": 32,
+              "completed": 25,
+              "utilization": 99.55858219674269,
+              "queue": 0
+            },
+            {
+              "time": 101,
+              "arrivals": 33,
+              "completed": 25,
+              "utilization": 99.72501253025192,
+              "queue": 0
+            },
+            {
+              "time": 106,
+              "arrivals": 21,
+              "completed": 30,
+              "utilization": 99.62731180016692,
+              "queue": 0
+            },
+            {
+              "time": 111,
+              "arrivals": 19,
+              "completed": 30,
+              "utilization": 95.87012567557139,
+              "queue": 0
+            },
+            {
+              "time": 116,
+              "arrivals": 32,
+              "completed": 20,
+              "utilization": 99.59202385440005,
+              "queue": 0
+            },
+            {
+              "time": 121,
+              "arrivals": 22,
+              "completed": 26,
+              "utilization": 99.67083256860518,
+              "queue": 0
+            }
+          ]
+        }
+      },
+      {
+        "config": {
+          "id": "prefill",
+          "name": "Prefill throughput",
+          "nodes": 3,
+          "gpusPerNode": 2,
+          "concurrency": 16,
+          "batchTokens": 4096,
+          "prefillShare": 0.8,
+          "cache": true,
+          "routing": "prefix-affinity",
+          "memoryFraction": 0.9
+        },
+        "rationale": "Give prefill 80% of GPU time when decoding is active; test the tradeoff against token latency.",
+        "result": {
+          "config": {
+            "id": "prefill",
+            "name": "Prefill throughput",
+            "nodes": 3,
+            "gpusPerNode": 2,
+            "concurrency": 16,
+            "batchTokens": 4096,
+            "prefillShare": 0.8,
+            "cache": true,
+            "routing": "prefix-affinity",
+            "memoryFraction": 0.9
+          },
+          "traceHash": "e5927fb7",
+          "count": 601,
+          "completed": 601,
+          "failed": 0,
+          "compliant": 601,
+          "p95ttft": 1.0810114036050322,
+          "p95itl": 36.44067796610221,
+          "p95e2e": 8.200521316012436,
+          "cacheHit": 34.01885373472341,
+          "utilization": 97.004412280717,
+          "outputTokens": 99943,
+          "throughput": 804.3702213279996,
+          "cost": 0.6212499999999753,
+          "hourlyCost": 18,
+          "costPerMillion": 6.216043144592171,
+          "elapsed": 124.24999999999508,
+          "feasible": true,
+          "reasons": [],
+          "workers": [
+            {
+              "id": "n1-gpu1",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 97.98569935765128,
+              "requests": 140,
+              "cachedTokens": 139200,
+              "peakMemoryGB": 62.5242919921875
+            },
+            {
+              "id": "n1-gpu2",
+              "node": 1,
+              "model": "gemma31",
+              "utilization": 97.00566842055802,
+              "requests": 72,
+              "cachedTokens": 62400,
+              "peakMemoryGB": 68.6783447265625
+            },
+            {
+              "id": "n2-gpu1",
+              "node": 2,
+              "model": "gemma26",
+              "utilization": 98.76579874853529,
+              "requests": 135,
+              "cachedTokens": 134400,
+              "peakMemoryGB": 61.946044921875
+            },
+            {
+              "id": "n2-gpu2",
+              "node": 2,
+              "model": "gemma31",
+              "utilization": 94.30300205793192,
+              "requests": 66,
+              "cachedTokens": 43200,
+              "peakMemoryGB": 68.863525390625
+            },
+            {
+              "id": "n3-gpu1",
+              "node": 3,
+              "model": "gemma26",
+              "utilization": 98.54009557623256,
+              "requests": 125,
+              "cachedTokens": 124800,
+              "peakMemoryGB": 62.0147705078125
+            },
+            {
+              "id": "n3-gpu2",
+              "node": 3,
+              "model": "gemma31",
+              "utilization": 95.42620952339288,
+              "requests": 63,
+              "cachedTokens": 56000,
+              "peakMemoryGB": 68.70947265625
+            }
+          ],
+          "series": [
+            {
+              "time": 0,
+              "arrivals": 0,
+              "completed": 0,
+              "utilization": 0,
+              "queue": 0
+            },
+            {
+              "time": 5,
+              "arrivals": 18,
+              "completed": 3,
+              "utilization": 86.23109875090077,
+              "queue": 0
+            },
+            {
+              "time": 10,
+              "arrivals": 34,
+              "completed": 13,
+              "utilization": 99.86737524820838,
+              "queue": 0
+            },
+            {
+              "time": 15,
+              "arrivals": 24,
+              "completed": 36,
+              "utilization": 99.4925207816874,
+              "queue": 0
+            },
+            {
+              "time": 20,
+              "arrivals": 20,
+              "completed": 26,
+              "utilization": 96.24831324231319,
+              "queue": 0
+            },
+            {
+              "time": 25,
+              "arrivals": 28,
+              "completed": 19,
+              "utilization": 99.4390035458369,
+              "queue": 0
+            },
+            {
+              "time": 30,
+              "arrivals": 30,
+              "completed": 25,
+              "utilization": 98.99404210604209,
+              "queue": 0
+            },
+            {
+              "time": 35,
+              "arrivals": 21,
+              "completed": 30,
+              "utilization": 97.07522050129451,
+              "queue": 0
+            },
+            {
+              "time": 40,
+              "arrivals": 30,
+              "completed": 19,
+              "utilization": 99.55536625091122,
+              "queue": 0
+            },
+            {
+              "time": 45,
+              "arrivals": 23,
+              "completed": 35,
+              "utilization": 99.30955477721163,
+              "queue": 0
+            },
+            {
+              "time": 50,
+              "arrivals": 23,
+              "completed": 18,
+              "utilization": 99.63645428645452,
+              "queue": 0
+            },
+            {
+              "time": 55,
+              "arrivals": 21,
+              "completed": 26,
+              "utilization": 99.56816694489982,
+              "queue": 0
+            },
+            {
+              "time": 60,
+              "arrivals": 23,
+              "completed": 25,
+              "utilization": 92.05359488940375,
+              "queue": 0
+            },
+            {
+              "time": 65,
+              "arrivals": 21,
+              "completed": 25,
+              "utilization": 94.43291534281659,
+              "queue": 0
+            },
+            {
+              "time": 70,
+              "arrivals": 33,
+              "completed": 18,
+              "utilization": 99.65601931988078,
+              "queue": 0
+            },
+            {
+              "time": 75,
+              "arrivals": 16,
+              "completed": 28,
+              "utilization": 99.25737591463675,
+              "queue": 0
+            },
+            {
+              "time": 81,
+              "arrivals": 30,
+              "completed": 17,
+              "utilization": 99.71233362652528,
+              "queue": 0
+            },
+            {
+              "time": 86,
+              "arrivals": 26,
+              "completed": 29,
+              "utilization": 99.61392711310233,
+              "queue": 0
+            },
+            {
+              "time": 91,
+              "arrivals": 21,
+              "completed": 32,
+              "utilization": 96.28754281411084,
+              "queue": 0
+            },
+            {
+              "time": 96,
+              "arrivals": 32,
+              "completed": 22,
+              "utilization": 99.52737413545995,
+              "queue": 0
+            },
+            {
+              "time": 101,
+              "arrivals": 33,
+              "completed": 26,
+              "utilization": 99.60489907965223,
+              "queue": 0
+            },
+            {
+              "time": 106,
+              "arrivals": 21,
+              "completed": 40,
+              "utilization": 99.34598628971573,
+              "queue": 0
+            },
+            {
+              "time": 111,
+              "arrivals": 19,
+              "completed": 17,
+              "utilization": 92.29405786732546,
+              "queue": 0
+            },
+            {
+              "time": 116,
+              "arrivals": 32,
+              "completed": 20,
+              "utilization": 99.7852308674091,
+              "queue": 0
+            },
+            {
+              "time": 121,
+              "arrivals": 22,
+              "completed": 33,
+              "utilization": 99.40097118991545,
+              "queue": 0
+            }
+          ]
+        }
+      },
+      {
+        "config": {
+          "id": "decode",
+          "name": "Decode priority",
+          "nodes": 3,
+          "gpusPerNode": 2,
+          "concurrency": 16,
+          "batchTokens": 4096,
+          "prefillShare": 0.2,
+          "cache": true,
+          "routing": "prefix-affinity",
+          "memoryFraction": 0.9
+        },
+        "rationale": "Reserve 80% of shared GPU time for generation. Useful only if the first-token target still passes.",
+        "result": {
+          "config": {
+            "id": "decode",
+            "name": "Decode priority",
+            "nodes": 3,
+            "gpusPerNode": 2,
+            "concurrency": 16,
+            "batchTokens": 4096,
+            "prefillShare": 0.2,
+            "cache": true,
+            "routing": "prefix-affinity",
+            "memoryFraction": 0.9
+          },
+          "traceHash": "e5927fb7",
+          "count": 601,
+          "completed": 580,
+          "failed": 21,
+          "compliant": 12,
+          "p95ttft": 58.9577216068886,
+          "p95itl": 31.70103092783325,
+          "p95e2e": 62.42771673152866,
+          "cacheHit": 32.074919235596354,
+          "utilization": 88.81931009833566,
+          "outputTokens": 96426,
+          "throughput": 535.6999999999802,
+          "cost": 0.9000000000000333,
+          "hourlyCost": 18,
+          "costPerMillion": 530.9734513274533,
+          "elapsed": 180.00000000000668,
+          "feasible": false,
+          "reasons": [
+            "21 requests failed or exceeded the drain window",
+            "p95 first token 58.96s exceeds 2.0s",
+            "Fewer than 95% of requests met both latency targets"
+          ],
+          "workers": [
+            {
+              "id": "n1-gpu1",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 99.26448514448487,
+              "requests": 135,
+              "cachedTokens": 128000,
+              "peakMemoryGB": 64.7667236328125
+            },
+            {
+              "id": "n1-gpu2",
+              "node": 1,
+              "model": "gemma31",
+              "utilization": 78.27799271715516,
+              "requests": 68,
+              "cachedTokens": 52800,
+              "peakMemoryGB": 71.4935302734375
+            },
+            {
+              "id": "n2-gpu1",
+              "node": 2,
+              "model": "gemma26",
+              "utilization": 99.29484589484564,
+              "requests": 130,
+              "cachedTokens": 118400,
+              "peakMemoryGB": 65.2391357421875
+            },
+            {
+              "id": "n2-gpu2",
+              "node": 2,
+              "model": "gemma31",
+              "utilization": 76.79232121787233,
+              "requests": 66,
+              "cachedTokens": 49600,
+              "peakMemoryGB": 71.475830078125
+            },
+            {
+              "id": "n3-gpu1",
+              "node": 3,
+              "model": "gemma26",
+              "utilization": 98.92269378769352,
+              "requests": 135,
+              "cachedTokens": 128000,
+              "peakMemoryGB": 64.972412109375
+            },
+            {
+              "id": "n3-gpu2",
+              "node": 3,
+              "model": "gemma31",
+              "utilization": 80.36352182796249,
+              "requests": 67,
+              "cachedTokens": 51200,
+              "peakMemoryGB": 71.41845703125
+            }
+          ],
+          "series": [
+            {
+              "time": 0,
+              "arrivals": 0,
+              "completed": 0,
+              "utilization": 0,
+              "queue": 0
+            },
+            {
+              "time": 5,
+              "arrivals": 18,
+              "completed": 4,
+              "utilization": 85.85104920748486,
+              "queue": 0
+            },
+            {
+              "time": 10,
+              "arrivals": 34,
+              "completed": 9,
+              "utilization": 99.58824397824377,
+              "queue": 0
+            },
+            {
+              "time": 15,
+              "arrivals": 24,
+              "completed": 10,
+              "utilization": 99.66653716653705,
+              "queue": 0
+            },
+            {
+              "time": 20,
+              "arrivals": 20,
+              "completed": 18,
+              "utilization": 99.42985409652063,
+              "queue": 0
+            },
+            {
+              "time": 25,
+              "arrivals": 28,
+              "completed": 12,
+              "utilization": 99.79690494690497,
+              "queue": 10
+            },
+            {
+              "time": 30,
+              "arrivals": 30,
+              "completed": 16,
+              "utilization": 99.53854355521023,
+              "queue": 20
+            },
+            {
+              "time": 35,
+              "arrivals": 21,
+              "completed": 13,
+              "utilization": 99.74923047860459,
+              "queue": 25
+            },
+            {
+              "time": 40,
+              "arrivals": 30,
+              "completed": 15,
+              "utilization": 99.7020813192431,
+              "queue": 35
+            },
+            {
+              "time": 45,
+              "arrivals": 23,
+              "completed": 19,
+              "utilization": 99.56383416119391,
+              "queue": 35
+            },
+            {
+              "time": 50,
+              "arrivals": 23,
+              "completed": 18,
+              "utilization": 99.55525552555258,
+              "queue": 42
+            },
+            {
+              "time": 55,
+              "arrivals": 21,
+              "completed": 13,
+              "utilization": 99.6790790190131,
+              "queue": 45
+            },
+            {
+              "time": 60,
+              "arrivals": 23,
+              "completed": 17,
+              "utilization": 99.62499583291687,
+              "queue": 55
+            },
+            {
+              "time": 65,
+              "arrivals": 21,
+              "completed": 17,
+              "utilization": 99.7056372303896,
+              "queue": 58
+            },
+            {
+              "time": 70,
+              "arrivals": 33,
+              "completed": 16,
+              "utilization": 99.64488671089362,
+              "queue": 72
+            },
+            {
+              "time": 75,
+              "arrivals": 16,
+              "completed": 21,
+              "utilization": 99.51797401962426,
+              "queue": 68
+            },
+            {
+              "time": 81,
+              "arrivals": 30,
+              "completed": 21,
+              "utilization": 99.59335933593381,
+              "queue": 70
+            },
+            {
+              "time": 86,
+              "arrivals": 26,
+              "completed": 13,
+              "utilization": 99.72550588392188,
+              "queue": 83
+            },
+            {
+              "time": 91,
+              "arrivals": 21,
+              "completed": 21,
+              "utilization": 99.71666849224626,
+              "queue": 85
+            },
+            {
+              "time": 96,
+              "arrivals": 32,
+              "completed": 23,
+              "utilization": 99.55874476336537,
+              "queue": 92
+            },
+            {
+              "time": 101,
+              "arrivals": 33,
+              "completed": 19,
+              "utilization": 99.55830027447199,
+              "queue": 103
+            },
+            {
+              "time": 106,
+              "arrivals": 21,
+              "completed": 24,
+              "utilization": 99.70867086708694,
+              "queue": 104
+            },
+            {
+              "time": 111,
+              "arrivals": 19,
+              "completed": 18,
+              "utilization": 99.74411885632995,
+              "queue": 109
+            },
+            {
+              "time": 116,
+              "arrivals": 32,
+              "completed": 24,
+              "utilization": 99.50649191903337,
+              "queue": 112
+            },
+            {
+              "time": 121,
+              "arrivals": 22,
+              "completed": 23,
+              "utilization": 99.5800135569111,
+              "queue": 112
+            },
+            {
+              "time": 126,
+              "arrivals": 0,
+              "completed": 21,
+              "utilization": 99.57012367903509,
+              "queue": 101
+            },
+            {
+              "time": 131,
+              "arrivals": 0,
+              "completed": 17,
+              "utilization": 99.63730639729945,
+              "queue": 91
+            },
+            {
+              "time": 136,
+              "arrivals": 0,
+              "completed": 19,
+              "utilization": 99.6639281705947,
+              "queue": 78
+            },
+            {
+              "time": 141,
+              "arrivals": 0,
+              "completed": 22,
+              "utilization": 94.7353781403771,
+              "queue": 65
+            },
+            {
+              "time": 146,
+              "arrivals": 0,
+              "completed": 15,
+              "utilization": 68.34243793243711,
+              "queue": 54
+            },
+            {
+              "time": 151,
+              "arrivals": 0,
+              "completed": 15,
+              "utilization": 50.637912457912314,
+              "queue": 40
+            },
+            {
+              "time": 156,
+              "arrivals": 0,
+              "completed": 10,
+              "utilization": 49.88282828282804,
+              "queue": 30
+            },
+            {
+              "time": 161,
+              "arrivals": 0,
+              "completed": 12,
+              "utilization": 49.859595959594984,
+              "queue": 19
+            },
+            {
+              "time": 166,
+              "arrivals": 0,
+              "completed": 10,
+              "utilization": 49.79494949494935,
+              "queue": 11
+            },
+            {
+              "time": 171,
+              "arrivals": 0,
+              "completed": 14,
+              "utilization": 49.73636363636318,
+              "queue": 4
+            },
+            {
+              "time": 176,
+              "arrivals": 0,
+              "completed": 11,
+              "utilization": 49.79090909090895,
+              "queue": 0
+            }
+          ]
+        }
+      },
+      {
+        "config": {
+          "id": "no-cache",
+          "name": "Cache-off control",
+          "nodes": 3,
+          "gpusPerNode": 2,
+          "concurrency": 8,
+          "batchTokens": 4096,
+          "prefillShare": 0.65,
+          "cache": false,
+          "routing": "round-robin",
+          "memoryFraction": 0.9
+        },
+        "rationale": "Diagnostic control: measure how much repeated-prefix reuse contributes.",
+        "result": {
+          "config": {
+            "id": "no-cache",
+            "name": "Cache-off control",
+            "nodes": 3,
+            "gpusPerNode": 2,
+            "concurrency": 8,
+            "batchTokens": 4096,
+            "prefillShare": 0.65,
+            "cache": false,
+            "routing": "round-robin",
+            "memoryFraction": 0.9
+          },
+          "traceHash": "e5927fb7",
+          "count": 601,
+          "completed": 601,
+          "failed": 0,
+          "compliant": 373,
+          "p95ttft": 4.625616207615792,
+          "p95itl": 45.8904109589015,
+          "p95e2e": 11.772798885632128,
+          "cacheHit": 0,
+          "utilization": 93.63718887094223,
+          "outputTokens": 99943,
+          "throughput": 769.384141647449,
+          "cost": 0.6494999999999764,
+          "hourlyCost": 18,
+          "costPerMillion": 10.385353373840365,
+          "elapsed": 129.8999999999953,
+          "feasible": false,
+          "reasons": [
+            "p95 first token 4.63s exceeds 2.0s",
+            "Fewer than 95% of requests met both latency targets"
+          ],
+          "workers": [
+            {
+              "id": "n1-gpu1",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 94.15006269391355,
+              "requests": 132,
+              "cachedTokens": 0,
+              "peakMemoryGB": 59.25341796875
+            },
+            {
+              "id": "n1-gpu2",
+              "node": 1,
+              "model": "gemma31",
+              "utilization": 94.49349961474651,
+              "requests": 69,
+              "cachedTokens": 0,
+              "peakMemoryGB": 66.9957275390625
+            },
+            {
+              "id": "n2-gpu1",
+              "node": 2,
+              "model": "gemma26",
+              "utilization": 98.4453206691945,
+              "requests": 133,
+              "cachedTokens": 0,
+              "peakMemoryGB": 59.2943115234375
+            },
+            {
+              "id": "n2-gpu2",
+              "node": 2,
+              "model": "gemma31",
+              "utilization": 85.25221955360522,
+              "requests": 67,
+              "cachedTokens": 0,
+              "peakMemoryGB": 67.23193359375
+            },
+            {
+              "id": "n3-gpu1",
+              "node": 3,
+              "model": "gemma26",
+              "utilization": 96.18307602072018,
+              "requests": 135,
+              "cachedTokens": 0,
+              "peakMemoryGB": 59.2806396484375
+            },
+            {
+              "id": "n3-gpu2",
+              "node": 3,
+              "model": "gemma31",
+              "utilization": 93.29895467347336,
+              "requests": 65,
+              "cachedTokens": 0,
+              "peakMemoryGB": 66.978515625
+            }
+          ],
+          "series": [
+            {
+              "time": 0,
+              "arrivals": 0,
+              "completed": 0,
+              "utilization": 0,
+              "queue": 0
+            },
+            {
+              "time": 5,
+              "arrivals": 18,
+              "completed": 3,
+              "utilization": 78.63398562078436,
+              "queue": 0
+            },
+            {
+              "time": 10,
+              "arrivals": 34,
+              "completed": 9,
+              "utilization": 99.93130523797151,
+              "queue": 5
+            },
+            {
+              "time": 15,
+              "arrivals": 24,
+              "completed": 26,
+              "utilization": 97.34627428127423,
+              "queue": 6
+            },
+            {
+              "time": 20,
+              "arrivals": 20,
+              "completed": 30,
+              "utilization": 92.97263754147077,
+              "queue": 2
+            },
+            {
+              "time": 25,
+              "arrivals": 28,
+              "completed": 17,
+              "utilization": 99.11942074129561,
+              "queue": 8
+            },
+            {
+              "time": 30,
+              "arrivals": 30,
+              "completed": 21,
+              "utilization": 99.82887111037115,
+              "queue": 9
+            },
+            {
+              "time": 35,
+              "arrivals": 21,
+              "completed": 25,
+              "utilization": 99.7562883043517,
+              "queue": 7
+            },
+            {
+              "time": 40,
+              "arrivals": 30,
+              "completed": 27,
+              "utilization": 99.65019044944799,
+              "queue": 6
+            },
+            {
+              "time": 45,
+              "arrivals": 23,
+              "completed": 28,
+              "utilization": 99.75043577923122,
+              "queue": 3
+            },
+            {
+              "time": 50,
+              "arrivals": 23,
+              "completed": 25,
+              "utilization": 99.7579693103624,
+              "queue": 2
+            },
+            {
+              "time": 55,
+              "arrivals": 21,
+              "completed": 27,
+              "utilization": 99.72457317618233,
+              "queue": 1
+            },
+            {
+              "time": 60,
+              "arrivals": 23,
+              "completed": 27,
+              "utilization": 96.22547274568775,
+              "queue": 4
+            },
+            {
+              "time": 65,
+              "arrivals": 21,
+              "completed": 24,
+              "utilization": 94.3575363519258,
+              "queue": 2
+            },
+            {
+              "time": 70,
+              "arrivals": 33,
+              "completed": 16,
+              "utilization": 96.77902625885297,
+              "queue": 7
+            },
+            {
+              "time": 75,
+              "arrivals": 16,
+              "completed": 28,
+              "utilization": 99.6261518871668,
+              "queue": 3
+            },
+            {
+              "time": 81,
+              "arrivals": 30,
+              "completed": 23,
+              "utilization": 95.73503433066138,
+              "queue": 4
+            },
+            {
+              "time": 86,
+              "arrivals": 26,
+              "completed": 19,
+              "utilization": 99.81372411508563,
+              "queue": 4
+            },
+            {
+              "time": 91,
+              "arrivals": 21,
+              "completed": 32,
+              "utilization": 99.60528598647429,
+              "queue": 3
+            },
+            {
+              "time": 96,
+              "arrivals": 32,
+              "completed": 25,
+              "utilization": 99.76168284563506,
+              "queue": 4
+            },
+            {
+              "time": 101,
+              "arrivals": 33,
+              "completed": 26,
+              "utilization": 99.73955487734388,
+              "queue": 7
+            },
+            {
+              "time": 106,
+              "arrivals": 21,
+              "completed": 31,
+              "utilization": 91.68742438193792,
+              "queue": 7
+            },
+            {
+              "time": 111,
+              "arrivals": 19,
+              "completed": 27,
+              "utilization": 82.36569277806855,
+              "queue": 6
+            },
+            {
+              "time": 116,
+              "arrivals": 32,
+              "completed": 18,
+              "utilization": 96.33166748146192,
+              "queue": 8
+            },
+            {
+              "time": 121,
+              "arrivals": 22,
+              "completed": 25,
+              "utilization": 99.7954852963925,
+              "queue": 6
+            },
+            {
+              "time": 126,
+              "arrivals": 0,
+              "completed": 32,
+              "utilization": 78.13870348573387,
+              "queue": 0
+            }
+          ]
+        }
+      },
+      {
+        "config": {
+          "id": "aggressive",
+          "name": "Consolidate to one node",
+          "nodes": 1,
+          "gpusPerNode": 2,
+          "concurrency": 16,
+          "batchTokens": 4096,
+          "prefillShare": 0.35,
+          "cache": true,
+          "routing": "prefix-affinity",
+          "memoryFraction": 0.9
+        },
+        "rationale": "Challenge the lower capacity bound. Reject if either model violates the service targets.",
+        "result": {
+          "config": {
+            "id": "aggressive",
+            "name": "Consolidate to one node",
+            "nodes": 1,
+            "gpusPerNode": 2,
+            "concurrency": 16,
+            "batchTokens": 4096,
+            "prefillShare": 0.35,
+            "cache": true,
+            "routing": "prefix-affinity",
+            "memoryFraction": 0.9
+          },
+          "traceHash": "e5927fb7",
+          "count": 601,
+          "completed": 371,
+          "failed": 230,
+          "compliant": 4,
+          "p95ttft": 97.26763014089207,
+          "p95itl": 39.06250000000888,
+          "p95e2e": 101.20602058822806,
+          "cacheHit": 22.258050015004745,
+          "utilization": 99.56600879530252,
+          "outputTokens": 62179,
+          "throughput": 345.4388888888761,
+          "cost": 0.3000000000000111,
+          "hourlyCost": 6,
+          "costPerMillion": 532.8596802842115,
+          "elapsed": 180.00000000000668,
+          "feasible": false,
+          "reasons": [
+            "230 requests failed or exceeded the drain window",
+            "p95 first token 97.27s exceeds 2.0s",
+            "Fewer than 95% of requests met both latency targets"
+          ],
+          "workers": [
+            {
+              "id": "n1-gpu1",
+              "node": 1,
+              "model": "gemma26",
+              "utilization": 99.46775126108437,
+              "requests": 400,
+              "cachedTokens": 265600,
+              "peakMemoryGB": 65.3118896484375
+            },
+            {
+              "id": "n1-gpu2",
+              "node": 1,
+              "model": "gemma31",
+              "utilization": 99.66426632952063,
+              "requests": 201,
+              "cachedTokens": 100800,
+              "peakMemoryGB": 71.9993896484375
+            }
+          ],
+          "series": [
+            {
+              "time": 0,
+              "arrivals": 0,
+              "completed": 0,
+              "utilization": 0,
+              "queue": 0
+            },
+            {
+              "time": 5,
+              "arrivals": 18,
+              "completed": 1,
+              "utilization": 94.87998799879989,
+              "queue": 0
+            },
+            {
+              "time": 10,
+              "arrivals": 34,
+              "completed": 5,
+              "utilization": 99.78169191919184,
+              "queue": 15
+            },
+            {
+              "time": 15,
+              "arrivals": 24,
+              "completed": 7,
+              "utilization": 99.79224326599322,
+              "queue": 32
+            },
+            {
+              "time": 20,
+              "arrivals": 20,
+              "completed": 7,
+              "utilization": 99.8991035353535,
+              "queue": 44
+            },
+            {
+              "time": 25,
+              "arrivals": 28,
+              "completed": 7,
+              "utilization": 99.81571127946118,
+              "queue": 65
+            },
+            {
+              "time": 30,
+              "arrivals": 30,
+              "completed": 9,
+              "utilization": 99.65542628667627,
+              "queue": 86
+            },
+            {
+              "time": 35,
+              "arrivals": 21,
+              "completed": 8,
+              "utilization": 99.80501800180079,
+              "queue": 99
+            },
+            {
+              "time": 40,
+              "arrivals": 30,
+              "completed": 7,
+              "utilization": 99.74243674367455,
+              "queue": 122
+            },
+            {
+              "time": 45,
+              "arrivals": 23,
+              "completed": 11,
+              "utilization": 99.6646831349804,
+              "queue": 134
+            },
+            {
+              "time": 50,
+              "arrivals": 23,
+              "completed": 9,
+              "utilization": 99.75931164545042,
+              "queue": 148
+            },
+            {
+              "time": 55,
+              "arrivals": 21,
+              "completed": 13,
+              "utilization": 99.73559945280273,
+              "queue": 156
+            },
+            {
+              "time": 60,
+              "arrivals": 23,
+              "completed": 8,
+              "utilization": 99.78512583401208,
+              "queue": 171
+            },
+            {
+              "time": 65,
+              "arrivals": 21,
+              "completed": 13,
+              "utilization": 99.65270902090228,
+              "queue": 179
+            },
+            {
+              "time": 70,
+              "arrivals": 33,
+              "completed": 11,
+              "utilization": 99.76033466441913,
+              "queue": 201
+            },
+            {
+              "time": 75,
+              "arrivals": 16,
+              "completed": 12,
+              "utilization": 99.70603994923334,
+              "queue": 205
+            },
+            {
+              "time": 81,
+              "arrivals": 30,
+              "completed": 10,
+              "utilization": 99.71160270788998,
+              "queue": 225
+            },
+            {
+              "time": 86,
+              "arrivals": 26,
+              "completed": 16,
+              "utilization": 99.58082028440978,
+              "queue": 236
+            },
+            {
+              "time": 91,
+              "arrivals": 21,
+              "completed": 6,
+              "utilization": 99.83474240281195,
+              "queue": 250
+            },
+            {
+              "time": 96,
+              "arrivals": 32,
+              "completed": 11,
+              "utilization": 99.83854387422926,
+              "queue": 271
+            },
+            {
+              "time": 101,
+              "arrivals": 33,
+              "completed": 12,
+              "utilization": 99.69307317636542,
+              "queue": 292
+            },
+            {
+              "time": 106,
+              "arrivals": 21,
+              "completed": 10,
+              "utilization": 99.74469009088726,
+              "queue": 303
+            },
+            {
+              "time": 111,
+              "arrivals": 19,
+              "completed": 15,
+              "utilization": 99.69907853880645,
+              "queue": 307
+            },
+            {
+              "time": 116,
+              "arrivals": 32,
+              "completed": 16,
+              "utilization": 99.51185416160698,
+              "queue": 323
+            },
+            {
+              "time": 121,
+              "arrivals": 22,
+              "completed": 9,
+              "utilization": 99.72741024102429,
+              "queue": 336
+            },
+            {
+              "time": 126,
+              "arrivals": 0,
+              "completed": 10,
+              "utilization": 99.78561129922515,
+              "queue": 327
+            },
+            {
+              "time": 131,
+              "arrivals": 0,
+              "completed": 15,
+              "utilization": 99.71588769184993,
+              "queue": 312
+            },
+            {
+              "time": 136,
+              "arrivals": 0,
+              "completed": 11,
+              "utilization": 99.72987012986898,
+              "queue": 300
+            },
+            {
+              "time": 141,
+              "arrivals": 0,
+              "completed": 15,
+              "utilization": 99.62162487974874,
+              "queue": 285
+            },
+            {
+              "time": 146,
+              "arrivals": 0,
+              "completed": 8,
+              "utilization": 99.77564123376516,
+              "queue": 277
+            },
+            {
+              "time": 151,
+              "arrivals": 0,
+              "completed": 12,
+              "utilization": 99.61954244829153,
+              "queue": 265
+            },
+            {
+              "time": 156,
+              "arrivals": 0,
+              "completed": 9,
+              "utilization": 99.83900703463068,
+              "queue": 256
+            },
+            {
+              "time": 161,
+              "arrivals": 0,
+              "completed": 16,
+              "utilization": 99.72260361551952,
+              "queue": 240
+            },
+            {
+              "time": 166,
+              "arrivals": 0,
+              "completed": 12,
+              "utilization": 99.70496302308682,
+              "queue": 228
+            },
+            {
+              "time": 171,
+              "arrivals": 0,
+              "completed": 10,
+              "utilization": 99.7403285834526,
+              "queue": 218
+            },
+            {
+              "time": 176,
+              "arrivals": 0,
+              "completed": 12,
+              "utilization": 99.69282257094683,
+              "queue": 206
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
