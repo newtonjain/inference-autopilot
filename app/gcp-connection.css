@@ -1,0 +1,143 @@
+.gcp-connection {
+  margin: 22px 0;
+  overflow: hidden;
+}
+.gcp-connection h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.gcp-path {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+}
+.gcp-path article {
+  flex: 1;
+}
+.gcp-path article > b {
+  color: var(--primary);
+  font-size: 10px;
+  display: block;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+.gcp-path strong {
+  font-size: 13px;
+  display: block;
+  margin-bottom: 10px;
+}
+.gcp-path p {
+  font-size: 12px;
+}
+.gcp-path > svg {
+  flex-shrink: 0;
+  color: var(--muted-foreground);
+}
+.gcp-actions {
+  padding: 0 24px 24px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--primary);
+}
+.gcp-import {
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: var(--background);
+}
+.gcp-import h3 {
+  font-size: 14px;
+}
+.gcp-import p {
+  font-size: 12px;
+  max-width: 650px;
+  margin-top: 8px;
+}
+.gcp-import > div:last-child {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+.gcp-import button {
+  font-size: 12px;
+}
+.gcp-evidence {
+  padding: 0 24px 20px;
+  background: var(--background);
+}
+.gcp-evidence-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 11px;
+}
+.gcp-evidence-heading time {
+  color: var(--muted-foreground);
+}
+.gcp-evidence > p {
+  font-size: 11px;
+  margin: 15px 0;
+}
+.gcp-evidence .replica-matrix td > strong {
+  font-size: 14px;
+}
+.gcp-error {
+  color: light-dark(#a82739, #f6a0a9);
+  font-size: 12px;
+}
+.gcp-connection > p.gcp-error {
+  padding: 15px 24px;
+}
+.gcp-ready {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: light-dark(#237044, #68d6a5);
+}
+.gcp-hooks {
+  border-top: 1px solid var(--border);
+}
+.gcp-hooks summary {
+  padding: 18px 24px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.gcp-hooks > div {
+  padding: 0 24px 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.gcp-hooks strong {
+  font-size: 13px;
+}
+.gcp-hooks p {
+  font-size: 12px;
+  margin-top: 8px;
+}
+@media (max-width: 950px) {
+  .gcp-import {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .gcp-path {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .gcp-path > svg {
+    transform: rotate(90deg);
+  }
+  .gcp-hooks > div {
+    grid-template-columns: 1fr;
+  }
+}

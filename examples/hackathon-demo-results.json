@@ -1,0 +1,665 @@
+{
+  "evidence": "Synthetic fluid simulation, not hardware benchmarks or cloud quotes",
+  "seed": 42,
+  "seconds": 90,
+  "scenarios": [
+    {
+      "id": "prefix",
+      "title": "Shared-prefix rescue",
+      "workload": {
+        "rps": 24,
+        "inputTokens": 3500,
+        "outputTokens": 220,
+        "sharedPrefix": 0.9,
+        "burstiness": 0.1,
+        "concurrency": 128,
+        "ttftTargetMs": 800,
+        "tokenTargetMs": 70,
+        "mix": {
+          "gemma": 0.45,
+          "qwen": 0.3,
+          "kimi": 0.25
+        }
+      },
+      "baseline": {
+        "summary": {
+          "hourlyCost": 104,
+          "outputTokensPerSecond": 2175.728260869565,
+          "ttftMs": 13213.757063207602,
+          "sloPassRate": 0,
+          "utilization": 1,
+          "queue": 128,
+          "activeReplicas": 3,
+          "readyReplicas": 3
+        },
+        "feasible": false,
+        "reasons": [
+          "Gemma TTFT exceeds 800 ms.",
+          "Qwen TTFT exceeds 800 ms.",
+          "Kimi TTFT exceeds 800 ms.",
+          "More than 1% of requests rejected.",
+          "Fewer than 95% of offered requests completed within both latency targets."
+        ],
+        "completed": 890.0706521739111,
+        "failed": 1159.0937752024677,
+        "cost": 2.6000000000000036
+      },
+      "candidates": [
+        {
+          "name": "Cache-aware serving",
+          "profile": {
+            "id": "cache-tuned",
+            "name": "Cache-aware serving",
+            "placements": [
+              {
+                "id": "gemma-main",
+                "nodeId": "h200-a",
+                "model": "gemma",
+                "replicas": 1
+              },
+              {
+                "id": "qwen-main",
+                "nodeId": "gb200-a",
+                "model": "qwen",
+                "replicas": 1
+              },
+              {
+                "id": "kimi-main",
+                "nodeId": "gb300-a",
+                "model": "kimi",
+                "replicas": 1
+              }
+            ],
+            "prefixCache": true,
+            "cacheAffinity": true,
+            "batchConcurrency": 32,
+            "headroom": 0.15,
+            "autoscale": false
+          },
+          "evaluation": {
+            "summary": {
+              "hourlyCost": 104,
+              "outputTokensPerSecond": 5135.1539530577365,
+              "ttftMs": 77.68942010220694,
+              "sloPassRate": 1,
+              "utilization": 0.7193185117241496,
+              "queue": 0,
+              "activeReplicas": 3,
+              "readyReplicas": 3
+            },
+            "feasible": true,
+            "reasons": [],
+            "completed": 2177.1644273763804,
+            "failed": 0,
+            "cost": 2.6000000000000036
+          }
+        },
+        {
+          "name": "Consolidate GPU footprint",
+          "profile": {
+            "id": "consolidated",
+            "name": "Consolidate GPU footprint",
+            "placements": [
+              {
+                "id": "gemma-packed",
+                "nodeId": "gb200-a",
+                "model": "gemma",
+                "replicas": 2
+              },
+              {
+                "id": "qwen-gpu",
+                "nodeId": "gb200-a",
+                "model": "qwen",
+                "replicas": 1
+              },
+              {
+                "id": "kimi-gpu",
+                "nodeId": "gb300-a",
+                "model": "kimi",
+                "replicas": 1
+              }
+            ],
+            "prefixCache": true,
+            "cacheAffinity": true,
+            "batchConcurrency": 32,
+            "headroom": 0.15,
+            "autoscale": false
+          },
+          "evaluation": {
+            "summary": {
+              "hourlyCost": 88,
+              "outputTokensPerSecond": 5135.1539530577365,
+              "ttftMs": 72.17880392318715,
+              "sloPassRate": 1,
+              "utilization": 0.48462943389979674,
+              "queue": 0,
+              "activeReplicas": 4,
+              "readyReplicas": 4
+            },
+            "feasible": true,
+            "reasons": [],
+            "completed": 2177.1644273763804,
+            "failed": 0,
+            "cost": 2.200000000000001
+          }
+        },
+        {
+          "name": "Burst-ready elastic fleet",
+          "profile": {
+            "id": "elastic",
+            "name": "Burst-ready elastic fleet",
+            "placements": [
+              {
+                "id": "gemma-main",
+                "nodeId": "h200-a",
+                "model": "gemma",
+                "replicas": 1
+              },
+              {
+                "id": "qwen-main",
+                "nodeId": "gb200-a",
+                "model": "qwen",
+                "replicas": 1
+              },
+              {
+                "id": "kimi-main",
+                "nodeId": "gb300-a",
+                "model": "kimi",
+                "replicas": 1
+              },
+              {
+                "id": "reserve-gemma",
+                "nodeId": "h200-a",
+                "model": "gemma",
+                "replicas": 1
+              },
+              {
+                "id": "reserve-qwen",
+                "nodeId": "h200-b",
+                "model": "qwen",
+                "replicas": 1
+              },
+              {
+                "id": "reserve-kimi",
+                "nodeId": "gb300-b",
+                "model": "kimi",
+                "replicas": 1
+              }
+            ],
+            "prefixCache": true,
+            "cacheAffinity": true,
+            "batchConcurrency": 32,
+            "headroom": 0.3,
+            "autoscale": true
+          },
+          "evaluation": {
+            "summary": {
+              "hourlyCost": 168,
+              "outputTokensPerSecond": 5135.1539530577365,
+              "ttftMs": 70.47999999999998,
+              "sloPassRate": 1,
+              "utilization": 0.37997757063737686,
+              "queue": 0,
+              "activeReplicas": 6,
+              "readyReplicas": 6
+            },
+            "feasible": true,
+            "reasons": [],
+            "completed": 2177.1644273763804,
+            "failed": 0,
+            "cost": 4.200000000000008
+          }
+        }
+      ],
+      "reactiveAutoscaling": {
+        "hourlyCost": 256,
+        "outputTokensPerSecond": 5135.153953057735,
+        "ttftMs": 168.07031088311282,
+        "sloPassRate": 0.5500309946065377,
+        "utilization": 0.6535944309172281,
+        "queue": 0,
+        "activeReplicas": 11,
+        "readyReplicas": 11
+      }
+    },
+    {
+      "id": "offpeak",
+      "title": "Off-peak consolidation",
+      "workload": {
+        "rps": 12,
+        "inputTokens": 1200,
+        "outputTokens": 300,
+        "sharedPrefix": 0.65,
+        "burstiness": 0.15,
+        "concurrency": 128,
+        "ttftTargetMs": 800,
+        "tokenTargetMs": 70,
+        "mix": {
+          "gemma": 0.45,
+          "qwen": 0.3,
+          "kimi": 0.25
+        }
+      },
+      "baseline": {
+        "summary": {
+          "hourlyCost": 104,
+          "outputTokensPerSecond": 3451.8619974454123,
+          "ttftMs": 88.74559113610157,
+          "sloPassRate": 1,
+          "utilization": 0.6757849096347135,
+          "queue": 0,
+          "activeReplicas": 3,
+          "readyReplicas": 3
+        },
+        "feasible": true,
+        "reasons": [],
+        "completed": 1092.8733205322856,
+        "failed": 0,
+        "cost": 2.6000000000000036
+      },
+      "candidates": [
+        {
+          "name": "Cache-aware serving",
+          "profile": {
+            "id": "cache-tuned",
+            "name": "Cache-aware serving",
+            "placements": [
+              {
+                "id": "gemma-main",
+                "nodeId": "h200-a",
+                "model": "gemma",
+                "replicas": 1
+              },
+              {
+                "id": "qwen-main",
+                "nodeId": "gb200-a",
+                "model": "qwen",
+                "replicas": 1
+              },
+              {
+                "id": "kimi-main",
+                "nodeId": "gb300-a",
+                "model": "kimi",
+                "replicas": 1
+              }
+            ],
+            "prefixCache": true,
+            "cacheAffinity": true,
+            "batchConcurrency": 32,
+            "headroom": 0.15,
+            "autoscale": false
+          },
+          "evaluation": {
+            "summary": {
+              "hourlyCost": 104,
+              "outputTokensPerSecond": 3451.8619974454123,
+              "ttftMs": 62.976,
+              "sloPassRate": 1,
+              "utilization": 0.3905886603264279,
+              "queue": 0,
+              "activeReplicas": 3,
+              "readyReplicas": 3
+            },
+            "feasible": true,
+            "reasons": [],
+            "completed": 1092.8733205322856,
+            "failed": 0,
+            "cost": 2.6000000000000036
+          }
+        },
+        {
+          "name": "Consolidate GPU footprint",
+          "profile": {
+            "id": "consolidated",
+            "name": "Consolidate GPU footprint",
+            "placements": [
+              {
+                "id": "gemma-packed",
+                "nodeId": "gb200-a",
+                "model": "gemma",
+                "replicas": 2
+              },
+              {
+                "id": "qwen-gpu",
+                "nodeId": "gb200-a",
+                "model": "qwen",
+                "replicas": 1
+              },
+              {
+                "id": "kimi-gpu",
+                "nodeId": "gb300-a",
+                "model": "kimi",
+                "replicas": 1
+              }
+            ],
+            "prefixCache": true,
+            "cacheAffinity": true,
+            "batchConcurrency": 32,
+            "headroom": 0.15,
+            "autoscale": false
+          },
+          "evaluation": {
+            "summary": {
+              "hourlyCost": 88,
+              "outputTokensPerSecond": 3451.8619974454123,
+              "ttftMs": 62.976,
+              "sloPassRate": 1,
+              "utilization": 0.2631529124531521,
+              "queue": 0,
+              "activeReplicas": 4,
+              "readyReplicas": 4
+            },
+            "feasible": true,
+            "reasons": [],
+            "completed": 1092.8733205322856,
+            "failed": 0,
+            "cost": 2.200000000000001
+          }
+        },
+        {
+          "name": "Burst-ready elastic fleet",
+          "profile": {
+            "id": "elastic",
+            "name": "Burst-ready elastic fleet",
+            "placements": [
+              {
+                "id": "gemma-main",
+                "nodeId": "h200-a",
+                "model": "gemma",
+                "replicas": 1
+              },
+              {
+                "id": "qwen-main",
+                "nodeId": "gb200-a",
+                "model": "qwen",
+                "replicas": 1
+              },
+              {
+                "id": "kimi-main",
+                "nodeId": "gb300-a",
+                "model": "kimi",
+                "replicas": 1
+              },
+              {
+                "id": "reserve-gemma",
+                "nodeId": "h200-a",
+                "model": "gemma",
+                "replicas": 1
+              },
+              {
+                "id": "reserve-qwen",
+                "nodeId": "h200-b",
+                "model": "qwen",
+                "replicas": 1
+              },
+              {
+                "id": "reserve-kimi",
+                "nodeId": "gb300-b",
+                "model": "kimi",
+                "replicas": 1
+              }
+            ],
+            "prefixCache": true,
+            "cacheAffinity": true,
+            "batchConcurrency": 32,
+            "headroom": 0.3,
+            "autoscale": true
+          },
+          "evaluation": {
+            "summary": {
+              "hourlyCost": 168,
+              "outputTokensPerSecond": 3451.8619974454123,
+              "ttftMs": 62.976,
+              "sloPassRate": 1,
+              "utilization": 0.20632713860457286,
+              "queue": 0,
+              "activeReplicas": 6,
+              "readyReplicas": 6
+            },
+            "feasible": true,
+            "reasons": [],
+            "completed": 1092.8733205322856,
+            "failed": 0,
+            "cost": 4.200000000000008
+          }
+        }
+      ],
+      "reactiveAutoscaling": {
+        "hourlyCost": 104,
+        "outputTokensPerSecond": 3451.8619974454123,
+        "ttftMs": 87,
+        "sloPassRate": 1,
+        "utilization": 0.5068386822260351,
+        "queue": 0,
+        "activeReplicas": 4,
+        "readyReplicas": 4
+      }
+    },
+    {
+      "id": "qwen",
+      "title": "Qwen launch spike",
+      "workload": {
+        "rps": 27,
+        "inputTokens": 1200,
+        "outputTokens": 300,
+        "sharedPrefix": 0.65,
+        "burstiness": 0.15,
+        "concurrency": 128,
+        "ttftTargetMs": 800,
+        "tokenTargetMs": 70,
+        "mix": {
+          "gemma": 0.25,
+          "qwen": 0.5,
+          "kimi": 0.25
+        }
+      },
+      "baseline": {
+        "summary": {
+          "hourlyCost": 104,
+          "outputTokensPerSecond": 4843.616818007488,
+          "ttftMs": 8227.524236036017,
+          "sloPassRate": 0.2518910395448764,
+          "utilization": 0.9673127116054606,
+          "queue": 96,
+          "activeReplicas": 3,
+          "readyReplicas": 3
+        },
+        "feasible": false,
+        "reasons": [
+          "Qwen TTFT exceeds 800 ms.",
+          "Kimi TTFT exceeds 800 ms.",
+          "More than 1% of requests rejected.",
+          "Fewer than 95% of offered requests completed within both latency targets."
+        ],
+        "completed": 1485.3245761327419,
+        "failed": 877.6403950648977,
+        "cost": 2.6000000000000036
+      },
+      "candidates": [
+        {
+          "name": "Cache-aware serving",
+          "profile": {
+            "id": "cache-tuned",
+            "name": "Cache-aware serving",
+            "placements": [
+              {
+                "id": "gemma-main",
+                "nodeId": "h200-a",
+                "model": "gemma",
+                "replicas": 1
+              },
+              {
+                "id": "qwen-main",
+                "nodeId": "gb200-a",
+                "model": "qwen",
+                "replicas": 1
+              },
+              {
+                "id": "kimi-main",
+                "nodeId": "gb300-a",
+                "model": "kimi",
+                "replicas": 1
+              }
+            ],
+            "prefixCache": true,
+            "cacheAffinity": true,
+            "batchConcurrency": 32,
+            "headroom": 0.15,
+            "autoscale": false
+          },
+          "evaluation": {
+            "summary": {
+              "hourlyCost": 104,
+              "outputTokensPerSecond": 6490.615307316792,
+              "ttftMs": 3776.6888312696374,
+              "sloPassRate": 0.5035343740025178,
+              "utilization": 0.7752586047899853,
+              "queue": 64,
+              "activeReplicas": 3,
+              "readyReplicas": 3
+            },
+            "feasible": false,
+            "reasons": [
+              "Qwen TTFT exceeds 800 ms.",
+              "More than 1% of requests rejected.",
+              "Fewer than 95% of offered requests completed within both latency targets."
+            ],
+            "completed": 2011.6636536560293,
+            "failed": 383.30131754160993,
+            "cost": 2.6000000000000036
+          }
+        },
+        {
+          "name": "Consolidate GPU footprint",
+          "profile": {
+            "id": "consolidated",
+            "name": "Consolidate GPU footprint",
+            "placements": [
+              {
+                "id": "gemma-packed",
+                "nodeId": "gb200-a",
+                "model": "gemma",
+                "replicas": 2
+              },
+              {
+                "id": "qwen-gpu",
+                "nodeId": "gb200-a",
+                "model": "qwen",
+                "replicas": 1
+              },
+              {
+                "id": "kimi-gpu",
+                "nodeId": "gb300-a",
+                "model": "kimi",
+                "replicas": 1
+              }
+            ],
+            "prefixCache": true,
+            "cacheAffinity": true,
+            "batchConcurrency": 32,
+            "headroom": 0.15,
+            "autoscale": false
+          },
+          "evaluation": {
+            "summary": {
+              "hourlyCost": 88,
+              "outputTokensPerSecond": 6490.615307316792,
+              "ttftMs": 3776.6888312696374,
+              "sloPassRate": 0.5035343740025178,
+              "utilization": 0.5442082251029029,
+              "queue": 64,
+              "activeReplicas": 4,
+              "readyReplicas": 4
+            },
+            "feasible": false,
+            "reasons": [
+              "Qwen TTFT exceeds 800 ms.",
+              "More than 1% of requests rejected.",
+              "Fewer than 95% of offered requests completed within both latency targets."
+            ],
+            "completed": 2011.6636536560293,
+            "failed": 383.30131754160993,
+            "cost": 2.200000000000001
+          }
+        },
+        {
+          "name": "Burst-ready elastic fleet",
+          "profile": {
+            "id": "elastic",
+            "name": "Burst-ready elastic fleet",
+            "placements": [
+              {
+                "id": "gemma-main",
+                "nodeId": "h200-a",
+                "model": "gemma",
+                "replicas": 1
+              },
+              {
+                "id": "qwen-main",
+                "nodeId": "gb200-a",
+                "model": "qwen",
+                "replicas": 1
+              },
+              {
+                "id": "kimi-main",
+                "nodeId": "gb300-a",
+                "model": "kimi",
+                "replicas": 1
+              },
+              {
+                "id": "reserve-gemma",
+                "nodeId": "h200-a",
+                "model": "gemma",
+                "replicas": 1
+              },
+              {
+                "id": "reserve-qwen",
+                "nodeId": "h200-b",
+                "model": "qwen",
+                "replicas": 1
+              },
+              {
+                "id": "reserve-kimi",
+                "nodeId": "gb300-b",
+                "model": "kimi",
+                "replicas": 1
+              }
+            ],
+            "prefixCache": true,
+            "cacheAffinity": true,
+            "batchConcurrency": 32,
+            "headroom": 0.3,
+            "autoscale": true
+          },
+          "evaluation": {
+            "summary": {
+              "hourlyCost": 168,
+              "outputTokensPerSecond": 7766.689494252177,
+              "ttftMs": 78.17102982813093,
+              "sloPassRate": 0.9999999999999997,
+              "utilization": 0.5105738573139961,
+              "queue": 0,
+              "activeReplicas": 6,
+              "readyReplicas": 6
+            },
+            "feasible": true,
+            "reasons": [],
+            "completed": 2458.9649711976413,
+            "failed": 0,
+            "cost": 4.200000000000008
+          }
+        }
+      ],
+      "reactiveAutoscaling": {
+        "hourlyCost": 208,
+        "outputTokensPerSecond": 7766.689494252177,
+        "ttftMs": 87,
+        "sloPassRate": 0.6997251301801563,
+        "utilization": 0.6336265291836833,
+        "queue": 0,
+        "activeReplicas": 8,
+        "readyReplicas": 8
+      }
+    }
+  ]
+}

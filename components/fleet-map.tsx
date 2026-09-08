@@ -390,6 +390,12 @@ export default function FleetMap({
                             <em> / {node.chips} chips</em>
                           </span>
                         </div>
+                        <p className="fleet-map-host-caption">
+                          {node.hardware === 'gb200' ||
+                          node.hardware === 'gb300'
+                            ? 'Serving group · 2 hosts × 4 chips'
+                            : 'Illustrative serving allocation'}
+                        </p>
                         <div
                           className="fleet-map-chip-slots"
                           aria-hidden="true"

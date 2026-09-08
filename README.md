@@ -19,6 +19,14 @@ The main route is the new fleet console. `/lab` preserves the earlier single-GPU
 
 The header’s Day mode / Night mode toggle applies across both labs and remembers your choice on this device.
 
+## Distributed deployment and GCP
+
+The dashboard now includes reproducible scenario presets, a per-model/per-hardware replica matrix, host/rank inspection, and explicitly proposed TP/PP/EP and prefill/decode architectures. GB200/GB300 eight-chip serving groups map to two modeled four-chip hosts; network performance is not simulated.
+
+Read [the demo playbook](docs/DEMO.md) and [GCP attachment guide](docs/GCP.md). `deploy/gcp` contains a runnable namespaced observer Helm chart, optional Managed Prometheus configuration, sanitized snapshot export and serving planning examples. The dashboard can import those snapshots locally without mixing observed inventory with simulated performance. No GCP resources are provisioned or changed.
+
+`npm run demo:report --silent` reproduces the scenario evidence as JSON. `npm run validate:gcp` runs observer tests and Helm validation (requires Helm).
+
 ## Suggested demo
 
 1. Observe requests entering the model-aware router and reaching compatible replicas. Model identity stays fixed; hardware color indicates pressure, while packet color identifies the model. Animated dots are samples, not individual counted requests.

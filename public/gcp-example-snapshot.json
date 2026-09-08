@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "kind": "inference-autopilot.gke-snapshot",
+  "source": "example",
+  "ready": true,
+  "mode": "observe-only",
+  "observedAt": 1788868800,
+  "pods": [
+    {
+      "name": "qwen-worker-0",
+      "namespace": "inference",
+      "node": "a4x-max-host-0",
+      "phase": "Running",
+      "ready": true,
+      "labels": {
+        "autopilot/model": "qwen",
+        "autopilot/replica": "qwen-r1",
+        "autopilot/hardware": "gb300",
+        "autopilot/group": "qwen-serving-group-1",
+        "autopilot/role": "combined",
+        "autopilot/tp": "4",
+        "autopilot/pp": "2",
+        "autopilot/ep": "1",
+        "autopilot/dp": "1"
+      },
+      "accelerators": [
+        {
+          "nvidia.com/gpu": "4"
+        }
+      ]
+    },
+    {
+      "name": "qwen-worker-1",
+      "namespace": "inference",
+      "node": "a4x-max-host-1",
+      "phase": "Running",
+      "ready": true,
+      "labels": {
+        "autopilot/model": "qwen",
+        "autopilot/replica": "qwen-r1",
+        "autopilot/hardware": "gb300",
+        "autopilot/group": "qwen-serving-group-1",
+        "autopilot/role": "combined",
+        "autopilot/tp": "4",
+        "autopilot/pp": "2",
+        "autopilot/ep": "1",
+        "autopilot/dp": "1"
+      },
+      "accelerators": [
+        {
+          "nvidia.com/gpu": "4"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

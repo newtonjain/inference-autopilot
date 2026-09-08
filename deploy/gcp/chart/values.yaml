@@ -1,0 +1,13 @@
+# Build observer/Dockerfile and set your immutable Artifact Registry image reference.
+image: ""
+watchNamespace: inference
+# Managed Service for Prometheus CRD must already exist before enabling this.
+monitoring:
+  enabled: false
+  selector:
+    app.kubernetes.io/name: vllm
+  port: metrics
+  path: /metrics
+# Ingress only from same-namespace pods explicitly carrying this label.
+clientSelector:
+  autopilot/client: "true"

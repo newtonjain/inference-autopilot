@@ -1,0 +1,6 @@
+apiVersion: v2
+name: inference-autopilot-observer
+description: Read-only namespaced inventory attachment for existing GKE inference workloads
+type: application
+version: 0.1.0
+appVersion: 0.1.0

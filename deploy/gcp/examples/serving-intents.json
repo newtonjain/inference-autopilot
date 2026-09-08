@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "kind": "PlanningExamplesNotKubernetesManifests",
+  "status": "Requires runtime, memory, network, quota and model-license validation",
+  "profiles": [
+    {
+      "model": "Gemma 4 26B",
+      "hardware": "H200",
+      "acceleratorsPerHost": 8,
+      "hostsPerReplica": 1,
+      "acceleratorsPerReplica": 1,
+      "tensorParallel": 1,
+      "pipelineParallel": 1,
+      "dataParallelReplicas": 2,
+      "expertParallel": false,
+      "pdDisaggregation": false,
+      "note": "One replica can use one chip on a larger GPU VM; billing remains per reserved VM. Validate actual serving precision and KV budget."
+    },
+    {
+      "model": "Qwen 3.5 397B",
+      "hardware": "GB300",
+      "acceleratorsPerHost": 4,
+      "hostsPerReplica": 2,
+      "acceleratorsPerReplica": 8,
+      "tensorParallel": 4,
+      "pipelineParallel": 2,
+      "dataParallelReplicas": 1,
+      "expertParallel": "candidate: runtime-specific expert groups within ranks, not another independent chip multiplier",
+      "pdDisaggregation": "candidate: separate full-model prefill and decode worker groups with compatible KV connector",
+      "note": "Planning shape, not a benchmark or guaranteed runtime command. PD adds separate workers and KV network transfer."
+    },
+    {
+      "model": "Kimi K3",
+      "hardware": "GB300",
+      "acceleratorsPerHost": 4,
+      "hostsPerReplica": 2,
+      "acceleratorsPerReplica": 8,
+      "tensorParallel": 4,
+      "pipelineParallel": 2,
+      "dataParallelReplicas": 1,
+      "expertParallel": "candidate only: verify official engine and quantization support",
+      "pdDisaggregation": false,
+      "note": "Eight-chip abstract group is two 4-GPU GCP hosts; weights/KV/workspace and interconnect must fit. No promise of Kimi runtime compatibility."
+    },
+    {
+      "model": "Gemma 4 26B",
+      "hardware": "TPU v7x",
+      "resourceName": "google.com/tpu",
+      "topology": "Select a supported TPU slice topology and consume all TPU chips on each slice node",
+      "parallelism": "TPU runtime mesh and partitioning, not CUDA/NCCL flags",
+      "note": "Separate TPU runtime image, model support checks and atomic multi-host slice placement are required."
+    }
+  ]
+}

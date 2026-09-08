@@ -51,6 +51,10 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import FleetMap from '@/components/fleet-map';
+import DemoScenarios from '@/components/demo-scenarios';
+import FleetDeployment from '@/components/fleet-deployment';
+import GcpConnection from '@/components/gcp-connection';
+import type { DemoScenario } from '@/lib/fleet-scenarios';
 import {
   createFleetState,
   evaluateProfile,
@@ -82,6 +86,8 @@ import {
 import type { FleetSession } from '@/lib/fleet-session';
 import './fleet-console.css';
 import './fleet-map.css';
+import './fleet-deployment.css';
+import './gcp-connection.css';
 
 type Experiment = ReturnType<typeof recommendProfiles>[number];
 type Evidence = {
@@ -379,6 +385,23 @@ export default function FleetConsole() {
     ids.current.clear();
     log('Reset simulation to baseline.');
   }
+  function loadScenario(scenario: DemoScenario) {
+    if (disabled) return;
+    invalidate();
+    setSession({
+      fleet: createFleetState(scenario.profile, scenario.workload, 42),
+      green: null,
+      rollout: null,
+    });
+    setPlaying(false);
+    setHistory([]);
+    setPattern('mixed');
+    ids.current.clear();
+    setMessage(scenario.steps);
+    log(
+      `Loaded ${scenario.title}: initial placements, seed 42, autoscaling off.`,
+    );
+  }
   async function analyze() {
     if (running.current || locked) return;
     running.current = true;
@@ -585,6 +608,7 @@ export default function FleetConsole() {
             </div>
           </div>
         </div>
+        <DemoScenarios onLoad={loadScenario} disabled={disabled} />
         <div className="fleet-toolbar">
           <div className="playback">
             <Button
@@ -704,6 +728,7 @@ export default function FleetConsole() {
             </small>
           </div>
         </div>
+        <FleetDeployment state={session.fleet} green={session.green} />
         <section className="panel fleet-map-panel">
           <div className="panel-heading">
             <div>
@@ -1324,6 +1349,7 @@ export default function FleetConsole() {
             </div>
           )}
         </section>
+        <GcpConnection />
         <section className="panel demand-history">
           <div className="panel-heading">
             <div>

@@ -1,0 +1,297 @@
+.distributed-panel {
+  margin: 22px 0;
+  overflow: hidden;
+}
+.replica-matrix {
+  overflow-x: auto;
+}
+.replica-matrix td {
+  padding: 16px 24px;
+}
+.replica-matrix th {
+  padding: 12px 24px;
+  font-size: 11px;
+}
+.replica-matrix td > strong {
+  font-size: 21px;
+  font-weight: 500;
+}
+.replica-matrix td small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted-foreground);
+  margin-top: 5px;
+}
+.topology-note {
+  font-size: 11px;
+  line-height: 1.7;
+  padding: 14px 24px;
+  color: var(--muted-foreground);
+}
+.topology-inspector {
+  border-top: 1px solid var(--border);
+  padding: 20px 24px;
+  background: var(--background);
+}
+.topology-tabs,
+.replica-selector,
+.blueprint-choices {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.topology-tabs button {
+  font-size: 13px;
+}
+.replica-selector {
+  margin: 15px 0;
+}
+.replica-selector button {
+  font-size: 11px;
+  height: auto;
+}
+.replica-status {
+  font-size: 9px;
+  color: var(--muted-foreground);
+}
+.replica-status.warming {
+  color: light-dark(#8c5c04, #ebc46f);
+}
+.topology-summary {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.topology-summary strong {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--primary);
+}
+.topology-summary > span {
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.rank-flow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+.rank-ingress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  font-size: 9px;
+  color: var(--muted-foreground);
+}
+.rank-hop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+.rank-host {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  flex: 1;
+  min-width: 220px;
+}
+.rank-host > strong {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: monospace;
+  font-size: 12px;
+  margin: 9px 0 15px;
+}
+.rank-chips {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(60px, 1fr));
+  gap: 7px;
+}
+.rank-chips > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 6px;
+}
+.rank-chips b {
+  font-size: 10px;
+}
+.rank-chips small {
+  font-size: 8px;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+}
+.rank-host > small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted-foreground);
+  margin-top: 14px;
+}
+.rank-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--primary);
+  gap: 5px;
+}
+.rank-link small {
+  font-size: 8px;
+}
+.topology-inspector > .topology-note {
+  padding: 10px 0 0;
+}
+.architecture-study,
+.parallelism-guide {
+  border-top: 1px solid var(--border);
+}
+.architecture-study summary,
+.parallelism-guide summary {
+  cursor: pointer;
+  padding: 18px 24px;
+  font-size: 13px;
+}
+.architecture-study summary svg {
+  display: inline;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.architecture-study summary > span {
+  margin-left: 12px;
+  color: var(--muted-foreground);
+  font-size: 10px;
+}
+.architecture-body {
+  padding: 0 24px 20px;
+}
+.blueprint-choices button {
+  font-size: 11px;
+}
+.blueprint-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 24px 0 12px;
+}
+.blueprint-heading h3 {
+  font-size: 15px;
+}
+.blueprint-heading > strong {
+  font-size: 11px;
+  color: var(--primary);
+}
+.blueprint-flow {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+}
+.blueprint-hop {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+}
+.blueprint-hop article {
+  flex: 1;
+  padding: 18px;
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.blueprint-role {
+  display: block;
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+.blueprint-hop strong {
+  font-size: 12px;
+  display: block;
+}
+.blueprint-hop p,
+.architecture-body > p {
+  font-size: 12px;
+  margin-top: 8px;
+}
+.blueprint-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary);
+  max-width: 140px;
+  text-align: center;
+  font-size: 10px;
+}
+.architecture-body ul {
+  padding-left: 18px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted-foreground);
+}
+.architecture-body > .topology-note {
+  padding: 10px 0 0;
+}
+.parallelism-guide > div {
+  padding: 0 24px 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.parallelism-guide strong {
+  font-size: 12px;
+}
+.parallelism-guide p {
+  font-size: 11px;
+  margin-top: 6px;
+}
+.parallelism-guide footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 0 24px 20px;
+  font-size: 11px;
+  color: var(--primary);
+}
+@media (max-width: 850px) {
+  .blueprint-flow {
+    flex-direction: column;
+  }
+  .blueprint-hop {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .blueprint-link {
+    max-width: 100%;
+  }
+  .parallelism-guide > div {
+    grid-template-columns: 1fr;
+  }
+}
+
+.rank-inspector-details {
+  border-top: 1px solid var(--border);
+}
+.rank-inspector-details > summary {
+  cursor: pointer;
+  padding: 18px 24px;
+  font-size: 13px;
+  color: var(--primary);
+}

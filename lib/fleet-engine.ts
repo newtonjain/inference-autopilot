@@ -6,10 +6,10 @@ export const MODEL_IDS = ['gemma', 'qwen', 'kimi'] as const;
 export type FleetModelId = (typeof MODEL_IDS)[number];
 export type HardwareId = 'h200' | 'gb200' | 'gb300' | 'tpuv7';
 export const HARDWARE = {
-  h200: { name: 'H200 GPU node', factor: 1 },
-  gb200: { name: 'GB200 GPU node', factor: 1.4 },
-  gb300: { name: 'GB300 GPU node', factor: 1.8 },
-  tpuv7: { name: 'TPU v7 node', factor: 1.1 },
+  h200: { name: 'H200 serving group', factor: 1 },
+  gb200: { name: 'GB200 serving group', factor: 1.4 },
+  gb300: { name: 'GB300 serving group', factor: 1.8 },
+  tpuv7: { name: 'TPU v7 serving group', factor: 1.1 },
 } as const;
 export const MODELS: Record<
   FleetModelId,

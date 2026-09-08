@@ -9,9 +9,11 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "start": "wrangler dev --config dist/server/wrangler.json",
-    "lint": "oxlint app lib scripts tests components/fleet-map.tsx components/theme-toggle.tsx",
+    "lint": "oxlint app lib scripts tests components/fleet-map.tsx components/theme-toggle.tsx components/demo-scenarios.tsx components/fleet-deployment.tsx components/gcp-connection.tsx",
     "format": "oxfmt",
     "test": "node scripts/test.mjs",
+    "demo:report": "node scripts/demo-report.mjs",
+    "validate:gcp": "sh deploy/gcp/validate.sh",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

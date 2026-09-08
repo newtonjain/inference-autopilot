@@ -614,3 +614,9 @@
     transition: none;
   }
 }
+
+.fleet-map-host-caption {
+  font-size: 9px;
+  color: var(--fm-muted);
+  margin: 8px 0;
+}
