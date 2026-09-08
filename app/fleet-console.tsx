@@ -704,7 +704,7 @@ export default function FleetConsole() {
                 aria-current={screen === id ? 'page' : undefined}
                 onClick={() => {
                   setScreen(id);
-                  if (id === 'simulation') setSource('simulation');
+                  if (id === 'simulation') { setSource('simulation'); setPlaying(true); }
                 }}
               >
                 {label}
@@ -914,6 +914,234 @@ export default function FleetConsole() {
               <FleetDeployment state={session.fleet} green={session.green} />
             </details>
           </>
+        )}
+        {screen === 'simulation' && (
+          <div className="fleet-lower-grid journey-workload">
+            <section className="panel workload-expanded">
+              <div className="panel-heading">
+                <div>
+                  <h2>Shape the workload</h2>
+                  <p>
+                    Specify demand, request shape, and the service targets the
+                    fleet must protect.
+                  </p>
+                </div>
+                <Select
+                  value={pattern}
+                  disabled={disabled}
+                  onValueChange={(v) => v && applyPattern(v)}
+                >
+                  <SelectTrigger aria-label="Traffic pattern">
+                    <SelectValue>
+                      {
+                        {
+                          mixed: 'Mixed interactive',
+                          prefill: 'Long-context prefill',
+                          code: 'Code generation',
+                          prefix: 'Shared-prefix agents',
+                          bursty: 'Bursty arrivals',
+                        }[pattern]
+                      }
+                    </SelectValue>
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.entries({
+                      mixed: 'Mixed interactive',
+                      prefill: 'Long-context prefill',
+                      code: 'Code generation',
+                      prefix: 'Shared-prefix agents',
+                      bursty: 'Bursty arrivals',
+                    }).map(([v, label]) => (
+                      <SelectItem key={v} value={v}>
+                        {label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <SavedWorkloads
+                profile={activeProfile}
+                workload={workload}
+                disabled={disabled}
+                onLoad={(profile, workload) => {
+                  invalidate();
+                  setSession({
+                    fleet: createFleetState(profile, workload),
+                    green: null,
+                    rollout: null,
+                  });
+                  setHistory([]);
+                  setPlaying(true);
+                  setMessage('Loaded your saved workload.');
+                }}
+              />
+              <div className="fleet-workload-controls">
+                <Control
+                  title="Offered traffic"
+                  value={workload.rps}
+                  min={1}
+                  max={300}
+                  onChange={(v) => change('rps', v)}
+                  format={(n) => `${n.toFixed(1)} req/s`}
+                  description="Total demand before admission or throttling. Surging a model increases its absolute request rate."
+                  disabled={disabled}
+                />
+                <Control
+                  title="Input tokens / request"
+                  value={workload.inputTokens}
+                  min={100}
+                  max={16000}
+                  step={100}
+                  onChange={(v) => change('inputTokens', v)}
+                  description="More input adds prefill work. Reusable prefixes can reduce that work, not decoding."
+                  disabled={disabled}
+                />
+                <Control
+                  title="Output tokens / request"
+                  value={workload.outputTokens}
+                  min={32}
+                  max={2000}
+                  step={16}
+                  onChange={(v) => change('outputTokens', v)}
+                  description="Longer generations hold serving capacity longer and raise decode pressure."
+                  disabled={disabled}
+                />
+                <Control
+                  title="Reusable prefix fraction"
+                  value={workload.sharedPrefix}
+                  min={0}
+                  max={1}
+                  step={0.05}
+                  onChange={(v) => change('sharedPrefix', v)}
+                  format={fraction}
+                  description="Potential input reuse. It only helps profiles with caching enabled; affinity improves modeled reuse."
+                  disabled={disabled}
+                />
+                <Control
+                  title="Burstiness"
+                  value={workload.burstiness}
+                  min={0}
+                  max={1}
+                  step={0.05}
+                  onChange={(v) => change('burstiness', v)}
+                  format={fraction}
+                  description="Deterministic arrival variation around the offered rate. Higher values create larger peaks."
+                  disabled={disabled}
+                />
+                <Control
+                  title="Outstanding request budget"
+                  value={workload.concurrency}
+                  min={8}
+                  max={1024}
+                  step={8}
+                  onChange={(v) => change('concurrency', v)}
+                  description="Fleet-wide queue budget, divided by model demand and blue-green traffic share. Excess requests are rejected and counted."
+                  disabled={disabled}
+                />
+              </div>
+              <div className="model-mix">
+                <div>
+                  <strong>Demand by model</strong>
+                  <p>
+                    Weights are normalized into shares of the total request
+                    rate.
+                  </p>
+                </div>
+                {MODEL_IDS.map((m) => (
+                  <div className="mix-control" key={m}>
+                    <label htmlFor={`mix-${m}`}>
+                      <i style={{ background: `var(--model-${m})` }} />
+                      {MODELS[m].shortName}
+                      <span>
+                        {fraction(workload.mix[m] / sumMix)} ·{' '}
+                        {((workload.rps * workload.mix[m]) / sumMix).toFixed(1)}{' '}
+                        req/s
+                      </span>
+                    </label>
+                    <input
+                      id={`mix-${m}`}
+                      type="number"
+                      min={0}
+                      max={100}
+                      disabled={disabled}
+                      value={Math.round(workload.mix[m] * 100)}
+                      onChange={(e) => {
+                        const value = Math.max(
+                          0,
+                          Math.min(100, Number(e.target.value) || 0),
+                        );
+                        const mix = { ...workload.mix, [m]: value / 100 };
+                        if (MODEL_IDS.some((id) => mix[id] > 0))
+                          change('mix', mix);
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="service-targets">
+                <div>
+                  <ShieldCheck size={18} />
+                  <span>Service targets</span>
+                </div>
+                <label>
+                  First token
+                  <input
+                    type="number"
+                    aria-label="First token target in milliseconds"
+                    value={workload.ttftTargetMs}
+                    min={50}
+                    max={10000}
+                    step={50}
+                    disabled={disabled}
+                    onChange={(e) =>
+                      change(
+                        'ttftTargetMs',
+                        Math.max(
+                          50,
+                          Math.min(10000, Number(e.target.value) || 50),
+                        ),
+                      )
+                    }
+                  />
+                  ms
+                </label>
+                <label>
+                  Token interval
+                  <input
+                    type="number"
+                    aria-label="Token interval target in milliseconds"
+                    value={workload.tokenTargetMs}
+                    min={20}
+                    max={300}
+                    step={5}
+                    disabled={disabled}
+                    onChange={(e) =>
+                      change(
+                        'tokenTargetMs',
+                        Math.max(
+                          20,
+                          Math.min(300, Number(e.target.value) || 20),
+                        ),
+                      )
+                    }
+                  />
+                  ms
+                </label>
+              </div>
+              {locked && (
+                <p className="locked-note">
+                  Workload and capacity controls are locked to the approved
+                  experiment until the rollout completes or rolls back.
+                </p>
+              )}
+            </section>
+          </div>
+        )}
+        {screen === 'simulation' && (
+          <details className="scenario-drawer">
+            <summary>Load a repeatable demo scenario</summary>
+            <DemoScenarios onLoad={loadScenario} disabled={disabled} />
+          </details>
         )}
         {(screen === 'live' || screen === 'simulation') && !observedMode && (
           <section className="panel demand-history">
@@ -1198,261 +1426,20 @@ export default function FleetConsole() {
             </Button>
           </output>
         )}
-        {screen === 'simulation' && (
-          <div className="fleet-lower-grid journey-workload">
-            <section className="panel workload-expanded">
-              <div className="panel-heading">
-                <div>
-                  <h2>Shape the workload</h2>
-                  <p>
-                    Specify demand, request shape, and the service targets the
-                    fleet must protect.
-                  </p>
-                </div>
-                <Select
-                  value={pattern}
-                  disabled={disabled}
-                  onValueChange={(v) => v && applyPattern(v)}
-                >
-                  <SelectTrigger aria-label="Traffic pattern">
-                    <SelectValue>
-                      {
-                        {
-                          mixed: 'Mixed interactive',
-                          prefill: 'Long-context prefill',
-                          code: 'Code generation',
-                          prefix: 'Shared-prefix agents',
-                          bursty: 'Bursty arrivals',
-                        }[pattern]
-                      }
-                    </SelectValue>
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.entries({
-                      mixed: 'Mixed interactive',
-                      prefill: 'Long-context prefill',
-                      code: 'Code generation',
-                      prefix: 'Shared-prefix agents',
-                      bursty: 'Bursty arrivals',
-                    }).map(([v, label]) => (
-                      <SelectItem key={v} value={v}>
-                        {label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <SavedWorkloads
-                profile={activeProfile}
-                workload={workload}
-                disabled={disabled}
-                onLoad={(profile, workload) => {
-                  invalidate();
-                  setSession({
-                    fleet: createFleetState(profile, workload),
-                    green: null,
-                    rollout: null,
-                  });
-                  setHistory([]);
-                  setPlaying(true);
-                  setMessage('Loaded your saved workload.');
-                }}
-              />
-              <div className="fleet-workload-controls">
-                <Control
-                  title="Offered traffic"
-                  value={workload.rps}
-                  min={1}
-                  max={300}
-                  onChange={(v) => change('rps', v)}
-                  format={(n) => `${n.toFixed(1)} req/s`}
-                  description="Total demand before admission or throttling. Surging a model increases its absolute request rate."
-                  disabled={disabled}
-                />
-                <Control
-                  title="Input tokens / request"
-                  value={workload.inputTokens}
-                  min={100}
-                  max={16000}
-                  step={100}
-                  onChange={(v) => change('inputTokens', v)}
-                  description="More input adds prefill work. Reusable prefixes can reduce that work, not decoding."
-                  disabled={disabled}
-                />
-                <Control
-                  title="Output tokens / request"
-                  value={workload.outputTokens}
-                  min={32}
-                  max={2000}
-                  step={16}
-                  onChange={(v) => change('outputTokens', v)}
-                  description="Longer generations hold serving capacity longer and raise decode pressure."
-                  disabled={disabled}
-                />
-                <Control
-                  title="Reusable prefix fraction"
-                  value={workload.sharedPrefix}
-                  min={0}
-                  max={1}
-                  step={0.05}
-                  onChange={(v) => change('sharedPrefix', v)}
-                  format={fraction}
-                  description="Potential input reuse. It only helps profiles with caching enabled; affinity improves modeled reuse."
-                  disabled={disabled}
-                />
-                <Control
-                  title="Burstiness"
-                  value={workload.burstiness}
-                  min={0}
-                  max={1}
-                  step={0.05}
-                  onChange={(v) => change('burstiness', v)}
-                  format={fraction}
-                  description="Deterministic arrival variation around the offered rate. Higher values create larger peaks."
-                  disabled={disabled}
-                />
-                <Control
-                  title="Outstanding request budget"
-                  value={workload.concurrency}
-                  min={8}
-                  max={1024}
-                  step={8}
-                  onChange={(v) => change('concurrency', v)}
-                  description="Fleet-wide queue budget, divided by model demand and blue-green traffic share. Excess requests are rejected and counted."
-                  disabled={disabled}
-                />
-              </div>
-              <div className="model-mix">
-                <div>
-                  <strong>Demand by model</strong>
-                  <p>
-                    Weights are normalized into shares of the total request
-                    rate.
-                  </p>
-                </div>
-                {MODEL_IDS.map((m) => (
-                  <div className="mix-control" key={m}>
-                    <label htmlFor={`mix-${m}`}>
-                      <i style={{ background: `var(--model-${m})` }} />
-                      {MODELS[m].shortName}
-                      <span>
-                        {fraction(workload.mix[m] / sumMix)} ·{' '}
-                        {((workload.rps * workload.mix[m]) / sumMix).toFixed(1)}{' '}
-                        req/s
-                      </span>
-                    </label>
-                    <input
-                      id={`mix-${m}`}
-                      type="number"
-                      min={0}
-                      max={100}
-                      disabled={disabled}
-                      value={Math.round(workload.mix[m] * 100)}
-                      onChange={(e) => {
-                        const value = Math.max(
-                          0,
-                          Math.min(100, Number(e.target.value) || 0),
-                        );
-                        const mix = { ...workload.mix, [m]: value / 100 };
-                        if (MODEL_IDS.some((id) => mix[id] > 0))
-                          change('mix', mix);
-                      }}
-                    />
-                  </div>
-                ))}
-              </div>
-              <div className="service-targets">
-                <div>
-                  <ShieldCheck size={18} />
-                  <span>Service targets</span>
-                </div>
-                <label>
-                  First token
-                  <input
-                    type="number"
-                    aria-label="First token target in milliseconds"
-                    value={workload.ttftTargetMs}
-                    min={50}
-                    max={10000}
-                    step={50}
-                    disabled={disabled}
-                    onChange={(e) =>
-                      change(
-                        'ttftTargetMs',
-                        Math.max(
-                          50,
-                          Math.min(10000, Number(e.target.value) || 50),
-                        ),
-                      )
-                    }
-                  />
-                  ms
-                </label>
-                <label>
-                  Token interval
-                  <input
-                    type="number"
-                    aria-label="Token interval target in milliseconds"
-                    value={workload.tokenTargetMs}
-                    min={20}
-                    max={300}
-                    step={5}
-                    disabled={disabled}
-                    onChange={(e) =>
-                      change(
-                        'tokenTargetMs',
-                        Math.max(
-                          20,
-                          Math.min(300, Number(e.target.value) || 20),
-                        ),
-                      )
-                    }
-                  />
-                  ms
-                </label>
-              </div>
-              {locked && (
-                <p className="locked-note">
-                  Workload and capacity controls are locked to the approved
-                  experiment until the rollout completes or rolls back.
-                </p>
-              )}
-            </section>
-          </div>
-        )}
-        {screen === 'simulation' && (
-          <details className="scenario-drawer">
-            <summary>Load a repeatable demo scenario</summary>
-            <DemoScenarios onLoad={loadScenario} disabled={disabled} />
-          </details>
-        )}
-        {screen === 'optimization' && (
-          <AstraAnalysis
-            profile={activeProfile}
-            workload={workload}
-            disabled={disabled}
-            requireTelemetry={observedMode}
-            onBusy={(value) => {
-              setBusy(value);
-              if (value) setPlaying(false);
-            }}
-            onResult={receiveAnalysis}
-          />
-        )}
         {screen === 'optimization' && (
           <section className="panel evidence-panel">
             <div className="panel-heading">
               <div>
                 <h2>Optimization opportunities</h2>
                 <p>
-                  Baseline: {activeProfile.name} · {workload.rps.toFixed(1)}{' '}
+                  Replay profiles · baseline: {activeProfile.name} · {workload.rps.toFixed(1)}{' '}
                   req/s · {workload.inputTokens.toLocaleString()} input /{' '}
                   {workload.outputTokens.toLocaleString()} output tokens
                 </p>
               </div>
-              <Button variant="outline" disabled={disabled || observedMode} onClick={analyze}>
+              <Button disabled={disabled || observedMode} onClick={analyze}>
                 {busy ? <LoaderCircle className="spin" /> : <FlaskConical />}
-                {busy ? 'Evaluating' : 'Local replay sweep'}
+                {busy ? 'Evaluating profiles…' : 'Run Optimization'}
               </Button>
             </div>
             <div className="evidence-heading">
@@ -1550,7 +1537,7 @@ export default function FleetConsole() {
                   <div>
                     <strong>Every recommendation needs evidence.</strong>
                     <p>
-                      Ask Astra above, then Inspect to see model placement,
+                      Click Run Optimization to compare replay profiles, then Inspect to see model placement,
                       configuration changes, and their expected effects.
                     </p>
                   </div>
@@ -1637,6 +1624,19 @@ export default function FleetConsole() {
               </div>
             )}
           </section>
+        )}
+        {screen === 'optimization' && (
+          <AstraAnalysis
+            profile={activeProfile}
+            workload={workload}
+            disabled={disabled}
+            requireTelemetry={observedMode}
+            onBusy={(value) => {
+              setBusy(value);
+              if (value) setPlaying(false);
+            }}
+            onResult={receiveAnalysis}
+          />
         )}
         {screen === 'optimization' && (
           <section className="panel agent-context">
