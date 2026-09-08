@@ -17,6 +17,8 @@ npm run build
 
 The main route is the new fleet console. `/lab` preserves the earlier single-GPU and node experiment lab; see LEGACY_LAB.md for that engine's different assumptions and trace format.
 
+The header’s Day mode / Night mode toggle applies across both labs and remembers your choice on this device.
+
 ## Suggested demo
 
 1. Observe requests entering the model-aware router and reaching compatible replicas. Model identity stays fixed; hardware color indicates pressure, while packet color identifies the model. Animated dots are samples, not individual counted requests.

@@ -38,3 +38,10 @@ next-env.d.ts
 /work/
 
 *.tsbuildinfo
+
+# local runtime secrets and private key containers
+.dev.vars
+.dev.vars.*
+*.key
+*.p12
+*.pfx

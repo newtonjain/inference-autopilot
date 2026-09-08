@@ -29,9 +29,9 @@ const hardwareNames: Record<HardwareId, string> = {
   tpuv7: 'TPU v7',
 };
 const identity: Record<FleetModelId, string> = {
-  gemma: '#6ea8ff',
-  qwen: '#bd98ff',
-  kimi: '#f7a668',
+  gemma: 'var(--model-gemma)',
+  qwen: 'var(--model-qwen)',
+  kimi: 'var(--model-kimi)',
 };
 const percent = (n: number) =>
   `${Math.round(Math.min(1, Math.max(0, n)) * 100)}%`;

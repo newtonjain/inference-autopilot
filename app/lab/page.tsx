@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import ThemeToggle from '@/components/theme-toggle';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Cpu,
@@ -620,6 +621,7 @@ export default function Home() {
           <span className="divider">/</span> gemma-lab
         </div>
         <span className="avatar">NJ</span>
+        <ThemeToggle />
       </header>
       <main className="workspace">
         <div className="page-heading">

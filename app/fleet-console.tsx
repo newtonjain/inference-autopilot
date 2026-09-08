@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import ThemeToggle from '@/components/theme-toggle';
 import { useEffect, useRef, useState } from 'react';
 import {
   Activity,
@@ -555,6 +556,7 @@ export default function FleetConsole() {
         <Link className="small-badge" href="/lab">
           Single GPU & node lab <ArrowRight size={12} />
         </Link>
+        <ThemeToggle />
       </header>
       <main className="workspace fleet-workspace">
         <div className="page-heading">
@@ -992,7 +994,7 @@ export default function FleetConsole() {
               {MODEL_IDS.map((m) => (
                 <div className="mix-control" key={m}>
                   <label htmlFor={`mix-${m}`}>
-                    <i style={{ background: MODELS[m].color }} />
+                    <i style={{ background: `var(--model-${m})` }} />
                     {MODELS[m].shortName}
                     <span>
                       {fraction(workload.mix[m] / sumMix)} ·{' '}
@@ -1281,7 +1283,7 @@ export default function FleetConsole() {
                     <TableRow key={m}>
                       <TableCell>
                         <span className="model-name">
-                          <i style={{ background: MODELS[m].color }} />
+                          <i style={{ background: `var(--model-${m})` }} />
                           {MODELS[m].name}
                         </span>
                       </TableCell>
@@ -1334,7 +1336,7 @@ export default function FleetConsole() {
             <div className="history-legend">
               {MODEL_IDS.map((m) => (
                 <span key={m}>
-                  <i style={{ background: MODELS[m].color }} />
+                  <i style={{ background: `var(--model-${m})` }} />
                   {MODELS[m].shortName}
                 </span>
               ))}
@@ -1352,7 +1354,7 @@ export default function FleetConsole() {
                 x2="1070"
                 y1={y}
                 y2={y}
-                stroke="#293241"
+                stroke="var(--border)"
                 strokeDasharray="4 5"
               />
             ))}
@@ -1360,7 +1362,7 @@ export default function FleetConsole() {
               <path
                 key={m}
                 fill="none"
-                stroke={MODELS[m].color}
+                stroke={`var(--model-${m})`}
                 strokeWidth="2"
                 d={history
                   .map(
@@ -1370,14 +1372,14 @@ export default function FleetConsole() {
                   .join(' ')}
               />
             ))}
-            <text x="30" y="148" fill="#8490a6" fontSize="11">
+            <text x="30" y="148" fill="var(--muted-foreground)" fontSize="11">
               T+{history[0]?.time || 0}s
             </text>
             <text
               x="1070"
               y="148"
               textAnchor="end"
-              fill="#8490a6"
+              fill="var(--muted-foreground)"
               fontSize="11"
             >
               T+{history.at(-1)?.time || 0}s
