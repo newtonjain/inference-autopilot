@@ -201,7 +201,7 @@ export default function AstraAnalysis({
           </h2>
           <p>
             {status?.configured
-              ? 'GPT-6 Astra · server-side OpenAI API · account-backed evidence'
+              ? 'Review recommendations, compare their impact, and approve a deployment.'
               : status
                 ? 'OpenAI API key is not configured on the server.'
                 : 'Checking server configuration…'}
@@ -221,12 +221,11 @@ export default function AstraAnalysis({
           }
         >
           <Sparkles size={15} />
-          {busy ? 'Astra is evaluating…' : samplePhase ? 'Analyze 48-hour sample with Astra' : 'Ask Astra to optimize'}
+          {busy ? 'Astra is analyzing…' : 'Analyze with Astra'}
         </Button>
       </div>
       {!status && error && <p><Button variant="outline" onClick={() => window.location.assign('/signin-with-chatgpt?return_to=/')}>Sign in to enable saved analysis</Button></p>}
-      {samplePhase && <p>Synthetic two-day history selected. Cloud telemetry watching is paused while analyzing this sample.</p>}
-      <div className="astra-controls">
+      {!samplePhase && <><div className="astra-controls">
         <label>
           <input
             type="checkbox"
@@ -275,6 +274,7 @@ export default function AstraAnalysis({
         is open and runs at most once a minute, capped at 20 analyses/hour. Each
         AI analysis uses the configured paid API key.
       </p>
+      </>}
       {error && (
         <p className="astra-error" role="alert">
           {error}
@@ -331,7 +331,7 @@ export default function AstraAnalysis({
           ))}
         </details>
       )}
-      <details className="analysis-history">
+      {!samplePhase && <details className="analysis-history">
         <summary>Collector access for GCP</summary>
         <p>
           The private site also requires authenticated transport; an app token
@@ -372,7 +372,7 @@ export default function AstraAnalysis({
             </small>
           </div>
         )}
-      </details>
+      </details>}
       <a
         className="telemetry-guide"
         href="https://github.com/newtonjain/inference-autopilot/blob/main/docs/TELEMETRY.md"

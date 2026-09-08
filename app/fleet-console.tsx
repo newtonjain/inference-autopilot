@@ -1,5 +1,5 @@
 'use client';
-import { sampleTraffic, SAMPLE_PHASES, SAMPLE_LABELS, type SamplePhase } from '@/lib/sample-traffic';
+import { sampleTraffic } from '@/lib/sample-traffic';
 import Link from 'next/link';
 import ThemeToggle from '@/components/theme-toggle';
 import { useEffect, useRef, useState } from 'react';
@@ -18,7 +18,6 @@ import {
   ArrowDownRight,
   ArrowUpRight,
   Zap,
-  LoaderCircle,
   X,
   GitBranch,
   Info,
@@ -56,7 +55,6 @@ import GcpConnection from '@/components/gcp-connection';
 import AstraAnalysis from '@/components/astra-analysis';
 import type { AnalysisResult } from '@/components/astra-analysis';
 import SavedWorkloads from '@/components/saved-workloads';
-import { sweepConfiguration } from '@/lib/config-sweep';
 import type { DemoScenario } from '@/lib/fleet-scenarios';
 import {
   createFleetState,
@@ -126,7 +124,6 @@ const PHASE_LABELS: Record<string, string> = {
   'rolled-back': 'Rolled back',
   failed: 'Failed',
 };
-const nextFrame = () => new Promise<void>((r) => setTimeout(r, 0));
 function exportJson(name: string, value: unknown) {
   const url = URL.createObjectURL(
     new Blob([JSON.stringify(value, null, 2)], { type: 'application/json' }),
@@ -236,7 +233,6 @@ export default function FleetConsole() {
     rollout: null,
   }));
   const [playing, setPlaying] = useState(true);
-  const [samplePhase, setSamplePhase] = useState<SamplePhase | null>(null);
   const [speed, setSpeed] = useState(2);
   const [evidence, setEvidence] = useState<Evidence | null>(null);
   const [inspected, setInspected] = useState<Experiment | null>(null);
@@ -265,7 +261,6 @@ export default function FleetConsole() {
   const ids = useRef(new Set<string>());
   const current = useRef(session);
   const operation = useRef(0);
-  const running = useRef(false);
   const dataRef = useRef({ session, evidence });
   useEffect(() => {
     current.current = session;
@@ -331,7 +326,6 @@ export default function FleetConsole() {
     );
   }
   function invalidate() {
-    setSamplePhase(null);
     operation.current++;
     setEvidence(null);
     setInspected(null);
@@ -415,7 +409,6 @@ export default function FleetConsole() {
   }
   function reset() {
     if (busy) return;
-    setSamplePhase(null);
     operation.current++;
     setSession({ fleet: createFleetState(), green: null, rollout: null });
     setEvidence(null);
@@ -444,53 +437,6 @@ export default function FleetConsole() {
     log(
       `Loaded ${scenario.title}: initial placements, seed 42, autoscaling off.`,
     );
-  }
-  async function analyze() {
-    if (running.current || locked || observedMode) return;
-    running.current = true;
-    setBusy(true);
-    setPlaying(false);
-    setMessage('');
-    setInspected(null);
-    setProposal(null);
-    const rev = ++operation.current;
-    const captured = current.current;
-    try {
-      await nextFrame();
-      const baseline = evaluateProfile(
-        { ...captured.fleet.profile, autoscale: false },
-        captured.fleet.workload,
-      );
-      const grid = sweepConfiguration(
-        captured.fleet.profile,
-        captured.fleet.workload,
-      );
-      const experiments = grid.shortlist;
-      if (rev !== operation.current) return;
-      setEvidence({
-        source: 'simulation',
-        workload: structuredClone(captured.fleet.workload),
-        context: fleetContextHash(
-          captured.fleet.profile,
-          captured.fleet.workload,
-        ),
-        baseline,
-        experiments,
-      });
-      setTab('experiments');
-      setScreen('optimization');
-      setMessage(
-        `${grid.feasibleCount} of ${grid.evaluatedCount} configurations passed the 90-second replay. Showing ${experiments.length} representative profiles; ask Astra to rank and explain the sweep.`,
-      );
-      log(
-        'Evaluated candidate deployment profiles on identical offered traffic.',
-      );
-    } catch (e) {
-      setMessage((e as Error).message);
-    } finally {
-      running.current = false;
-      setBusy(false);
-    }
   }
   function receiveAnalysis(result: AnalysisResult) {
     setInspected(null);
@@ -719,8 +665,7 @@ export default function FleetConsole() {
             value={source}
             onValueChange={(v) => {
               if (v === 'simulation' || v === 'gke') {
-                setSamplePhase(null);
-                setSource(v);
+                            setSource(v);
                 setScreen('live');
                 if (v === 'gke') setPlaying(false);
               }
@@ -1431,29 +1376,19 @@ export default function FleetConsole() {
             </Button>
           </output>
         )}
-        {screen === 'optimization' && !observedMode && (
-          <section className="panel sample-history-panel">
-            <div className="panel-heading">
-              <div><h2>Two days of sample traffic</h2><p>Synthetic production-style workload · 576 five-minute windows · September 5–7, 2026 UTC</p></div>
-              <a href="/data/synthetic-fleet-48h.json" download>Download dataset</a>
-            </div>
-            <p>Choose a period to load its demand into the fleet. Run the replay, or ask Astra to analyze the full two-day history and recommend changes for this period.</p>
-            <div className="sample-phase-actions">
-              {SAMPLE_PHASES.map(phase => <Button key={phase} disabled={disabled} variant={samplePhase === phase ? 'secondary' : 'outline'} onClick={() => { setWorkload(sampleTraffic(phase).workload); setSamplePhase(phase); setPlaying(false); }}>{SAMPLE_LABELS[phase]}</Button>)}
-            </div>
-            {samplePhase && <output>Loaded: {SAMPLE_LABELS[samplePhase]} · {sampleTraffic(samplePhase).history.selectedHours} hours represented. The three profile estimates use the same 90-second replay; they are not measured cloud performance.</output>}
-          </section>
-        )}
         {screen === 'optimization' && (
           <AstraAnalysis
             profile={activeProfile}
             workload={workload}
             disabled={disabled}
             requireTelemetry={observedMode}
-            samplePhase={observedMode ? null : samplePhase}
+            samplePhase={observedMode ? null : "all"}
             onBusy={(value) => {
               setBusy(value);
-              if (value) setPlaying(false);
+              if (value) {
+                if (!observedMode) setWorkload(sampleTraffic('all').workload);
+                setPlaying(false);
+              }
             }}
             onResult={receiveAnalysis}
           />
@@ -1464,15 +1399,12 @@ export default function FleetConsole() {
               <div>
                 <h2>Optimization opportunities</h2>
                 <p>
-                  Replay profiles · baseline: {activeProfile.name} · {workload.rps.toFixed(1)}{' '}
+                  Baseline: {activeProfile.name} · {workload.rps.toFixed(1)}{' '}
                   req/s · {workload.inputTokens.toLocaleString()} input /{' '}
                   {workload.outputTokens.toLocaleString()} output tokens
                 </p>
               </div>
-              <Button disabled={disabled || observedMode} onClick={analyze}>
-                {busy ? <LoaderCircle className="spin" /> : <FlaskConical />}
-                {busy ? 'Evaluating profiles…' : 'Run Optimization'}
-              </Button>
+
             </div>
             <div className="evidence-heading">
               <Tabs value={tab} onValueChange={(v) => setTab(String(v))}>
@@ -1569,7 +1501,7 @@ export default function FleetConsole() {
                   <div>
                     <strong>Every recommendation needs evidence.</strong>
                     <p>
-                      Click Run Optimization to compare replay profiles, then Inspect to see model placement,
+                      Click Analyze with Astra, then Inspect to see model placement,
                       configuration changes, and their expected effects.
                     </p>
                   </div>

@@ -4,10 +4,10 @@ The checked-in `public/data/synthetic-fleet-48h.json` contains 576 contiguous fi
 
 ## Demo
 
-1. Open Optimization, choose overnight, shared-prefix peak, Qwen surge or mixed traffic.
-2. Run Optimization for three distinct representative profiles: cache-aware serving, consolidation, and pre-warmed burst capacity. An internal 27-point sweep picks one variant per placement strategy; batch 64 is excluded because this simulator caps batching efficiency at 32.
-3. Choose Analyze 48-hour sample with Astra for a real server-side OpenAI API request. It sends 48 hourly demand summaries and the selected period's representative replay evidence. The server must have OPENAI_API_KEY configured and the user must be signed in. API failures are shown; local replay is never labeled an Astra response.
-4. Inspect, approve a feasible profile, and watch the simulated blue-green rollout. The analysis is bound to the profile and selected workload. Fewer than three AI recommendations is valid when Astra rejects alternatives or gates fail.
+1. Open Optimization and click **Analyze with Astra**. The two-day dataset is selected automatically on the server; there are no sample or phase controls in the demo UI.
+2. Astra receives all 48 hourly summaries plus evidence for three distinct deployment strategies. The replay workload uses the whole history's time-weighted request rate and request-weighted token lengths and model mix.
+3. Inspect cost, first-token latency and throughput against the same baseline, then approve a feasible blue-green rollout.
+4. The server must have OPENAI_API_KEY configured and the user must be signed in. Failures are shown; there is no silent local-replay substitute for an Astra analysis.
 
 All comparison metrics are from identical 90-second representative-period replays, not a continuous two-day simulation or measured cloud performance. Equal delivered throughput can be correct when demand is below capacity. Two days provide daily variation, not evidence of weekly/monthly seasonality. Actual model and accelerator compatibility still requires verification.
 
