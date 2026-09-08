@@ -39,6 +39,7 @@ export default function AstraAnalysis({
   workload,
   disabled,
   requireTelemetry = false,
+  samplePhase,
   onBusy,
   onResult,
 }: {
@@ -46,6 +47,7 @@ export default function AstraAnalysis({
   workload: WorkloadConfig;
   disabled: boolean;
   requireTelemetry?: boolean;
+  samplePhase?: string | null;
   onBusy: (value: boolean) => void;
   onResult: (value: AnalysisResult) => void;
 }) {
@@ -79,9 +81,9 @@ export default function AstraAnalysis({
     lastWindow = useRef(''),
     lastCall = useRef(0),
     alive = useRef(true);
-  const refs = useRef({ profile, workload, disabled, onBusy, onResult });
+  const refs = useRef({ profile, workload, disabled, onBusy, onResult, samplePhase });
   useEffect(() => {
-    refs.current = { profile, workload, disabled, onBusy, onResult };
+    refs.current = { profile, workload, disabled, onBusy, onResult, samplePhase };
   });
   useEffect(() => {
     alive.current = true;
@@ -112,7 +114,7 @@ export default function AstraAnalysis({
         body: JSON.stringify({
           profile: refs.current.profile,
           workload: refs.current.workload,
-          ...(id ? { telemetryId: id } : {}),
+          ...(refs.current.samplePhase ? { samplePhase: refs.current.samplePhase } : id ? { telemetryId: id } : {}),
         }),
       })) as AnalysisResult;
       if (alive.current) {
@@ -134,7 +136,7 @@ export default function AstraAnalysis({
     }
   }
   useEffect(() => {
-    if (!watch) return;
+    if (!watch || samplePhase) return;
     const timer = setInterval(() => {
       void api('/api/telemetry')
         .then((x) => {
@@ -153,7 +155,7 @@ export default function AstraAnalysis({
         });
     }, 15000);
     return () => clearInterval(timer);
-  }, [watch]);
+  }, [watch, samplePhase]);
   async function upload(f: File | undefined) {
     if (!f) return;
     setError('');
@@ -210,7 +212,7 @@ export default function AstraAnalysis({
             busy ||
             disabled ||
             !status?.configured ||
-            ((useTelemetry || requireTelemetry) && !telemetry)
+            (!samplePhase && (useTelemetry || requireTelemetry) && !telemetry)
           }
           onClick={() =>
             void analyze(
@@ -219,15 +221,17 @@ export default function AstraAnalysis({
           }
         >
           <Sparkles size={15} />
-          {busy ? 'Astra is evaluating…' : 'Ask Astra to optimize'}
+          {busy ? 'Astra is evaluating…' : samplePhase ? 'Analyze 48-hour sample with Astra' : 'Ask Astra to optimize'}
         </Button>
       </div>
+      {!status && error && <p><Button variant="outline" onClick={() => window.location.assign('/signin-with-chatgpt?return_to=/')}>Sign in to enable saved analysis</Button></p>}
+      {samplePhase && <p>Synthetic two-day history selected. Cloud telemetry watching is paused while analyzing this sample.</p>}
       <div className="astra-controls">
         <label>
           <input
             type="checkbox"
-            checked={useTelemetry || requireTelemetry}
-            disabled={busy || watch || requireTelemetry || !telemetry}
+            checked={!samplePhase && (useTelemetry || requireTelemetry)}
+            disabled={!!samplePhase || busy || watch || requireTelemetry || !telemetry}
             onChange={(e) => setUseTelemetry(e.target.checked)}
           />
           Use latest observed telemetry
@@ -256,7 +260,7 @@ export default function AstraAnalysis({
           <Switch
             id="watch-telemetry"
             checked={watch}
-            disabled={!status?.configured || busy || disabled || !telemetry}
+            disabled={!!samplePhase || !status?.configured || busy || disabled || !telemetry}
             onCheckedChange={(v) => {
               setWatch(v);
               if (v) setUseTelemetry(true);

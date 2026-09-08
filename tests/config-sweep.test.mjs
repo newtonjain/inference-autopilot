@@ -14,10 +14,10 @@ test('sweep exhausts declared bounded grid and uses exact fixed-profile evidence
     workload = engine.defaultWorkload();
   const before = structuredClone({ profile, workload });
   const sweep = sweepConfiguration(profile, workload);
-  assert.equal(sweep.evaluatedCount, 36);
-  assert.equal(new Set(sweep.candidates.map((c) => c.id)).size, 36);
+  assert.equal(sweep.evaluatedCount, 27);
+  assert.equal(new Set(sweep.candidates.map((c) => c.id)).size, 27);
   assert.ok(sweep.feasibleCount > 0);
-  assert.equal(sweep.shortlist.length, 6);
+  assert.equal(sweep.shortlist.length, 3);
   assert.deepEqual({ profile, workload }, before);
   for (const c of sweep.candidates) {
     assert.equal(c.profile.autoscale, false);
@@ -51,7 +51,7 @@ test('sweep keeps failed candidates visible and never relabels overload as feasi
     sweep.candidates.every((c) => !c.pareto && c.evaluation.reasons.length > 0),
   );
   const summary = summarizeSweepForModel(sweep);
-  assert.equal(summary.candidates.length, sweep.evaluatedCount);
+  assert.equal(summary.candidates.length, sweep.shortlist.length);
   assert.ok(
     summary.candidates.every(
       (c) => c.feasible === false && c.gateFailures.length,

@@ -43,6 +43,7 @@ try {
       'tests/config-sweep.test.mjs',
       'tests/astra-client.test.mjs',
       'tests/analysis-contract.test.mjs',
+      'tests/sample-traffic.test.mjs',
     ],
     {
       stdio: 'inherit',

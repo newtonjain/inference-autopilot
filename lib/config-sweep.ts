@@ -96,7 +96,7 @@ export function sweepConfiguration(
   );
   const candidates: SweepCandidate[] = [];
   for (const [layoutIndex, layout] of layouts.entries()) {
-    for (const batchConcurrency of [8, 16, 32, 64]) {
+    for (const batchConcurrency of [8, 16, 32]) {
       for (const [cacheIndex, [prefixCache, cacheAffinity]] of [
         [false, false],
         [true, false],
@@ -154,12 +154,8 @@ export function sweepConfiguration(
     );
     if (best) shortlist.push(best);
   }
-  for (const candidate of [
-    ...candidates.filter((c) => c.pareto),
-    ...candidates,
-  ]) {
-    if (shortlist.length >= 6) break;
-    if (!shortlist.includes(candidate)) shortlist.push(candidate);
+  for (const candidate of shortlist) {
+    candidate.profile.name = candidate.goal === 'cost' ? 'Consolidate GPU footprint' : candidate.goal === 'throughput' ? 'Pre-warmed burst capacity' : 'Cache-aware serving';
   }
   shortlist.sort((a, b) => candidates.indexOf(a) - candidates.indexOf(b));
   return {
@@ -169,7 +165,7 @@ export function sweepConfiguration(
     feasibleCount: candidates.filter((c) => c.evaluation.feasible).length,
     replaySeconds: 90,
     seed: 42,
-    scope: `${layouts.length} distinct placement layouts (baseline, consolidation, pre-reserved capacity where distinct) × 4 batch limits (8/16/32/64) × 3 valid cache modes. All ${candidates.length} grid points replayed for 90 simulated seconds with seed 42. Autoscaling is disabled; headroom is retained, not swept, because it has no effect while scaling is frozen. Ranking prioritizes passing latency/rejection gates, then active-node cost and TTFT. The shortlist includes placement diversity and nondominated cost/latency/throughput alternatives. Hardware, traffic, prices and performance are synthetic; this is not a global search or a production benchmark.`,
+    scope: `${layouts.length} distinct placement layouts (baseline, consolidation, pre-reserved capacity where distinct) × 3 batch limits (8/16/32) × 3 valid cache modes. All ${candidates.length} grid points replayed for 90 simulated seconds with seed 42. Autoscaling is disabled; headroom is retained, not swept, because it has no effect while scaling is frozen. Ranking prioritizes passing latency/rejection gates, then active-node cost and TTFT. Only one representative per distinct placement strategy is shown; equivalent batch variants are not separate recommendations. Hardware, traffic, prices and performance are synthetic; this is not a global search or a production benchmark.`,
   };
 }
 
@@ -179,7 +175,7 @@ export function summarizeSweepForModel(sweep: ConfigurationSweep) {
     scope: sweep.scope,
     evaluatedCount: sweep.evaluatedCount,
     feasibleCount: sweep.feasibleCount,
-    candidates: sweep.candidates.map((candidate) => ({
+    candidates: sweep.shortlist.map((candidate) => ({
       id: candidate.id,
       profile: {
         placements: candidate.profile.placements.map(

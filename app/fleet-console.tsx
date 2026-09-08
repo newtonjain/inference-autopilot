@@ -1,4 +1,5 @@
 'use client';
+import { sampleTraffic, SAMPLE_PHASES, SAMPLE_LABELS, type SamplePhase } from '@/lib/sample-traffic';
 import Link from 'next/link';
 import ThemeToggle from '@/components/theme-toggle';
 import { useEffect, useRef, useState } from 'react';
@@ -235,6 +236,7 @@ export default function FleetConsole() {
     rollout: null,
   }));
   const [playing, setPlaying] = useState(true);
+  const [samplePhase, setSamplePhase] = useState<SamplePhase | null>(null);
   const [speed, setSpeed] = useState(2);
   const [evidence, setEvidence] = useState<Evidence | null>(null);
   const [inspected, setInspected] = useState<Experiment | null>(null);
@@ -329,6 +331,7 @@ export default function FleetConsole() {
     );
   }
   function invalidate() {
+    setSamplePhase(null);
     operation.current++;
     setEvidence(null);
     setInspected(null);
@@ -412,6 +415,7 @@ export default function FleetConsole() {
   }
   function reset() {
     if (busy) return;
+    setSamplePhase(null);
     operation.current++;
     setSession({ fleet: createFleetState(), green: null, rollout: null });
     setEvidence(null);
@@ -715,6 +719,7 @@ export default function FleetConsole() {
             value={source}
             onValueChange={(v) => {
               if (v === 'simulation' || v === 'gke') {
+                setSamplePhase(null);
                 setSource(v);
                 setScreen('live');
                 if (v === 'gke') setPlaying(false);
@@ -1426,6 +1431,33 @@ export default function FleetConsole() {
             </Button>
           </output>
         )}
+        {screen === 'optimization' && !observedMode && (
+          <section className="panel sample-history-panel">
+            <div className="panel-heading">
+              <div><h2>Two days of sample traffic</h2><p>Synthetic production-style workload · 576 five-minute windows · September 5–7, 2026 UTC</p></div>
+              <a href="/data/synthetic-fleet-48h.json" download>Download dataset</a>
+            </div>
+            <p>Choose a period to load its demand into the fleet. Run the replay, or ask Astra to analyze the full two-day history and recommend changes for this period.</p>
+            <div className="sample-phase-actions">
+              {SAMPLE_PHASES.map(phase => <Button key={phase} disabled={disabled} variant={samplePhase === phase ? 'secondary' : 'outline'} onClick={() => { setWorkload(sampleTraffic(phase).workload); setSamplePhase(phase); setPlaying(false); }}>{SAMPLE_LABELS[phase]}</Button>)}
+            </div>
+            {samplePhase && <output>Loaded: {SAMPLE_LABELS[samplePhase]} · {sampleTraffic(samplePhase).history.selectedHours} hours represented. The three profile estimates use the same 90-second replay; they are not measured cloud performance.</output>}
+          </section>
+        )}
+        {screen === 'optimization' && (
+          <AstraAnalysis
+            profile={activeProfile}
+            workload={workload}
+            disabled={disabled}
+            requireTelemetry={observedMode}
+            samplePhase={observedMode ? null : samplePhase}
+            onBusy={(value) => {
+              setBusy(value);
+              if (value) setPlaying(false);
+            }}
+            onResult={receiveAnalysis}
+          />
+        )}
         {screen === 'optimization' && (
           <section className="panel evidence-panel">
             <div className="panel-heading">
@@ -1624,19 +1656,6 @@ export default function FleetConsole() {
               </div>
             )}
           </section>
-        )}
-        {screen === 'optimization' && (
-          <AstraAnalysis
-            profile={activeProfile}
-            workload={workload}
-            disabled={disabled}
-            requireTelemetry={observedMode}
-            onBusy={(value) => {
-              setBusy(value);
-              if (value) setPlaying(false);
-            }}
-            onResult={receiveAnalysis}
-          />
         )}
         {screen === 'optimization' && (
           <section className="panel agent-context">

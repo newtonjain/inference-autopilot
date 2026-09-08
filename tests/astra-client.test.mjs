@@ -209,3 +209,19 @@ test('telemetry sends only recognized numeric aggregates and preserves evidence 
     ),
   );
 });
+
+test('historical sample sends 48 hourly summaries and only distinct representative profiles', async () => {
+  const {sampleTraffic}=require(path.join(build,'sample-traffic.js'));
+  const sample=sampleTraffic('overnight');
+  let sent;
+  await askAstra('test-key-not-real',{...input,history:sample.history}, async (_url, options)=>{
+    sent=JSON.parse(JSON.parse(options.body).input);
+    return respond(envelope())();
+  });
+  assert.equal(sent.trafficHistory.source,'synthetic');
+  assert.equal(sent.trafficHistory.hourly.length,48);
+  assert.equal(sent.trafficHistory.selectedPhase,'overnight');
+  assert.equal(sent.sweep.candidates.length,3);
+  const hidden=sweep.candidates.find(c=>c.evaluation.feasible && !sweep.shortlist.some(s=>s.id===c.id));
+  if(hidden){const d=decision();d.recommendations[0].candidateId=hidden.id;await assert.rejects(()=>askAstra('test-key-not-real',input,respond(envelope(d))));}
+});

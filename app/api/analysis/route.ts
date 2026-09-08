@@ -1,3 +1,4 @@
+import { sampleTraffic } from '@/lib/sample-traffic';
 import {
   database,
   runtime,
@@ -48,6 +49,14 @@ export async function POST(request: Request) {
       profile = parseProfile(input.profile);
     let workload = parseWorkload(input.workload);
     let telemetry;
+    let history;
+    if (input.samplePhase !== undefined) {
+      if (typeof input.samplePhase !== 'string' || input.telemetryId !== undefined)
+        throw new ApiError(400, 'Choose sample history or observed telemetry, not both.');
+      const sample = sampleTraffic(input.samplePhase);
+      workload = parseWorkload(sample.workload);
+      history = sample.history;
+    }
     if (input.telemetryId !== undefined) {
       if (typeof input.telemetryId !== 'string')
         throw new ApiError(400, 'Invalid telemetry identity.');
@@ -85,6 +94,8 @@ export async function POST(request: Request) {
         profile,
         workload,
         telemetryId: input.telemetryId || null,
+        samplePhase: history?.selectedPhase || null,
+        datasetId: history?.datasetId || null,
       });
     await db
       .prepare(
@@ -95,7 +106,7 @@ export async function POST(request: Request) {
     try {
       const sweep = sweepConfiguration(profile, workload);
       const decision = sweep.feasibleCount
-        ? await askAstra(key, { workload, sweep, telemetry })
+        ? await askAstra(key, { workload, sweep, telemetry, history })
         : null;
       const result = {
         id,
@@ -106,7 +117,10 @@ export async function POST(request: Request) {
         sweep,
         decision,
         telemetryId: input.telemetryId || null,
-        limitations: telemetry
+        samplePhase: history?.selectedPhase || null,
+        datasetId: history?.datasetId || null,
+        history,
+        limitations: history ? [history.limitation] : telemetry
           ? [
               'Replay uses completed throughput as a lower bound proxy, not measured ingress.',
               'Serving rates and hardware costs remain synthetic; no production deployment is approved.',

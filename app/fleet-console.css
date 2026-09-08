@@ -1448,3 +1448,7 @@
 .fleet-map-memory { display:grid; gap:.3rem; margin-top:.6rem; color:var(--muted-foreground); font-size:.875rem; }
 .fleet-map-memory span { display:flex; flex-wrap:wrap; justify-content:space-between; gap:.3rem; }
 .fleet-map-memory small { font-size:.75rem; }
+
+.sample-history-panel { padding:1.25rem; margin-bottom:1rem; }
+.sample-history-panel p { color:var(--muted-foreground); font-size:.875rem; }
+.sample-phase-actions { display:flex; flex-wrap:wrap; gap:.65rem; margin:1rem 0; }

@@ -36,3 +36,5 @@ The private Sites dispatcher also requires authenticated access. **An applicatio
 ## Local validation
 
 Use Node22+, `npm test`, `npm run typecheck`, `npm run lint` and `npm run build`. For local D1, execute each generated SQL migration against the local DB binding with Wrangler; do not modify tables at request time. The Sites local sign-in route supplies the development identity. Python exporter tests and Helm templates run independently. Mocked tests cover refusal, incomplete output, invented candidates, data filtering and model selection. A live verification must use the real configured key; simulated tests alone do not establish API/model access.
+
+See [two-day sample traffic](SAMPLE-TRAFFIC.md) for historical synthetic inputs and the provider adapter boundary.
