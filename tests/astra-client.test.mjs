@@ -59,10 +59,11 @@ test('Astra uses Responses structured output, server authorization, no storage a
       const body = JSON.parse(options.body);
       assert.equal(body.model, 'gpt-6-astra');
       assert.equal(body.store, false);
-      assert.deepEqual(body.reasoning, { effort: 'medium' });
+      assert.deepEqual(body.reasoning, { effort: 'low' });
       assert.equal(body.text.format.type, 'json_schema');
       assert.equal(body.text.format.strict, true);
-      assert.equal(body.max_output_tokens, 3500);
+      assert.equal(body.max_output_tokens, 2500);
+      assert.equal(body.service_tier, 'fast');
       assert.equal(
         JSON.parse(body.input).sweep.evaluatedCount,
         sweep.evaluatedCount,

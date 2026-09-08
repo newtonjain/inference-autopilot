@@ -75,6 +75,7 @@ const DECISION_SCHEMA = {
 
 const INSTRUCTIONS = `You are the inference deployment optimization analyst for a human-approved fleet controller.
 Select zero to three distinct feasible candidate IDs from the supplied bounded configuration sweep, in preference order. Never invent IDs, placement, hardware support, or new configuration fields. Return zero recommendations if none pass the supplied gates.
+Keep the response concise for an interactive demo: summary at most two sentences, bottleneck one sentence, each recommendation reason at most two sentences, and avoid repeating the same caveats across recommendations.
 Explain the workload bottleneck and why each selected candidate helps using the supplied replay measurements, including cost, latency, throughput, memory/placement constraints, and tradeoffs. State demand and the replay duration where relevant. Mention conflicting objectives and missing evidence in risks/dataGaps.
 All candidate performance, pricing, and fit evidence comes from a synthetic fluid simulation. Numeric observability context may describe an observed cluster but does not turn synthetic replay results into production benchmarks. Distinguish these explicitly. Do not claim causal production speedups, verified model fit, network/parallelism speedups, or globally exhaustive optimization. The sweep is exhaustive only within its stated finite search space.
 When trafficHistory is present, explain its daily demand transitions and the selected period. Its replay evidence covers only that representative period; do not claim a continuous 48-hour replay or infer weekly seasonality from two days. Recommend only the three supplied representative candidate IDs.
@@ -245,8 +246,9 @@ export async function askAstra(
       body: JSON.stringify({
         model: ASTRA_MODEL,
         store: false,
-        reasoning: { effort: 'medium' },
-        max_output_tokens: 3500,
+        reasoning: { effort: 'low' },
+        service_tier: 'fast',
+        max_output_tokens: 2500,
         instructions: INSTRUCTIONS,
         input: JSON.stringify({
           workload: {

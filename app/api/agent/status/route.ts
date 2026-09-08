@@ -12,6 +12,8 @@ export async function GET(request: Request) {
       .first();
     return json({
       model: 'gpt-6-astra',
+      reasoningEffort: 'low',
+      requestedServiceTier: 'fast',
       configured: !!runtime().OPENAI_API_KEY,
       persistence: true,
       telemetryIngestionConfigured:

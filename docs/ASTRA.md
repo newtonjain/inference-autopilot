@@ -1,6 +1,6 @@
 # Astra deployment decision service
 
-The application now has an actual server-side OpenAI Responses API integration. The model ID is `gpt-6-astra`, using structured output, medium reasoning, a bounded output budget and a 60-second timeout. The request uses `store:false`. This does not mean third-party API data has no applicable service retention policy. [Astra model documentation](https://developers.openai.com/api/docs/models/gpt-6-astra), [Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs).
+The application now has an actual server-side OpenAI Responses API integration. The model ID is `gpt-6-astra`, using structured output, low reasoning, Fast mode (`service_tier: "fast"`), a 2,500-token output budget and a 60-second timeout. The request uses `store:false`. This does not mean third-party API data has no applicable service retention policy. [Astra model documentation](https://developers.openai.com/api/docs/models/gpt-6-astra), [Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs).
 
 ## Decision path
 
@@ -38,3 +38,5 @@ The private Sites dispatcher also requires authenticated access. **An applicatio
 Use Node22+, `npm test`, `npm run typecheck`, `npm run lint` and `npm run build`. For local D1, execute each generated SQL migration against the local DB binding with Wrangler; do not modify tables at request time. The Sites local sign-in route supplies the development identity. Python exporter tests and Helm templates run independently. Mocked tests cover refusal, incomplete output, invented candidates, data filtering and model selection. A live verification must use the real configured key; simulated tests alone do not establish API/model access.
 
 See [two-day sample traffic](SAMPLE-TRAFFIC.md) for historical synthetic inputs and the provider adapter boundary.
+
+The API account exposes `gpt-6-astra`, not a separate Astra Light model. The demo requests Fast mode with concise responses; Fast mode has premium pricing and does not guarantee a fixed response time. See [Fast mode](https://developers.openai.com/api/docs/guides/fast-mode).
