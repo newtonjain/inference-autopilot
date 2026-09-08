@@ -2,6 +2,7 @@
 set -eu
 cd "$(dirname "$0")"
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s observer -p 'test_*.py'
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s telemetry -p 'test_*.py'
 python3 -m json.tool examples/serving-intents.json >/dev/null
 if command -v helm >/dev/null 2>&1; then
   helm lint chart --set image=example.invalid/observer:validation

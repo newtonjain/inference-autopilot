@@ -1,6 +1,6 @@
 # Inference Autopilot — fleet simulation
 
-An interactive deployment console with Gemma 4 26B, Qwen 3.5 397B, and Kimi K3 across H200, GB200, GB300, and TPU v7 hardware groups. No cloud account, GPU, API key, or model download is required. All throughput, latency, prices, and optimization results are synthetic. The optimizer is deterministic code, with no live Astra or model calls.
+An interactive deployment console with Gemma 4 26B, Qwen 3.5 397B, and Kimi K3 across H200, GB200, GB300, and TPU v7 hardware groups. The local simulator requires no cloud account or GPU. The optional server-side Astra analyst calls the OpenAI Responses API and requires a secret OPENAI_API_KEY. Performance predictions and prices remain synthetic; real aggregated telemetry can inform analysis without turning replay into a benchmark.
 
 ## Run and validate
 
@@ -22,10 +22,10 @@ The header’s Day mode / Night mode toggle applies across both labs and remembe
 ## Workspace navigation
 
 - **Live fleet:** routing immediately below playback/scaling controls, followed by metrics, expandable replicas/ranks, rollout progress, and demand over time.
-- **Simulation:** workload shaping and optimization opportunities; repeatable demo presets are expandable.
+- **Simulation:** live routing/pressure above workload shaping, account-backed save/load, and expandable demo presets.
 - **Optimization:** baseline context, recommended profiles, rationale, exact profile JSON, approval, and the production analysis-service boundary.
 
-Approval returns to Live fleet. Blue/green demand traces show actual simulated requests routed to each pool. The data-source selector exposes read-only GKE snapshots in the same workspace; snapshots cannot drive simulation controls or performance recommendations. No live cloud stream or AI analysis service is connected.
+Approval returns to Live fleet. Blue/green demand traces show actual simulated requests routed to each pool. The data-source selector exposes read-only GKE snapshots in the same workspace; snapshots cannot drive simulation controls or performance recommendations. The Astra service is implemented server-side; GKE inventory snapshots remain separate from performance telemetry.
 
 ## Distributed deployment and GCP
 
@@ -44,7 +44,7 @@ Read [the demo playbook](docs/DEMO.md) and [GCP attachment guide](docs/GCP.md). 
 5. Approve a passing profile. A separate green pool warms, takes a canary, receives increasing traffic, verifies, and drains blue. Both pools consume resources and incur costs during overlap. Watch actual simulated traffic weights and updated metrics.
 6. Abort a rollout to restore blue while retaining queues and accounting. Export a report to retain settings, evidence, and activity.
 
-All state and audit history are session-local. Refresh resets the fleet. Changes never operate customer infrastructure.
+Simulation state and rollout audit are session-local. Saved workloads, aggregate telemetry and Astra analysis history persist per signed-in user in D1. Changes never operate customer infrastructure.
 
 ## Inventory and compatibility
 
@@ -80,3 +80,7 @@ Limitations include no kernels, network/interconnect contention, distributed ten
 - `tests/`: reproducibility, placement constraints, overload, conservation, approval, migration, and rollback checks.
 
 Optional WebMCP read tools are feature-detected. Browser contract validation and visual/interaction QA were not performed. Validation covers authored-source lint, TypeScript, simulation/workflow tests, HTTP rendering, and the production build.
+
+## Astra and persisted evidence
+
+See [the Astra integration guide](docs/ASTRA.md) and [GCP telemetry setup](docs/TELEMETRY.md). Optimization has two explicit actions: a local replay sweep and a server-side Astra analysis. The supported grid contains up to 36 placement/cache/batch combinations. Astra ranks feasible candidates and explains tradeoffs; it cannot invent an approvable profile or execute a cloud change. Account-scoped D1 records hold workloads, normalized telemetry, analysis history and hashed ingestion tokens. API keys are never sent to the browser.

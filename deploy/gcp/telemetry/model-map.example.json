@@ -1,0 +1,11 @@
+{
+  "projectId": "your-project-id",
+  "location": "us-central1",
+  "cluster": "your-gke-cluster",
+  "namespace": "inference",
+  "models": {
+    "gemma": "REPLACE_WITH_EXACT_GEMMA_MODEL_NAME_LABEL",
+    "qwen": "REPLACE_WITH_EXACT_QWEN_MODEL_NAME_LABEL",
+    "kimi": "REPLACE_WITH_EXACT_KIMI_MODEL_NAME_LABEL"
+  }
+}

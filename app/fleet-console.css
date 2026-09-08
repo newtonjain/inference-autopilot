@@ -1311,3 +1311,127 @@
     margin-top: 8px;
   }
 }
+
+.saved-workloads {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.saved-workloads select {
+  background: var(--card);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 9px;
+  max-width: 360px;
+  font-size: 12px;
+}
+.saved-workloads span {
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.astra-panel {
+  margin: 20px 0;
+  overflow: hidden;
+}
+.astra-panel h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.astra-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 18px 24px;
+  font-size: 12px;
+}
+.astra-controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.astra-controls > span {
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.astra-note {
+  font-size: 11px;
+  padding: 0 24px 20px;
+}
+.astra-error {
+  padding: 12px 24px;
+  color: light-dark(#a82739, #f6a0a9);
+  font-size: 12px;
+}
+.astra-summary {
+  padding: 20px 24px;
+  background: var(--background);
+  border-top: 1px solid var(--border);
+}
+.astra-summary > strong {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.astra-summary p {
+  font-size: 12px;
+  margin: 12px 0;
+}
+.astra-summary small {
+  color: var(--primary);
+  font-size: 11px;
+}
+.astra-summary details {
+  margin-top: 18px;
+  font-size: 12px;
+}
+.astra-summary summary,
+.analysis-history summary {
+  cursor: pointer;
+}
+.astra-summary li {
+  line-height: 1.7;
+  margin: 8px 0;
+  color: var(--muted-foreground);
+}
+.analysis-history {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+}
+.analysis-history > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  gap: 15px;
+}
+.telemetry-guide {
+  display: block;
+  padding: 0 24px 20px;
+  color: var(--primary);
+  font-size: 11px;
+}
+
+.collector-secret label {
+  display: block;
+  font-size: 11px;
+  margin: 12px 0;
+}
+.collector-secret input {
+  display: block;
+  background: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  padding: 9px;
+  width: 100%;
+  margin-top: 6px;
+}
+.collector-secret small {
+  display: block;
+  color: var(--muted-foreground);
+}

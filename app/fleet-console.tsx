@@ -11,7 +11,6 @@ import {
   Pause,
   RotateCcw,
   Download,
-  Sparkles,
   ShieldCheck,
   Check,
   ChevronRight,
@@ -53,6 +52,10 @@ import FleetMap from '@/components/fleet-map';
 import DemoScenarios from '@/components/demo-scenarios';
 import FleetDeployment from '@/components/fleet-deployment';
 import GcpConnection from '@/components/gcp-connection';
+import AstraAnalysis from '@/components/astra-analysis';
+import type { AnalysisResult } from '@/components/astra-analysis';
+import SavedWorkloads from '@/components/saved-workloads';
+import { sweepConfiguration } from '@/lib/config-sweep';
 import type { DemoScenario } from '@/lib/fleet-scenarios';
 import {
   createFleetState,
@@ -88,9 +91,14 @@ import './fleet-map.css';
 import './fleet-deployment.css';
 import './gcp-connection.css';
 
-type Experiment = ReturnType<typeof recommendProfiles>[number];
+type Experiment = ReturnType<typeof recommendProfiles>[number] & {
+  aiReason?: string;
+  aiRisks?: string[];
+};
 type Evidence = {
   workload: WorkloadConfig;
+  source?: 'simulation' | 'observed-proxy';
+  aiModel?: string;
   context: string;
   baseline: Evaluation;
   experiments: Experiment[];
@@ -315,10 +323,6 @@ export default function FleetConsole() {
   const workload = locked ? session.rollout!.workload : session.fleet.workload;
   const summary = sessionSummary(session);
   const activeProfile = locked ? session.rollout!.blue : session.fleet.profile;
-  const opportunities = session.fleet.events
-    .filter((e) => e.type !== 'route')
-    .slice(-4)
-    .reverse();
   function log(text: string) {
     setAudit((old) =>
       [{ time: new Date().toISOString(), message: text }, ...old].slice(0, 30),
@@ -334,6 +338,7 @@ export default function FleetConsole() {
   function setWorkload(next: WorkloadConfig) {
     if (disabled) return;
     invalidate();
+    setPlaying(true);
     setSession((s) => ({
       ...s,
       fleet: updateWorkload(s.fleet, next),
@@ -437,7 +442,7 @@ export default function FleetConsole() {
     );
   }
   async function analyze() {
-    if (running.current || locked) return;
+    if (running.current || locked || observedMode) return;
     running.current = true;
     setBusy(true);
     setPlaying(false);
@@ -452,18 +457,14 @@ export default function FleetConsole() {
         { ...captured.fleet.profile, autoscale: false },
         captured.fleet.workload,
       );
-      const experiments = recommendProfiles(
+      const grid = sweepConfiguration(
         captured.fleet.profile,
         captured.fleet.workload,
-      ).map((e) => ({
-        ...e,
-        evaluation: evaluateProfile(
-          { ...e.profile, autoscale: false },
-          captured.fleet.workload,
-        ),
-      }));
+      );
+      const experiments = grid.shortlist;
       if (rev !== operation.current) return;
       setEvidence({
+        source: 'simulation',
         workload: structuredClone(captured.fleet.workload),
         context: fleetContextHash(
           captured.fleet.profile,
@@ -475,7 +476,7 @@ export default function FleetConsole() {
       setTab('experiments');
       setScreen('optimization');
       setMessage(
-        `${experiments.filter((e) => e.evaluation.feasible).length} of ${experiments.length} profiles passed the same 90-second workload replay. Inspect a profile to see the prescription.`,
+        `${grid.feasibleCount} of ${grid.evaluatedCount} configurations passed the 90-second replay. Showing ${experiments.length} representative profiles; ask Astra to rank and explain the sweep.`,
       );
       log(
         'Evaluated candidate deployment profiles on identical offered traffic.',
@@ -487,10 +488,46 @@ export default function FleetConsole() {
       setBusy(false);
     }
   }
+  function receiveAnalysis(result: AnalysisResult) {
+    setInspected(null);
+    setProposal(null);
+    const ranked = result.decision?.recommendations || [];
+    const selected =
+      result.decision !== null
+        ? ranked.map((r) => {
+            const c = result.sweep.candidates.find(
+              (c) => c.id === r.candidateId,
+            )!;
+            return { ...c, aiReason: r.reason, aiRisks: r.risks };
+          })
+        : result.sweep.shortlist;
+    setEvidence({
+      source: result.source,
+      aiModel: result.decision?.model,
+      workload: result.workload,
+      context: fleetContextHash(result.profile, result.workload),
+      baseline: evaluateProfile(
+        { ...result.profile, autoscale: false },
+        result.workload,
+      ),
+      experiments: selected,
+    });
+    setTab('experiments');
+    setPlaying(false);
+    setMessage(
+      result.source === 'observed-proxy'
+        ? 'Astra reviewed observed metrics. These profiles remain modeled proposals; cloud deployment approval is unavailable.'
+        : 'Astra recommendations are ready. Inspect the evidence and exact profile before approval.',
+    );
+  }
   function inspect(experiment: Experiment) {
     setPlaying(false);
     setInspected(experiment);
     try {
+      if (observedMode || evidence?.source === 'observed-proxy')
+        throw Error(
+          'Observed telemetry recommendations require calibrated benchmarks and a cloud deployment adapter. Review only.',
+        );
       if (
         !evidence ||
         evidence.context !==
@@ -513,7 +550,8 @@ export default function FleetConsole() {
     }
   }
   function approve() {
-    if (!proposal) return;
+    if (!proposal || observedMode || evidence?.source === 'observed-proxy')
+      return;
     try {
       const next = beginSessionRollout(
         current.current,
@@ -770,7 +808,7 @@ export default function FleetConsole() {
             </Button>
           </div>
         </div>
-        {screen === 'live' && !observedMode && (
+        {(screen === 'live' || screen === 'simulation') && !observedMode && (
           <>
             <section className="panel fleet-map-panel">
               <div className="panel-heading">
@@ -1060,6 +1098,22 @@ export default function FleetConsole() {
                   </SelectContent>
                 </Select>
               </div>
+              <SavedWorkloads
+                profile={activeProfile}
+                workload={workload}
+                disabled={disabled}
+                onLoad={(profile, workload) => {
+                  invalidate();
+                  setSession({
+                    fleet: createFleetState(profile, workload),
+                    green: null,
+                    rollout: null,
+                  });
+                  setHistory([]);
+                  setPlaying(true);
+                  setMessage('Loaded your saved workload.');
+                }}
+              />
               <div className="fleet-workload-controls">
                 <Control
                   title="Offered traffic"
@@ -1220,56 +1274,6 @@ export default function FleetConsole() {
                 </p>
               )}
             </section>
-            <aside className="panel fleet-opportunities">
-              <div className="opportunity-icon">
-                <Sparkles size={23} />
-              </div>
-              <h2>Optimization opportunities</h2>
-              <h2>
-                {summary.queue > 0
-                  ? 'Get ahead of the queue.'
-                  : 'Find the next better profile.'}
-              </h2>
-              <p>
-                Compare latency, capacity, and consolidation strategies on the
-                same offered traffic. Inspect explains every prescription.
-              </p>
-              <Button
-                className="primary-action"
-                disabled={disabled}
-                onClick={analyze}
-              >
-                {busy ? <LoaderCircle className="spin" /> : <FlaskConical />}
-                {busy ? 'Evaluating profiles' : 'Run optimization'}
-                <ArrowRight />
-              </Button>
-              <small>Deterministic 90s replay · no live AI calls</small>
-              <div className="live-events">
-                <div className="eyebrow">RECENT FLEET EVENTS</div>
-                {opportunities.length ? (
-                  opportunities.map((event) => (
-                    <div key={event.id}>
-                      <i
-                        className={
-                          event.type === 'warning'
-                            ? 'red-dot'
-                            : event.type === 'ready'
-                              ? 'green-dot'
-                              : 'blue-dot'
-                        }
-                      />
-                      <p>{event.message}</p>
-                      <time>T+{event.time}s</time>
-                    </div>
-                  ))
-                ) : (
-                  <p>
-                    Surge a model to watch pressure and scaling decisions appear
-                    here.
-                  </p>
-                )}
-              </div>
-            </aside>
           </div>
         )}
         {screen === 'simulation' && (
@@ -1278,7 +1282,20 @@ export default function FleetConsole() {
             <DemoScenarios onLoad={loadScenario} disabled={disabled} />
           </details>
         )}
-        {screen === 'optimization' && !observedMode && (
+        {screen === 'optimization' && (
+          <AstraAnalysis
+            profile={activeProfile}
+            workload={workload}
+            disabled={disabled}
+            requireTelemetry={observedMode}
+            onBusy={(value) => {
+              setBusy(value);
+              if (value) setPlaying(false);
+            }}
+            onResult={receiveAnalysis}
+          />
+        )}
+        {screen === 'optimization' && (
           <section className="panel evidence-panel">
             <div className="panel-heading">
               <div>
@@ -1289,9 +1306,9 @@ export default function FleetConsole() {
                   {workload.outputTokens.toLocaleString()} output tokens
                 </p>
               </div>
-              <Button disabled={disabled} onClick={analyze}>
+              <Button disabled={disabled || observedMode} onClick={analyze}>
                 {busy ? <LoaderCircle className="spin" /> : <FlaskConical />}
-                {busy ? 'Evaluating' : 'Run optimization'}
+                {busy ? 'Evaluating' : 'Run replay sweep'}
               </Button>
             </div>
             <div className="evidence-heading">
@@ -1485,7 +1502,7 @@ export default function FleetConsole() {
                 <p>
                   {observedMode
                     ? 'Imported pod inventory cannot support performance recommendations by itself.'
-                    : 'Today: deterministic replay in this browser. No live AI agent is connected.'}
+                    : 'Astra analysis runs server-side through the OpenAI API. Replay gates validate its selected profiles.'}
                 </p>
               </div>
             </div>
@@ -1514,10 +1531,10 @@ export default function FleetConsole() {
                 <article>
                   <strong>AI reasoning and approval</strong>
                   <p>
-                    A future Astra agent can select experiments and explain
-                    evidence. Deterministic capacity/SLO gates verify its
-                    proposal; a separate authorized controller applies approved
-                    changes and supports rollback.
+                    Astra ranks configurations and explains replay evidence.
+                    Deterministic capacity/SLO gates verify its proposal; a
+                    separate authorized controller applies approved changes and
+                    supports rollback.
                   </p>
                 </article>
               </div>
@@ -1713,7 +1730,7 @@ export default function FleetConsole() {
               </ol>
               <div className="profile-rationale">
                 <h3>Why this recommendation</h3>
-                <p>{inspected.reason}</p>
+                <p>{inspected.aiReason || inspected.reason}</p>
                 <p>
                   Evaluated against {evidence?.workload.rps.toFixed(1)} req/s,{' '}
                   {evidence?.workload.inputTokens.toLocaleString()} input
@@ -1725,8 +1742,9 @@ export default function FleetConsole() {
                   approval.
                 </p>
                 <small>
-                  Rule-based explanation from replay evidence; not generated by
-                  a live AI agent.
+                  {inspected.aiReason
+                    ? `Generated by ${evidence?.aiModel} using the configuration sweep.`
+                    : 'Rule-based explanation from replay evidence.'}
                 </small>
               </div>
               <details className="deployment-file">
@@ -1750,6 +1768,16 @@ export default function FleetConsole() {
                   Download profile JSON
                 </Button>
               </details>
+              {inspected.aiRisks?.length ? (
+                <div className="profile-rationale">
+                  <h3>Tradeoffs and risks</h3>
+                  <ul>
+                    {inspected.aiRisks.map((risk, i) => (
+                      <li key={i}>{risk}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
               <h3>Exactly what changes</h3>
               <Table className="prescription-table">
                 <TableHeader>

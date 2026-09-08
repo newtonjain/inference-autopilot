@@ -17,3 +17,7 @@ This iteration adds independent blue/green simulation pools, resource warmup, ac
 Three agents contributed topology derivation and invariant tests, scenario evidence/judging review, and a functional GKE observer with Helm configuration. The main agent implemented scenario controls, per-hardware replica counts, rank/parallelism inspection, local observation import, documentation and integration. A separate topology review caught expert-rank validation and labeling issues, which were corrected.
 
 These additions expose the underlying optimization workflow as a repeatable CLI as well as the dashboard. They add real read-only Kubernetes inventory collection code, but no cloud deployment was performed, and no live Astra inference or autonomous cloud writes are implemented.
+
+## Astra decision service
+
+Added account-backed workload/telemetry/analysis persistence, an OpenAI Responses API adapter for GPT-6 Astra, a bounded 36-point supported configuration sweep, live-model rationale in profile inspection, and optional foreground telemetry watching. Three agents implemented/reviewed the sweep, Astra protocol validation, and GCP metric exporter while the main agent integrated the routes, ownership guards, UI and storage. Earlier statements about no Astra calls describe earlier milestones. Model suggestions remain subject to replay validation and human approval; no cloud actuator is shipped.

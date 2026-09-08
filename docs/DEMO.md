@@ -1,6 +1,6 @@
 # Demo the optimization controller
 
-The core product is a deployment decision loop: observe workload → replay alternatives → reject unsafe plans → approve → warm complete serving groups → migrate traffic → verify → drain or roll back. The dashboard is the evidence and control surface. The code currently uses deterministic recommendations; it does **not** invoke Astra in production.
+The core product is a deployment decision loop: observe workload → replay alternatives → reject unsafe plans → approve → warm complete serving groups → migrate traffic → verify → drain or roll back. The dashboard is the evidence and control surface. The optional Astra analyst now uses the OpenAI Responses API server-side to rank a bounded configuration sweep, explain tradeoffs, and retain evidence. Deterministic checks remain the feasibility gate.
 
 ## Strongest scenarios
 
@@ -33,4 +33,4 @@ For a one-minute submission, use one scenario: problem → passing/rejected evid
 
 The supplied participant guide gives equal weight to Astra in development, Astra in the project, live demo, and technicality. It explicitly excludes projects whose main feature is a dashboard. Lead with the optimization workflow and runnable observer, and show the software operating rather than static charts. Maintain the public repository and a record of original work.
 
-The current runtime is rule-based and does not yet satisfy a strong Astra-in-project story. A future Astra integration should interpret real traces, call the existing bounded replay tools, and explain a proposed deployment while deterministic feasibility and approval gates retain control. Do not claim this integration exists. No API key or live model calls are included here.
+The Astra analyst now supplies the in-project model use: show “Ask Astra to optimize,” the returned rationale and alternatives, the 36-point sweep scope, and saved analysis history. The API key must be configured as a server secret. Real API availability is account-dependent; failures remain visible rather than being replaced by fabricated AI explanations. Performance evidence is still simulated, and no production infrastructure is changed.

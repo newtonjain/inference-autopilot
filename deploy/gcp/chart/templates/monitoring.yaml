@@ -16,5 +16,5 @@ spec:
         # Explicit metric-name allowlist; audit server label cardinality before enabling.
         - action: keep
           sourceLabels: [__name__]
-          regex: 'vllm:(num_requests_running|num_requests_waiting|kv_cache_usage_perc|gpu_cache_usage_perc|prefix_cache_queries_total|prefix_cache_hits_total|request_success_total|prompt_tokens_total|generation_tokens_total|time_to_first_token_seconds_(bucket|sum|count)|inter_token_latency_seconds_(bucket|sum|count)|e2e_request_latency_seconds_(bucket|sum|count))'
+          regex: 'vllm:(num_requests_running|num_requests_waiting|kv_cache_usage_perc|gpu_cache_usage_perc|prefix_cache_queries_total|prefix_cache_hits_total|request_success_total|prompt_tokens_total|generation_tokens_total|request_prompt_tokens_(bucket|sum|count)|request_generation_tokens_(bucket|sum|count)|time_to_first_token_seconds_(bucket|sum|count)|inter_token_latency_seconds_(bucket|sum|count)|e2e_request_latency_seconds_(bucket|sum|count))'
 {{- end }}

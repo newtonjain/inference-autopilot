@@ -1,6 +1,6 @@
 # Attach Inference Autopilot to GKE
 
-The dashboard remains a simulator. `deploy/gcp` adds a runnable **read-only inventory observer**, an optional metrics collection manifest, and explicit serving-planning examples. It does not create a cluster, provision accelerators, change an existing model endpoint, install an inference engine, or grant permission to resize workloads. No Google credentials or model API keys are included.
+The dashboard supports simulation, persisted telemetry snapshots and server-side Astra recommendations; cloud changes remain observe-only. `deploy/gcp` adds a runnable **read-only inventory observer**, an optional metrics collection manifest, and explicit serving-planning examples. It does not create a cluster, provision accelerators, change an existing model endpoint, install an inference engine, or grant permission to resize workloads. No Google credentials or model API keys are included.
 
 ## Existing deployment: first attachment
 
@@ -45,7 +45,7 @@ Enable GKE Managed Service for Prometheus separately, then set `monitoring.enabl
 | GKE scheduling/node inventory | Machine types, topology domains, allocatable devices, pending reasons and reservations                             | Tests whether a proposed replica can be placed; requires additional scoped permissions |
 | Billing export and quotas     | Actual VM/reservation/egress costs, commitments and regional availability                                          | Replaces illustrative chip prices with billable node costs                             |
 
-A future query adapter should use Workload Identity Federation for GKE and narrowly scoped Cloud Monitoring read permissions. The current observer uses only its projected Kubernetes service-account token and requires no Google IAM role. Avoid JSON service-account keys. Enabling Workload Identity on an existing Standard node pool can affect existing applications, so follow the documented migration procedure. [Workload Identity setup](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/workload-identity).
+The supplied [telemetry query adapter](TELEMETRY.md) uses Workload Identity Federation for GKE and narrowly scoped Cloud Monitoring read permissions. It exports aggregate windows for authenticated upload or an ingestion transport configured for the private site. The current observer uses only its projected Kubernetes service-account token and requires no Google IAM role. Avoid JSON service-account keys. Enabling Workload Identity on an existing Standard node pool can affect existing applications, so follow the documented migration procedure. [Workload Identity setup](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/workload-identity).
 
 ## Hardware, distributed replicas and fleet boundaries
 
@@ -65,4 +65,4 @@ TPUs use `google.com/tpu` resources and supported slice topology. Multi-host TPU
 
 Run `sh deploy/gcp/validate.sh` locally. It tests sensitive-field filtering and GPU/TPU snapshot handling, validates the planning JSON and renders both chart variants when Helm is installed. [Helm rendering](https://helm.sh/docs/helm/helm_template/) does not validate admission policies, CRD availability, image pull access or cloud permissions. Before a real install, run server-side dry-run on the rendered YAML against the target development cluster and verify RBAC with `kubectl auth can-i` for the observer identity. Then check `/readyz`, snapshot accuracy and exporter metrics against the real serving fleet.
 
-The next production increment is authenticated snapshot/metrics ingestion, a durable time-series store, verified topology discovery and offline recommendation replay. After evidence gates work, add a separate write controller with idempotent plans, explicit approvals, audit retention, quota and warm-up checks, guarded routing changes, abort and rollback. No autonomous cloud actuation is shipped by this scaffold.
+Account-scoped aggregate window storage, an authenticated ingestion route and Astra-assisted replay are implemented; see [Astra integration](ASTRA.md). The next production increment is connecting the private-site authenticated collector transport, a durable time-series backend and verified runtime topology discovery. After evidence gates work, add a separate write controller with idempotent plans, explicit approvals, audit retention, quota and warm-up checks, guarded routing changes, abort and rollback. No autonomous cloud actuation is shipped by this scaffold.
