@@ -49,3 +49,4 @@ next-env.d.ts
 # Python observer caches
 __pycache__/
 *.pyc
+/deploy/lambda/evidence/

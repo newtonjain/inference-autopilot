@@ -1,0 +1,14 @@
+{
+  "model": "google/gemma-4-26B-A4B-it",
+  "checkpoint": "cyankiwi/gemma-4-26B-A4B-it-AWQ-4bit",
+  "revision": "0ef577a5710035bd2d3a3f27e4f5cb2e86a9a9ba",
+  "image": "vllm/vllm-openai:v0.28.0",
+  "precision": "W4A16 mixed precision AWQ compressed-tensors",
+  "activationDtype": "bfloat16",
+  "tensorParallelSize": 1,
+  "maxModelLen": 8192,
+  "maxNumSeqs": 8,
+  "maxNumBatchedTokens": 4096,
+  "prefixCaching": false,
+  "gpuMemoryUtilization": 0.90
+}

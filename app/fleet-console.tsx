@@ -611,6 +611,9 @@ export default function FleetConsole() {
         <Link className="small-badge" href="/lab">
           Single GPU & node lab <ArrowRight size={12} />
         </Link>
+        <Link className="small-badge" href="/live-gpu">
+          Live A100 <ArrowRight size={12} />
+        </Link>
         <ThemeToggle />
       </header>
       <main className="workspace fleet-workspace">
